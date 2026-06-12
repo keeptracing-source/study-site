@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>기말고사 시험공부 허브</title>
+  <style>
+    :root {
+      --bg: #101827;
+      --card: #182437;
+      --ink: #eef4fb;
+      --muted: #aebbd0;
+      --line: #30435d;
+      --blue: #6fb4e8;
+      --gold: #e2b55b;
+      --green: #6bc3a2;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(111,180,232,0.18), transparent 32%),
+        radial-gradient(circle at 8% 82%, rgba(226,181,91,0.12), transparent 34%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+    main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 40px 0 70px; }
+    .eyebrow { color: var(--gold); font-size: 0.74rem; letter-spacing: 0.14em; font-weight: 800; }
+    h1 {
+      font-size: clamp(1.9rem, 7vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin: 8px 0 14px;
+    }
+    .intro { color: var(--muted); font-size: 0.95rem; max-width: 620px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 30px; }
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), transparent), var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 14px 38px rgba(0,0,0,0.18);
+    }
+    .status {
+      align-self: flex-start;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      font-weight: 850;
+      color: #07131f;
+      background: var(--green);
+    }
+    .status.quiz { background: var(--gold); }
+    h2 { margin: 14px 0 6px; font-size: 1.25rem; }
+    .scope { color: var(--blue); font-size: 0.82rem; font-weight: 700; }
+    .card p { color: var(--muted); font-size: 0.85rem; margin: 8px 0 0; }
+    .spacer { flex: 1; min-height: 10px; }
+    a.open {
+      display: block;
+      margin-top: 16px;
+      text-decoration: none;
+      text-align: center;
+      background: var(--blue);
+      color: #081522;
+      border-radius: 12px;
+      padding: 13px 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+    a.open:active { filter: brightness(0.92); }
+    footer { margin-top: 40px; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--line); padding-top: 18px; }
+    @media (max-width: 620px) {
+      main { padding: 30px 0 60px; }
+      .grid { grid-template-columns: 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">FINAL EXAM · STUDY HUB</div>
+  <h1>기말고사<br>시험공부 허브</h1>
+  <p class="intro">
+    과목별 기말고사 정리 자료를 한곳에 모았습니다. 휴대폰에서 이 페이지를 즐겨찾기(홈 화면에 추가)해 두면
+    이동 중에도 바로 열어 공부할 수 있어요.
+  </p>
+
+  <div class="grid">
+    <article class="card">
+      <span class="status">개념 정리</span>
+      <h2>사회정책</h2>
+      <div class="scope">9~13주차 + 한국 복지국가</div>
+      <p>주차별 개념·비교표·플래시카드, 객관식 20문항, 서술형 12문항 통합 학습도우미.</p>
+      <div class="spacer"></div>
+      <a class="open" href="social-policy.html">열기 →</a>
+    </article>
+
+    <article class="card">
+      <span class="status">개념 정리</span>
+      <h2>경제학설사개론</h2>
+      <div class="scope">근세 16세기 ~ 아담 스미스 · 베버</div>
+      <p>도덕감정론·국부론·분업·가치론·무역·조세 단답형 예상문제.</p>
+      <div class="spacer"></div>
+      <a class="open" href="econ-history.html">열기 →</a>
+    </article>
+
+    <article class="card">
+      <span class="status">개념 정리</span>
+      <h2>수리사회학 — 완전 정리</h2>
+      <div class="scope">디지털 사회조사 · 전산사회과학 · 생성형 AI</div>
+      <p>Bit by Bit 기반 기말 핵심 개념 완전 정리본.</p>
+      <div class="spacer"></div>
+      <a class="open" href="math-soc-final.html">열기 →</a>
+    </article>
+
+    <article class="card">
+      <span class="status quiz">퀴즈 대비</span>
+      <h2>수리사회학 — 퀴즈</h2>
+      <div class="scope">대규모 협업 · 디지털 연구 윤리</div>
+      <p>객관식·데이터 해석·시나리오·서술형 예상 퀴즈 11문항.</p>
+      <div class="spacer"></div>
+      <a class="open" href="math-soc-quiz.html">열기 →</a>
+    </article>
+  </div>
+
+  <footer>
+    개인 학습용 정리 자료 · GitHub Pages로 호스팅
+  </footer>
+</main>
+</body>
+</html>

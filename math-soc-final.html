@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수리사회학 기말고사 완전 정리 — 디지털 시대 사회조사 (Bit by Bit) & 전산사회과학·생성형 AI</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f5f5;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e5e5e5;
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --accent-1: #ec4899;
+    --accent-2: #10b981;
+    --accent-3: #f59e0b;
+    --accent-4: #8b5cf6;
+    --quiz-bg: #fef3c7;
+    --quiz-border: #f59e0b;
+    --answer-bg: #d1fae5;
+    --answer-border: #10b981;
+    --warning-bg: #fee2e2;
+    --warning-border: #ef4444;
+    --exam-bg: #ede9fe;
+    --exam-border: #7c3aed;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f172a;
+    --bg-card: #1e293b;
+    --bg-hover: #334155;
+    --text: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --primary: #60a5fa;
+    --primary-light: #1e3a8a;
+    --quiz-bg: #422006;
+    --quiz-border: #f59e0b;
+    --answer-bg: #064e3b;
+    --answer-border: #10b981;
+    --warning-bg: #450a0a;
+    --warning-border: #ef4444;
+    --exam-bg: #2e1065;
+    --exam-border: #a78bfa;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background: var(--bg-card);
+    border-right: 1px solid var(--border);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--primary);
+  }
+
+  .sidebar .subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .sidebar nav ul {
+    list-style: none;
+  }
+
+  .sidebar nav li {
+    margin-bottom: 4px;
+  }
+
+  .sidebar nav a {
+    display: block;
+    padding: 7px 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+
+  .sidebar nav a:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+  }
+
+  .sidebar nav a.section-title {
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 16px;
+    pointer-events: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+
+  .sidebar nav a.indent {
+    padding-left: 24px;
+  }
+
+  /* Controls */
+  .controls {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    background: var(--bg-hover);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  /* Main content */
+  .main {
+    padding: 40px 60px;
+    max-width: 1120px;
+  }
+
+  .hero {
+    margin-bottom: 48px;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--primary), var(--accent-4));
+    color: white;
+    border-radius: 16px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    opacity: 0.92;
+    font-size: 15px;
+  }
+
+  .hero .meta {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hero .meta span {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+  }
+
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 20px;
+  }
+
+  h2 {
+    font-size: 25px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+  }
+
+  h2.exam-h2 {
+    color: var(--exam-border);
+    border-bottom-color: var(--exam-border);
+  }
+
+  h3 {
+    font-size: 20px;
+    margin: 24px 0 12px;
+    color: var(--text);
+  }
+
+  h4 {
+    font-size: 16px;
+    margin: 16px 0 8px;
+    color: var(--text-secondary);
+  }
+
+  p {
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  .card.case {
+    border-left: 4px solid var(--accent-2);
+  }
+
+  .card.warning {
+    border-left: 4px solid var(--warning-border);
+    background: var(--warning-bg);
+  }
+
+  .card.highlight {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+  }
+
+  .card.exam {
+    border-left: 4px solid var(--exam-border);
+    background: var(--exam-bg);
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  .badge-1 { background: var(--accent-1); color: white; }
+  .badge-2 { background: var(--accent-2); color: white; }
+  .badge-3 { background: var(--accent-3); color: white; }
+  .badge-4 { background: var(--accent-4); color: white; }
+  .badge-primary { background: var(--primary); color: white; }
+  .badge-exam { background: var(--exam-border); color: white; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--bg-hover);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: var(--bg-hover); }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Lists */
+  ul.feature-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  ul.feature-list li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    color: var(--text-secondary);
+  }
+
+  ul.feature-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 8px;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  /* Quiz */
+  .quiz {
+    background: var(--quiz-bg);
+    border: 1px solid var(--quiz-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .quiz-num {
+    display: inline-block;
+    background: var(--quiz-border);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .quiz-question {
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .quiz-options {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .quiz-options li {
+    padding: 6px 0;
+    color: var(--text-secondary);
+  }
+
+  .answer {
+    background: var(--answer-bg);
+    border: 1px solid var(--answer-border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+    display: none;
+    color: var(--text);
+  }
+
+  .answer.show { display: block; }
+
+  .answer strong { color: var(--answer-border); }
+
+  .reveal-btn {
+    background: var(--quiz-border);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  .reveal-btn:hover { opacity: 0.85; }
+
+  /* Print */
+  @media print {
+    .sidebar, .controls, .reveal-btn { display: none !important; }
+    .container { grid-template-columns: 1fr; }
+    .main { padding: 20px; max-width: 100%; }
+    .answer { display: block !important; }
+    .hero { color: black; background: white; border: 2px solid black; }
+    .card { break-inside: avoid; }
+    .quiz { break-inside: avoid; }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .container { grid-template-columns: 1fr; }
+    .sidebar {
+      position: relative;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .main { padding: 24px 20px; }
+    .hero h1 { font-size: 23px; }
+    h2 { font-size: 21px; }
+    table { font-size: 12.5px; }
+    th, td { padding: 8px 9px; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* TOC active */
+  .sidebar nav a.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  blockquote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 12px 18px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    color: var(--text);
+  }
+
+  blockquote strong { color: var(--primary); }
+
+  .keyword {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  .keyword-warn {
+    background: var(--warning-bg);
+    color: var(--warning-border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  .keyword-exam {
+    background: var(--exam-bg);
+    color: var(--exam-border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  .pill-exam {
+    display: inline-block;
+    background: var(--exam-border);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 999px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h1>🎓 수리사회학 기말</h1>
+    <p class="subtitle">디지털 시대 사회조사 (Bit by Bit) · 전산사회과학 · 생성형 AI</p>
+
+    <nav>
+      <ul>
+        <a href="#intro" class="section-title">개요</a>
+        <li><a href="#intro">시험 범위 한눈에</a></li>
+        <li><a href="#map">전체 개념 지도</a></li>
+
+        <a href="#part1" class="section-title">PART 1 · 서베이 (4장)</a>
+        <li><a href="#s-evolution" class="indent">서베이 3세대 진화</a></li>
+        <li><a href="#s-error" class="indent">오류의 두 프레임워크</a></li>
+        <li><a href="#s-cases" class="indent">고전 3대 사례</a></li>
+        <li><a href="#s-digital" class="indent">디지털 서베이 3특징</a></li>
+        <li><a href="#s-amplified" class="indent">증폭된 질문(르완다)</a></li>
+
+        <a href="#part2" class="section-title">PART 2 · 실험 (5장)</a>
+        <li><a href="#e-why" class="indent">왜 실험인가</a></li>
+        <li><a href="#e-design" class="indent">실험 설계 3유형</a></li>
+        <li><a href="#e-rich" class="indent">단순 vs 풍부한 실험</a></li>
+        <li><a href="#e-validity" class="indent">타당도 4종</a></li>
+        <li><a href="#e-cases" class="indent">주요 실험 사례</a></li>
+        <li><a href="#e-ethics" class="indent">실험 윤리 (3R)</a></li>
+
+        <a href="#part3" class="section-title">★ PART 3 · 전산사회과학·AI</a>
+        <li><a href="#c-css" class="indent">CSS 패러다임</a></li>
+        <li><a href="#c-metrics" class="indent">ML 평가지표</a></li>
+        <li><a href="#c-musiclab" class="indent">MusicLab 실험</a></li>
+        <li><a href="#c-ai" class="indent">AI 에이전트 연구</a></li>
+        <li><a href="#c-collapse" class="indent">머신컬처·붕괴</a></li>
+
+        <a href="#part4" class="section-title">PART 4 · 대규모 협업</a>
+        <li><a href="#mc-types" class="indent">3유형 & 품질관리</a></li>
+        <li><a href="#mc-opencall" class="indent">공개모집·분산·패시브</a></li>
+        <li><a href="#mc-design" class="indent">설계 5원칙</a></li>
+
+        <a href="#part5" class="section-title">PART 5 · 연구 윤리</a>
+        <li><a href="#eth-dilemma" class="indent">딜레마·규칙vs원칙</a></li>
+        <li><a href="#eth-cases" class="indent">3대 사례 & 4대 원칙</a></li>
+        <li><a href="#eth-paradigm" class="indent">패러다임·까다로운 상황</a></li>
+
+        <a href="#quiz" class="section-title">📝 예상 퀴즈</a>
+        <li><a href="#quiz-mc" class="indent">객관식</a></li>
+        <li><a href="#quiz-data" class="indent">데이터 해석</a></li>
+        <li><a href="#quiz-scenario" class="indent">시나리오 판단</a></li>
+        <li><a href="#quiz-essay" class="indent">서술형</a></li>
+        <li><a href="#cheatsheet" class="indent">최종 암기 치트시트</a></li>
+      </ul>
+
+      <div class="controls">
+        <button class="btn" onclick="toggleAllAnswers()">🔍 모든 정답 보기/숨기기</button>
+        <button class="btn btn-secondary" onclick="toggleTheme()">🌓 다크모드</button>
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ 인쇄 / PDF 저장</button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section id="intro" class="hero">
+      <h1>수리사회학 기말고사 완전 정리</h1>
+      <p>디지털 시대 사회조사 (Salganik, <em>Bit by Bit</em>) · 전산사회과학 & 생성형 AI 사회연구</p>
+      <div class="meta">
+        <span>📖 강의 노트북 8개 + 슬라이드 1개</span>
+        <span>🔬 실제 연구 수치 포함</span>
+        <span>📝 예상 퀴즈 20+문항</span>
+        <span>⭐ 슬라이드 'science' 직접 출제 표시</span>
+      </div>
+    </section>
+
+    <!-- 시험 범위 안내 -->
+    <section id="map">
+      <div class="card highlight">
+        <div class="card-title">🧭 시험 범위 한눈에 — 무엇을 집중해야 하나</div>
+        <p>강의 동영상(노트북 8개)은 Salganik의 <strong>『Bit by Bit: 디지털 시대의 사회조사』</strong> 흐름을 따릅니다. 아래 <strong>5개 파트 모두 기말고사 정식 출제 범위</strong>입니다. 대규모 협업·연구윤리(PART 4·5)는 주차별 퀴즈로 <strong>미리</strong> 학습한 단원일 뿐 시험에서 빠지지 않으니, 다른 파트와 동일하게 챙기세요. 추가로 교수님이 <span class="keyword-exam">"시험에 직접 출제된다"</span>고 강조한 <strong>강의 슬라이드/PDF의 전산사회과학·생성형 AI(PART 3)</strong>를 가장 주의 깊게 보세요.</p>
+        <table>
+          <thead><tr><th>파트</th><th>주제</th><th>출처</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td><strong>PART 1</strong></td><td>서베이(질문하기) — 오류·디지털 서베이·증폭된 질문</td><td>강의 노트북 1·2</td><td>🔴 신규 단원</td></tr>
+            <tr><td><strong>PART 2</strong></td><td>실험 — 설계 유형·타당도·풍부한 실험·3R</td><td>강의 노트북 3·4</td><td>🔴 신규 단원</td></tr>
+            <tr><td><strong>PART 3</strong></td><td>전산사회과학 · 생성형 AI 사회연구</td><td>슬라이드/PDF</td><td>⭐ 직접 출제 예고</td></tr>
+            <tr><td><strong>PART 4</strong></td><td>대규모 협업 — 3유형·품질관리·설계 5원칙</td><td>강의 노트북 5·6</td><td>🟢 정식 출제(기학습)</td></tr>
+            <tr><td><strong>PART 5</strong></td><td>연구윤리 — 사례·4대 원칙·패러다임</td><td>강의 노트북 7·8</td><td>🟢 정식 출제(기학습)</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-bottom:0;"><strong>※ 용어 주의:</strong> 강의별로 장(章) 번호 표기가 조금씩 다를 수 있습니다. 이 자료는 <em>주제 중심</em>으로 묶었으니 장 번호보다 <strong>개념·사례·수치</strong>에 집중하세요.</p>
+      </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- PART 1: SURVEYS              -->
+    <!-- =========================== -->
+    <section id="part1">
+      <h2>🗳️ PART 1 · 디지털 시대의 서베이 (질문하기)</h2>
+
+      <section id="s-evolution">
+        <h3>1. 서베이 연구의 3세대 진화</h3>
+        <p>전화·대면 조사가 <strong>응답률 급감과 접근성 한계</strong>로 위기를 맞으며, 저렴하고 빅데이터와 융합 가능한 온라인·모바일 서베이가 부상했습니다. 단, 핵심 약점은 <span class="keyword">대표성 부족</span>입니다.</p>
+        <table>
+          <thead><tr><th>세대</th><th>방식</th><th>특징·한계</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-1">1기</span></td><td>지역 단위 <strong>확률 표집</strong> (대면)</td><td>거절률 낮음, 비용·시간 큼</td></tr>
+            <tr><td><span class="badge badge-2">2기</span></td><td>전화 <strong>RDD</strong>(무작위 전화걸기) 확률 표집</td><td>1인 가구·휴대전화 증가로 <strong>응답률 급감</strong></td></tr>
+            <tr><td><span class="badge badge-3">3기</span></td><td>온라인·모바일 <strong>비확률 표집</strong></td><td>매우 저렴 + 빅데이터 융합, 그러나 <strong>대표성 약함</strong> → 사후 보정 필요</td></tr>
+          </tbody>
+        </table>
+        <div class="card">
+          <div class="card-title">🖥️ 조사 방식 용어 — CAPI vs CASI</div>
+          <p><strong>CAPI</strong> (Computer-Assisted Personal Interviewing): 조사원이 태블릿 등 기기 도움을 받아, 답변에 따라 <strong>다음 질문을 자동 분기</strong>하며 면접.</p>
+          <p style="margin-bottom:0;"><strong>CASI</strong> (Computer-Assisted Self-Interviewing): 민감 문항에서 <strong>기기를 응답자에게 직접 넘겨</strong> 스스로 응답 → <span class="keyword">사회적 바람직성 편향↓</span>, 조사원 효과(Interviewer Effect) 통제.</p>
+        </div>
+        <blockquote><strong>비확률 표집 2.0:</strong> 무작위 추출을 안 해도, 디지털로 확보한 <strong>대규모 데이터</strong>에 인구통계 <strong>사후 가중치</strong>를 주어 대표성을 보정해 활용하는 현대 방식.</blockquote>
+      </section>
+
+      <section id="s-error">
+        <h3>2. 서베이 오류 — 두 가지 프레임워크 <span class="pill-exam">출제 1순위</span></h3>
+
+        <div class="card highlight">
+          <div class="card-title">① 편향(Bias) vs 분산(Variance)</div>
+          <p><strong>편향(Bias):</strong> 측정값이 진값(중심)을 <strong>체계적으로(systematic)</strong> 한쪽으로 빗나감.</p>
+          <p><strong>분산(Variance):</strong> 반복 측정값이 넓게 <strong>퍼지는 무작위(random)</strong> 오류 = 정밀도 문제. <span class="keyword">중심극한정리</span>에 따라 표본 수 n이 커지면 분산은 줄어든다(단, 일정 수준 넘으면 비용 대비 감소율 급락).</p>
+          <p style="margin-bottom:0;"><strong>⚠️ 최악의 조합:</strong> <span class="keyword-warn">분산은 작아 정밀해 보이지만 편향이 큰 경우(Precisely Inaccurate)</span> — 틀린 결론에 <strong>강한 잘못된 확신</strong>을 주기 때문에 가장 위험.</p>
+        </div>
+
+        <div class="card highlight">
+          <div class="card-title">② 대표성 오류 vs 측정 오류</div>
+          <p><strong>대표성 오류(Representation Error) = '대상의 문제':</strong> 추출틀·표집 한계, 극단적으로 낮은 응답률로 표본이 모집단을 대표하지 못함. (타당도와 연관)</p>
+          <p style="margin-bottom:0;"><strong>측정 오류(Measurement Error) = '설계의 문제':</strong> 질문 순서·방식·단어 선택이 응답자에 영향 → 원래 생각과 다르게 측정. <span class="keyword">사회적 바람직성 편향</span>도 여기 포함. (신뢰도와 연관)</p>
+        </div>
+      </section>
+
+      <section id="s-cases">
+        <h3>3. 고전 3대 사례 — 사례와 원인을 정확히 매칭 <span class="pill-exam">자주 출제</span></h3>
+
+        <div class="card case">
+          <div class="card-title">📰 1936 리터러리 다이제스트(Literary Digest) — 대표성 오류</div>
+          <p><strong>200만 명 이상</strong>을 조사하고도 대선 예측 실패. 추출틀로 <strong>유선전화 번호부 + 자동차 소유주 명부</strong>를 사용했는데, 당시 이들은 부유층 → 보수 후보 <strong>과대 표집(포함범위/coverage 오류)</strong>.</p>
+          <p style="margin-bottom:0;"><strong>💡 교훈:</strong> 표본 크기가 커도 <strong>틀이 편향되면</strong> 대표성을 못 얻는다. ("큰 N ≠ 정확")</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🗳️ 1993 갤럽 질문 순서 실험 — 측정 오류</div>
+          <p>자녀의 정치 입문 허용도를 묻되 순서를 바꿈: <strong>딸을 먼저</strong> 물으면 허용 <strong>41%</strong>, <strong>아들을 먼저</strong> 물으면 <strong>22%</strong>로 반토막.</p>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">41%</span><span class="stat-label">딸 먼저 물을 때</span></div>
+            <div class="stat"><span class="stat-num">22%</span><span class="stat-label">아들 먼저 물을 때</span></div>
+          </div>
+          <p style="margin-bottom:0;"><strong>💡 교훈:</strong> 똑같은 사람·문항이라도 <strong>질문 순서</strong>가 결과를 바꾼다.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🎮 2012 Xbox 대선 예측 — 비확률 표집의 역전</div>
+          <p>MS 게임기 사용자(압도적 <strong>남성·젊은층</strong>) 대상이라 대표성이 심각히 낮았음. 그러나 <strong>막대한 N</strong> + 연령·성별·학력 등 <strong>사후 가중치 보정</strong> 결과, 유명 여론조사(Pollster.com)보다 오바마 득표율을 <strong>더 정확히</strong> 예측.</p>
+          <p style="margin-bottom:0;"><strong>💡 교훈:</strong> 대표성 0의 비확률 표본도 <strong>큰 N + 사후보정</strong>이면 확률표집을 이길 수 있다.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🤝 빅데이터 ↔ 서베이는 보완 관계 (Burke & Kraut, 2014)</div>
+          <p style="margin-bottom:0;">페이스북 <strong>행동(빅데이터)</strong>과 실제 <strong>정서적 친밀도(서베이)</strong>의 관계 연구 → <strong>행위는 빅데이터로, 내면 태도·정서는 서베이로</strong> 봐야 한다. 빅데이터만으론 내면을 알 수 없다.</p>
+        </div>
+      </section>
+
+      <section id="s-digital">
+        <h3>4. 디지털 서베이의 3가지 특징과 방법론 <span class="pill-exam">매칭 출제</span></h3>
+        <blockquote>전통 설문은 "폐쇄적·지루·삶과 분리"되어 있었으나, 디지털 서베이는 <strong>① 개방적 ② 재미있음 ③ 삶과 밀접</strong>하게 질문할 수 있다. — 각 특징이 어떤 방법론과 연결되는지가 핵심.</blockquote>
+        <table>
+          <thead><tr><th>특징</th><th>방법론</th><th>정의 / 사례</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-2">삶과 밀접</span></td>
+              <td><strong>EMA</strong> · 패시브 데이터</td>
+              <td><strong>EMA(생태학적 순간 측정):</strong> 스마트폰 푸시 알림으로 그 순간의 감정·태도를 즉각 측정. 직장 버전 = <strong>펄스 서베이</strong>. <strong>패시브 데이터:</strong> 위치·생체기록 등 자동 축적.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-1">개방성</span></td>
+              <td><strong>위키 서베이</strong></td>
+              <td>폐쇄형(보기 선택)+개방형(주관식 아이디어) 혼합. <strong>반복적 피드백</strong>: 참여자가 올린 개방형 아이디어를 폐쇄형 보기로 다시 올림.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-3">재미</span></td>
+              <td><strong>게임화(Gamification)</strong></td>
+              <td>서베이에 게임 요소 도입. 예: Burke & Kraut의 "친구가 어느 후보 지지할지 맞히기" 퀴즈 앱.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="card case">
+          <div class="card-title">🌱 사례 · 뉴욕시 친환경 정책 위키 서베이</div>
+          <p style="margin-bottom:0;">참여자에게서 아이디어를 받은 결과, 최종 상위 10개 중 <strong>8개가 전문가가 아닌 일반 참여자</strong>가 제시한 의견이었음 → 개방형 서베이의 위력.</p>
+        </div>
+      </section>
+
+      <section id="s-amplified">
+        <h3>5. 증폭된 질문(Amplified Asking) — 르완다 연구 <span class="pill-exam">계산·해석 출제</span></h3>
+        <p><strong>지도 학습(Supervised Learning)</strong>으로 <strong>소규모 서베이</strong>의 패턴을 <strong>대규모 빅데이터</strong>에 적용해, 서베이를 하지 않은 사람들의 응답까지 <strong>예측(증폭)</strong>하는 기법.</p>
+
+        <div class="card case">
+          <div class="card-title">📱 르완다 통화기록 ML 연구 (Blumenstock)</div>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">150만</span><span class="stat-label">무선전화 통화기록(빅데이터)</span></div>
+            <div class="stat"><span class="stat-num">1,000명</span><span class="stat-label">전화 서베이</span></div>
+            <div class="stat"><span class="stat-num">500 / 500</span><span class="stat-label">학습용 / 평가용 분할</span></div>
+            <div class="stat"><span class="stat-num">149.9만</span><span class="stat-label">예측 대상(미응답자)</span></div>
+            <div class="stat"><span class="stat-num">10배 빠름</span><span class="stat-label">전통 서베이 대비 속도</span></div>
+            <div class="stat"><span class="stat-num">50배 저렴</span><span class="stat-label">전통 서베이 대비 비용</span></div>
+          </div>
+          <p><strong>과정:</strong> 1,000명을 <strong>500명(학습)</strong>·<strong>500명(예측 후 실제와 비교 평가)</strong>으로 나눠 최적 모델을 찾고 → 나머지 149.9만 명 응답을 예측.</p>
+        </div>
+
+        <div class="card warning">
+          <div class="card-title">⚠️ '단순 정확도의 함정' — 출제 포인트</div>
+          <p>예측 정확도가 높다고 무조건 좋은 게 아니다. <strong>기본 예측(평균 퍼센티지) 대비 얼마나 개선됐는가</strong>를 따져야 함.</p>
+          <ul class="feature-list">
+            <li><strong>유선전화 보유:</strong> 대부분이 소유 → 기본 예측만으로도 잘 맞음 → 통화기록 써도 향상 미미.</li>
+            <li><strong>자전거 소유:</strong> 기본 예측 50% 남짓 → 통화기록 활용 시 <strong>약 13%p 향상</strong> → ML의 진짜 가치.</li>
+          </ul>
+          <p style="margin-bottom:0;"><strong>한계:</strong> 르완다 부(富) 수준을 <span class="keyword">DHS</span>(교과서적 양질 서베이=준거)와 비교 시, 부유한 동네는 정확하나 <strong>중간 동네는 과소예측(Underestimate)</strong>. 그래도 가성비가 압도적이라 강력한 도구.</p>
+        </div>
+        <blockquote style="margin-bottom:0;"><strong>풍요화(Enrich) vs 예측(Predict):</strong> 서베이+빅데이터 단순 결합·분석 = <em>풍요화</em> / 소수 패턴으로 다수 미응답을 추측 = <em>예측·증폭</em>.</blockquote>
+      </section>
+    </section>
+
+    <!-- =========================== -->
+    <!-- PART 2: EXPERIMENTS         -->
+    <!-- =========================== -->
+    <section id="part2">
+      <h2>🧪 PART 2 · 디지털 시대의 실험</h2>
+
+      <section id="e-why">
+        <h3>1. 왜 실험인가 — 교란요인과 무작위 통제</h3>
+        <p>현실의 <strong>관찰 데이터</strong>는 <span class="keyword-warn">교란 요인(Confounder)</span> 때문에 인과관계를 확립할 수 없다. (예: '교사 월급↔학업성취' 사이에 숨은 <strong>부모의 경제력·교육수준</strong>.)</p>
+        <blockquote><strong>무작위 통제 실험(RCT):</strong> 알아볼 원인(조치)을 제외한 모든 요인을 <strong>무작위 배정</strong> → 두 집단을 통계적으로 동일하게 만들어 <strong>인과관계를 증명</strong>.</blockquote>
+        <div class="card">
+          <div class="card-title">🧩 핵심 보조 개념</div>
+          <ul class="feature-list">
+            <li><strong>WEIRD:</strong> Western·Educated·Industrialized·Rich·Democratic. 대학 실험실 표본의 편향. → 디지털 실험(MTurk 등)으로 다양성 확보 가능.</li>
+            <li><strong>과정 데이터(Process Data):</strong> 실험 중간을 지속 관찰 → 원인-결과의 <strong>메커니즘(작동원리)</strong> 이해.</li>
+            <li><strong>조치 전 측정(Pre-test)의 함정:</strong> 사전 측정은 실험 의도를 노출시킬 위험. → 디지털은 <strong>항상 쌓이는 데이터(Always-on)</strong>를 종속변수로 써서 눈치 못 채게 해결.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="e-design">
+        <h3>2. 실험 설계 3유형 <span class="pill-exam">출제 1순위</span></h3>
+        <table>
+          <thead><tr><th>설계</th><th>방식</th><th>장·단점 / 사례</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-1">피험자 간</span><br><small>Between-subjects</small></td>
+              <td>참여자를 무작위로 <strong>통제/실험 집단</strong>으로 나눠 한쪽에만 조치</td>
+              <td>가장 기본적. 집단 간 비교.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-2">피험자 내</span><br><small>Within-subjects</small></td>
+              <td>통제집단 없이 <strong>같은 참여자</strong>의 조치 <strong>전·후</strong> 비교</td>
+              <td>단점: 실험 기간 중 외부효과(시간 흐름 등) 통제 곤란. 예: 전기 계량기 실험.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-4">혼합</span><br><small>Mixed</small></td>
+              <td>실험/통제 집단을 나누고 <strong>각 집단의 전후 변화량</strong>을 서로 비교</td>
+              <td><strong>가장 우수한 인과추론</strong> 설계. 예: 위키피디아 훈장 실험. (≒ 이중차분법)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="card highlight">
+          <div class="card-title">📐 이중차분법(Difference-in-Differences)</div>
+          <p style="margin-bottom:0;">통제집단 대신(또는 함께) 유저의 <strong>실험 전(Pre)·후(Post) 변화</strong>를 비교해 <strong>유저별 기본 편차를 상쇄</strong>하는 분석. 적은 인원으로도 검정력을 확보할 수 있어 윤리적 이점도 있음.</p>
+        </div>
+      </section>
+
+      <section id="e-rich">
+        <h3>3. 단순 실험 vs 풍부한 실험</h3>
+        <table>
+          <thead><tr><th></th><th>단순 실험 (A/B 테스트)</th><th>풍부한 실험 (Rich Experiment)</th></tr></thead>
+          <tbody>
+            <tr><th>목적</th><td>실무 — 반응 좋은 쪽 선택·튜닝</td><td>학문 — <strong>'왜/어떻게'</strong> 인과 규명</td></tr>
+            <tr><th>관심</th><td>결과의 '이유'엔 무관심</td><td>맥락·메커니즘에 관심</td></tr>
+            <tr><th>3대 전략</th><td>—</td><td><strong>타당도 향상 · 이질성 파악 · 메커니즘 규명</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="card">
+          <div class="card-title">🔬 풍부하게 만드는 3가지 전략</div>
+          <p><strong>① 실험 효과의 이질성(Heterogeneity):</strong> 피험자 사전 특성(예: 기존 전기 사용량, 정치성향)에 따라 처치효과가 다르게 나타남. → 디지털 <strong>Always-on 사전기록(Pre-data)</strong>으로 그룹 분할.</p>
+          <p><strong>② 메커니즘(Mechanism):</strong> 결과가 '왜' 그렇게 나오는지 — 실험 '이후'에도 기록되는 <strong>프로세스 데이터</strong>로 추적. 실험의 '블랙박스' 단점 해소.</p>
+          <p style="margin-bottom:0;"><strong>③ 완전 요인 설계(Full Factorial Design):</strong> 여러 트리트먼트 요소의 <strong>가능한 모든 조합</strong>을 테스트.</p>
+        </div>
+      </section>
+
+      <section id="e-validity">
+        <h3>4. 타당도(Validity) 4종 <span class="pill-exam">정의 매칭 출제</span></h3>
+        <table>
+          <thead><tr><th>타당도</th><th>질문</th><th>핵심</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-1">통계적</span></td><td>관찰된 차이가 우연이 아닌가?</td><td>통계적 유의성 (p-value)</td></tr>
+            <tr><td><span class="badge badge-2">내적</span></td><td>실험 절차·측정이 제대로 됐나?</td><td>무작위 할당 등 절차의 정확성</td></tr>
+            <tr><td><span class="badge badge-3">구성</span></td><td>데이터가 이론적 구성물과 일치하나?</td><td>특히 빅데이터 <strong>용도변경(Repurposing)</strong> 시 중요</td></tr>
+            <tr><td><span class="badge badge-4">외적</span></td><td>다른 환경·문화에서도 성립하나?</td><td><strong>일반화 가능성</strong></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="e-cases">
+        <h3>5. 주요 실험 사례 — 수치 암기 <span class="pill-exam">데이터 해석 출제</span></h3>
+
+        <div class="card case">
+          <div class="card-title">💡 Opower 전기 절약 실험 — 이질성·메커니즘의 교과서</div>
+          <p>고지서에 '이웃 평균과 비교' 정보를 제공. 외적 타당도 확장: <strong>10개→100개 지역, 60만→800만 가구</strong>.</p>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">최대 6%</span><span class="stat-label">많이 쓰던 가구 절감(상위 10분위)</span></div>
+            <div class="stat"><span class="stat-num">약 0.3%</span><span class="stat-label">적게 쓰던 가구 절감</span></div>
+            <div class="stat"><span class="stat-num">평균 ~2%</span><span class="stat-label">전체 절약 효과</span></div>
+          </div>
+          <p style="margin-bottom:0;"><strong>부메랑 효과 & 넛지:</strong> 평균보다 <strong>적게 쓰던 사람이 오히려 더 쓰는 부작용</strong> 발생 → <span class="keyword">웃는/찡그린 이모티콘</span>(미묘한 심리 개입=메커니즘 조작) 추가로 부작용 거의 제거. <strong>설계 디테일이 결과를 바꾼다.</strong></p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">📨 Gerber 투표 독려 우편물 필드실험</div>
+          <p style="margin-bottom:0;">4가지 엽서(시민의무 / 호손효과 / 본인 투표기록 / 이웃 투표기록) 중 <strong>'이웃의 투표기록을 공개하겠다'</strong>는 사회적 압박 엽서가 투표율을 가장 크게 높임. ※ <strong>호손 효과(Hawthorne Effect)</strong> = 관찰되고 있음을 인지해 행동을 바꾸는 현상.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">👍 페이스북 투표 독려 실험 — 파트너십의 명암</div>
+          <p>단순 배너는 통제집단과 차이 없음. <strong>'투표 인증한 친구 목록(소셜 프레셔)'</strong> 노출 집단은 투표율 <strong>+0.4%p</strong> 유의 상승.</p>
+          <p style="margin-bottom:0;"><strong>⚠️ 한계:</strong> 페북이 피험자 <strong>98%</strong>를 친구목록 노출 조건에 몰아넣어 <strong>통제집단 검정력 저하</strong>. (연구자=소셜프레셔 증명 vs 기업=광고/푸시 효과 증명, 이해관계 교집합)</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🌐 Centola 네트워크 확산 실험 — 역설</div>
+          <p style="margin-bottom:0;">건강정보 확산 네트워크를 직접 구축. 예상은 거리가 짧은 <strong>무작위 네트워크</strong>가 빠를 것 같지만, 실제로는 <strong>국지적 군집형(Clustered) 네트워크</strong>에서 정보(가입)가 더 빠르고 넓게 퍼졌다.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">📦 기타 사례</div>
+          <ul class="feature-list">
+            <li><strong>크레이그리스트 중고 아이팟:</strong> 인종(문신·손 색깔)·맞춤법 오류 등 <strong>9가지 트리트먼트</strong> → 구매 가격 차이 관찰.</li>
+            <li><strong>비용 구조:</strong> 전통 실험은 참가자↑마다 가변비(인건비) 선형 증가 / 디지털 실험은 초기 고정비는 높아도 <strong>가변비 0에 수렴</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="e-ethics">
+        <h3>6. 실험 윤리 — 3R 원칙 & 페북 감정전염 적용 <span class="pill-exam">서술형 유력</span></h3>
+        <div class="card warning">
+          <div class="card-title">😶 페이스북 감정 전염 실험</div>
+          <p style="margin-bottom:0;">약 <strong>70만 명</strong>(처치집단 기준 약 35만 명) 타임라인에서 긍/부정 단어를 무작위 제거 → 본인 포스팅 변화 관찰. 효과 크기는 <strong>0.05%p</strong>로 매우 미미했으나, <strong>동의 없는 감정 조작</strong>으로 거센 비판(코넬 IRB 통과·PNAS 우려).</p>
+        </div>
+        <div class="card highlight">
+          <div class="card-title">♻️ 3R 원칙으로 감정전염 실험 구하기</div>
+          <p><strong>Replace(대체):</strong> 단어를 조작하는 대신 <strong>비 오는 날씨</strong> 같은 자연실험(Natural Experiment)으로 대체.</p>
+          <p><strong>Refine(정제):</strong> 포스팅을 <strong>삭제</strong>해 정보 누락 피해를 주는 대신 <strong>노출 순서</strong>만 조정.</p>
+          <p style="margin-bottom:0;"><strong>Reduce(축소):</strong> <strong>이중차분법(Pre-Post)</strong>을 써서 35만 명보다 <strong>적은 인원</strong>으로도 검정력 확보.</p>
+        </div>
+        <blockquote style="margin-bottom:0;"><strong>Armada(함대) 전략 & 사전 등록:</strong> 거대한 한 방의 실험 대신 작은 실험들(단순+서브그룹+이질성)을 조합해 생산성↑. 데이터 수집 <strong>전에 설계를 사전 등록(Pre-registration)·공개</strong>해 결과 조작을 방지.</blockquote>
+      </section>
+    </section>
+
+    <!-- =========================== -->
+    <!-- PART 3: CSS & GEN-AI ★      -->
+    <!-- =========================== -->
+    <section id="part3">
+      <h2 class="exam-h2">⭐ PART 3 · 전산사회과학 & 생성형 AI 사회연구 <span class="pill-exam">슬라이드 직접 출제</span></h2>
+      <p>교수님이 <strong>"디지털 연구 science 내용은 시험에 직접 출제된다"</strong>고 강조한 강의 슬라이드/PDF 파트입니다. <strong>연구 사례·정의·핵심 수치</strong>를 정확히 외워두세요.</p>
+
+      <section id="c-css">
+        <h3>1. 전산사회과학(CSS)의 패러다임 전환</h3>
+        <div class="card exam">
+          <div class="card-title"><span class="badge badge-exam">정의</span> 인간 행동 연구 패러다임의 진화</div>
+          <p style="margin-bottom:0;">
+            <strong>행동경제학(실험)</strong> · <strong>신고전주의(수리모형)</strong> · <strong>계량경제학(데이터·인과)</strong>
+            &nbsp;→&nbsp; <strong>ABM(행위자 기반 모형) · 수리사회학</strong>
+            &nbsp;→&nbsp; <strong>데이터 사이언스</strong>
+            &nbsp;→&nbsp; <strong>NLP · 생성형 AI(genAI)를 통한 'AI 기반 인간 연구'</strong>
+          </p>
+        </div>
+        <blockquote><strong>데이터 해석 패러다임 전환:</strong> 작은 데이터(Small data)의 단순 <strong>'예측(Prediction)'</strong> 한계에서 → LLM이 <strong>내러티브(서사)를 생성</strong>하고 <strong>'해석(Interpretation)'</strong>하는 통합적 비전으로.</blockquote>
+        <div class="card highlight">
+          <div class="card-title">🪆 Micro–Macro 연결성 (웹 실험의 의의)</div>
+          <p style="margin-bottom:0;">기존 심리 실험은 <strong>개인(Micro)</strong> 단위 분석에 그쳤다. 디지털 대규모 웹 실험은 <strong>개인의 결정(Micro)이 어떻게 집단·시장 결과(Macro)로 이어지는지</strong>(Micro-macro Dynamics)를 증명하는 핵심 방법론.</p>
+        </div>
+      </section>
+
+      <section id="c-metrics">
+        <h3>2. 머신러닝 평가지표 & 모델 계보 <span class="pill-exam">계산·기준 출제</span></h3>
+        <table>
+          <thead><tr><th>지표</th><th>정의</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Precision (정밀도)</strong></td><td>모델이 예측한 것(양성) 중 <strong>실제 정답</strong>의 비율</td></tr>
+            <tr><td><strong>Recall (재현율)</strong></td><td>실제 정답 중 모델이 <strong>찾아낸</strong> 비율</td></tr>
+            <tr><td><strong>F1 Score</strong></td><td>Precision·Recall의 <strong>조화평균</strong> = 2·P·R / (P+R)</td></tr>
+            <tr><td><strong>Accuracy (정확도)</strong></td><td>전체 중 (양성·음성 모두) 올바르게 예측한 비율</td></tr>
+          </tbody>
+        </table>
+        <div class="card exam">
+          <div class="card-title"><span class="badge badge-exam">★ 기준</span> 분야별 허용 성능</div>
+          <p style="margin-bottom:0;"><strong>공학(Engineering):</strong> F1/Accuracy <strong>0.8 초과</strong>여야 허용. &nbsp;|&nbsp; <strong>사회과학 텍스트 분석:</strong> <strong>0.6 초과</strong>면 수용 가능(Acceptable). — <em>두 기준의 차이를 묻는 문제 주의.</em></p>
+        </div>
+        <div class="card">
+          <div class="card-title">📊 ML 모델 계보 (포함 관계)</div>
+          <p style="margin-bottom:0;"><strong>머신러닝(지도학습 등) ⊃ 딥러닝(CNN·RNN) ⊃ 언어모델(BERT) ⊃ 대형언어모델(LLMs: ChatGPT) → 멀티모달 생성형 AI(genAI)</strong> 로 점진적 확장.</p>
+        </div>
+      </section>
+
+      <section id="c-musiclab">
+        <h3>3. MusicLab 인공 문화 시장 실험 <span class="pill-exam">★최빈출</span></h3>
+        <div class="card exam">
+          <div class="card-title"><span class="badge badge-exam">Salganik, Dodds, Watts (2006, Science)</span></div>
+          <p><strong>(a) 질문:</strong> 문화 시장의 역설 — 성공작은 압도적으로 성공(<strong>불평등</strong>)하고 전문가도 무엇이 뜰지 못 맞힌다(<strong>예측 불가능성</strong>). 이 역설이 <span class="keyword-exam">사회적 영향(Social Influence)</span> 때문인가?</p>
+          <p><strong>(b) 설계:</strong> 주로 10대인 <strong>14,341명</strong>이 무명 밴드 <strong>48곡</strong>을 다운로드하는 웹 음악시장.</p>
+          <ul class="feature-list">
+            <li><strong>독립 조건(Independent):</strong> 다른 사람 기록 없이 <strong>곡 이름만</strong> 보고 선택 → 순수한 '질(Quality)' 반영.</li>
+            <li><strong>사회적 영향 조건(Social Influence):</strong> 이전 참가자들의 <strong>다운로드 횟수(인기도)</strong>를 봄. 완전히 독립적으로 진화하는 <strong>8개의 평행 세계(8 worlds)</strong>로 무작위 배정 → 같은 초기조건에서 역사가 달라지는지 관찰.</li>
+            <li><strong>신호 강도:</strong> 실험1(무작위 격자 배치) vs 실험2(인기도순 한 줄 정렬 = 신호 강함).</li>
+          </ul>
+          <p><strong>(c) 결과:</strong> 사회적 영향 조건은 독립 조건보다 <strong>불평등(지니계수 Gini)·예측불가능성</strong>을 모두 크게 증가시킴. <strong>신호가 강한 실험2에서 더 심화.</strong> 질은 성공을 <strong>부분적으로만</strong> 설명 — 최고 곡이 완전 실패하거나 최악 곡이 대성공하진 않았지만, <strong>"그 사이 어떤 결과든 가능"</strong>하여 8개 세계마다 순위가 천차만별.</p>
+          <p style="margin-bottom:0;"><strong>(d) 의의·한계:</strong> 개인(Micro)→시장(Macro)을 증명한 대규모 웹 실험. 단, 실제 마케팅·대중매체를 완전히 구현 못 함, 48곡으로 적음, 참가자 간 소통 차단.</p>
+        </div>
+      </section>
+
+      <section id="c-ai">
+        <h3>4. 생성형 AI 에이전트 사회연구 <span class="pill-exam">★출제</span></h3>
+
+        <div class="card exam">
+          <div class="card-title"><span class="badge badge-exam">Tessler et al. (2024, Science)</span> 하버마스 머신 — AI 중재자</div>
+          <p><strong>질문:</strong> 민주적 숙의(deliberation)에서 AI가 분열된 집단의 <strong>공통 기반(Common ground)</strong>을 찾도록 도울 수 있나?</p>
+          <p><strong>설계:</strong> 참가자가 의견·비판 제시 → <strong>인간 중재자 vs AI 중재자</strong>가 각각 <strong>그룹 성명서(Group statement)</strong> 작성 → 참가자 <strong>동의율(Endorsement)</strong> 비교.</p>
+          <p style="margin-bottom:0;"><strong>결과·의의:</strong> AI 성명서에 '매우 동의/동의' 비율이 뚜렷이 높음. AI 중재자가 더 명확·논리·정보 풍부하면서도 <strong>소수 의견을 배제하지 않고</strong> 폭넓은 동의를 도출.</p>
+        </div>
+
+        <div class="card exam">
+          <div class="card-title"><span class="badge badge-exam">Joon Sung Park et al. (2024)</span> 1,000명 생성형 AI 페르소나 시뮬레이션</div>
+          <p><strong>질문:</strong> genAI가 실제 인간의 응답·특성을 얼마나 정확히 <strong>모사(Simulate)</strong>하나?</p>
+          <p><strong>설계:</strong> 실제 <strong>1,000명</strong>에게 평균 <strong>6,491단어·2시간 오디오 인터뷰</strong> → 인터뷰 전체를 AI 에이전트 <strong>메모리에 주입</strong> → 동일 설문(<strong>GSS 177항목, Big Five 44항목, 경제 게임</strong>)을 AI가 풀게 해 일치도 비교.</p>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">1,000명</span><span class="stat-label">실제 인터뷰 대상</span></div>
+            <div class="stat"><span class="stat-num">6,491단어</span><span class="stat-label">평균 인터뷰 분량</span></div>
+            <div class="stat"><span class="stat-num">약 85%</span><span class="stat-label">인간 응답 모사 정확도</span></div>
+          </div>
+          <p style="margin-bottom:0;"><strong>의의:</strong> 현실 인구통계를 대변하는 인공 페르소나 구축 가능 → 사회조사 패러다임을 바꿀 잠재력. (한국형 사례: <strong>Nemotron-Personas-Korea</strong> — 통계청·대법원 데이터 반영 최초 대규모 우리말 합성 페르소나 오픈소스.)</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🤖 로봇 영상 서베이 실험</div>
+          <p style="margin-bottom:0;"><strong>N=2,034</strong> 대상으로 <strong>Boston Dynamics</strong> 로봇 영상을 보여주며 "이 동영상이 불편하십니까?"를 묻는 A/B 테스트 설문.</p>
+        </div>
+      </section>
+
+      <section id="c-collapse">
+        <h3>5. 머신 컬처와 'AI의 한계' — 동질화의 위험 <span class="pill-exam">★개념 출제</span></h3>
+        <div class="card warning">
+          <div class="card-title">⚠️ '카멜레온의 한계' — 페르소나 붕괴 & 모델 붕괴</div>
+          <p><strong>머신 컬처(Machine Culture):</strong> AI에 의해 매개·생성된 문화. 기계가 문화의 <strong>변이(Variation)·전승(Transmission)·선택(Selection)</strong>을 본질적으로 변형.</p>
+          <p><strong>페르소나 붕괴(Persona Collapse):</strong> 서로 다른 프로필(성격·직업)을 부여해도 AI 에이전트가 결국 <strong>좁고 획일적인 행동으로 수렴</strong> → 동질적 시뮬레이션 군중. (실제 인간 Big Five 분포 <strong>2,058명</strong>은 고르게 퍼지나, AI 페르소나 응답은 특정 지점에 <strong>군집</strong>.)</p>
+          <p><strong>모델 붕괴(Model Collapse):</strong> AI가 생성한 조잡한 데이터(<strong>AI Slop</strong>)가 다시 변이-전승-선택을 거치며 모델 성능·다양성이 무너짐.</p>
+          <p style="margin-bottom:0;"><strong>의견 붕괴(Opinion Collapse):</strong> 머신컬처+모델붕괴 결합 → 단순 양극화(Polarization)를 넘어 여론·사고가 <strong>극단적으로 획일화</strong>. → genAI를 사회연구에 쓸 때 <strong>페르소나 부여만으론 인간 다양성을 담보 못 함</strong>, 동질화(Homogenization) 오류를 경계해야 한다.</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- =========================== -->
+    <!-- PART 4: MASS COLLABORATION  -->
+    <!-- =========================== -->
+    <section id="part4">
+      <h2>🤝 PART 4 · 대규모 협업 (Mass Collaboration)</h2>
+      <p>주차별 퀴즈로 미리 학습한 단원이지만 <strong>기말고사 정식 출제 범위</strong>입니다. 다른 파트와 동일한 비중으로 개념·사례·수치를 끝까지 챙기세요.</p>
+
+      <section id="mc-types">
+        <h3>1. 개념과 3가지 유형 <span class="pill-exam">분류 출제</span></h3>
+        <p>디지털 기술·고속 통신망 덕에 일반 시민이 연구·데이터 수집에 직접 참여 = <span class="keyword">시민 과학(Citizen Science)</span> / <span class="keyword">대규모 협업</span>. 소수 전문가가 못 하는 방대한 작업을 더 싸고 빠르게, 때로 더 정확하게 수행. (Salganik의 3유형 분류)</p>
+        <table>
+          <thead><tr><th>유형</th><th>핵심 특징</th><th>산출물</th><th>대표 사례</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-1">①</span> 인간 기반 연산<br><small>Human Computation</small></td><td>거대 업무 → 마이크로 태스크 분할 → 합산 (Split→Apply→Combine)</td><td><strong>평균값</strong></td><td>Galaxy Zoo, 정치 성명서 코딩</td></tr>
+            <tr><td><span class="badge badge-2">②</span> 공개 모집<br><small>Open Call</small></td><td>해결은 어렵지만 검증은 쉬운 문제 공모</td><td><strong>최고의 단 하나</strong></td><td>Netflix Prize, Foldit, Peer to Patent</td></tr>
+            <tr><td><span class="badge badge-3">③</span> 분산 데이터 수집<br><small>Distributed Data Collection</small></td><td>시민이 흩어져 데이터 수집</td><td><strong>단순 합산</strong></td><td>eBird, PhotoCity, Pothole Patrol</td></tr>
+          </tbody>
+        </table>
+
+        <div class="card highlight">
+          <div class="card-title">🛡️ 품질관리 2대 장치 (인간 기반 연산)</div>
+          <p><strong>① 작업 잉여성(Redundancy):</strong> 동일 작업을 여러 사람이 <strong>중복</strong> 수행 → 실수·악의적 노이즈를 걸러냄.</p>
+          <p style="margin-bottom:0;"><strong>② 가중 평균(Weighting):</strong> 단순 평균이 아니라 <strong>신뢰도 높은 평가자</strong>에게 더 큰 가중치. 다수와 지속적으로 엇나가는 평가자는 가중치↓.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🔭 사례 · Galaxy Zoo (인간 기반 연산)</div>
+          <p>천문학자 혼자 끝낼 수 없는 은하 사진 분류(나선형/타원형)를 시민에게 맡김.</p>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">10만+</span><span class="stat-label">자원자</span></div>
+            <div class="stat"><span class="stat-num">90만+</span><span class="stat-label">은하 이미지</span></div>
+            <div class="stat"><span class="stat-num">평균 40명</span><span class="stat-label">이미지당 중복 평가</span></div>
+            <div class="stat"><span class="stat-num">4천만+</span><span class="stat-label">총 분류 작업</span></div>
+            <div class="stat"><span class="stat-num">100만</span><span class="stat-label">ML 학습용 데이터</span></div>
+            <div class="stat"><span class="stat-num">100억</span><span class="stat-label">ML이 분류한 은하</span></div>
+          </div>
+          <p style="margin-bottom:0;"><strong>💡 예상 못한 발견:</strong> 자발적 토론으로 <span class="keyword">완두콩 은하(Pea Galaxy)</span> 발견 → <em>Nature</em> 게재.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🗳️ 사례 · 정치 성명서 클라우드 코딩 (인간 기반 연산)</div>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">6번</span><span class="stat-label">선거 분석</span></div>
+            <div class="stat"><span class="stat-num">18개</span><span class="stat-label">정당 성명서</span></div>
+            <div class="stat"><span class="stat-num">~1,500명</span><span class="stat-label">평가자(MTurk)</span></div>
+            <div class="stat"><span class="stat-num">20만</span><span class="stat-label">총 평가</span></div>
+            <div class="stat"><span class="stat-num">문장당 5명</span><span class="stat-label">중복 평가</span></div>
+            <div class="stat"><span class="stat-num">5시간 / $360</span><span class="stat-label">총 시간·비용</span></div>
+          </div>
+          <p style="margin-bottom:0;"><strong>📊 결과:</strong> 가중 평균값이 전문가 코딩과 <strong>매우 높은 일치도</strong>, 2개월 후 다른 데이터 재현 시에도 유지.</p>
+        </div>
+      </section>
+
+      <section id="mc-opencall">
+        <h3>2. 공개 모집 · 분산 데이터 수집 · 패시브 데이터</h3>
+
+        <div class="card case">
+          <div class="card-title"><span class="badge badge-2">②</span> 공개 모집 (Open Call) — '최고의 단 하나'</div>
+          <p><strong>🎬 Netflix Prize:</strong> 자사 추천 알고리즘 <strong>'시네매치(Cinematch)'</strong>보다 정확도 <strong>10% 이상</strong> 개선 시 <strong>$1,000,000(약 13억)</strong>. 일부 평점을 숨겨 검증 → 영화와 무관한 분야 팀이 우승.</p>
+          <p><strong>🧬 Foldit:</strong> 단백질 접기를 <strong>게임</strong>으로 변환 → 일반인 집단지성이 최첨단 알고리즘보다 더 안정적·저에너지 해법 발견.</p>
+          <p style="margin-bottom:0;"><strong>⚖️ Peer to Patent:</strong> 자원자들이 선행 기술 탐색 → 전체 특허 신청의 <strong>약 30%</strong> 부적격 특허를 걸러냄.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title"><span class="badge badge-3">③</span> 분산 데이터 수집 (Distributed Data Collection)</div>
+          <p><strong>🦅 eBird:</strong> 조류 관찰 DB. 탐조자 위치·희귀종 편향 → 참여자 상호작용 + <strong>통계적 가중치 보정</strong>으로 학술 논문 수준 품질.</p>
+          <p style="margin-bottom:0;"><strong>📸 PhotoCity:</strong> 3D 모델용 사진 수집. <strong>기존과 겹치는 새 각도</strong> 사진에 점수 부여 → 부족한 면을 유도(주의 집중 유도의 좋은 예).</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🚕 패시브 데이터 (Passive Data) · Pothole Patrol</div>
+          <p style="margin-bottom:0;">참여자가 적극적 의도 없이 자동 축적되는 데이터. 도심 택시에 <strong>GPS + 가속도 센서</strong> 부착 → 주행 중 급격한 변화 데이터 → <strong>머신러닝 클러스터링</strong>으로 도로 파손 지점 파악. 기사는 그냥 운전만 해도 데이터가 모임.</p>
+        </div>
+      </section>
+
+      <section id="mc-design">
+        <h3>3. 대규모 협업 설계 5원칙 <span class="pill-exam">매칭·서술 출제</span></h3>
+        <div class="card"><div class="card-title"><span class="badge badge-1">①</span> 참여자 동기 부여 (Motivating Participants)</div>
+          <p style="margin-bottom:0;">MTurk의 소액 보상도 동기가 되지만, Galaxy Zoo의 <strong>공동체 의식</strong>·Foldit의 <strong>게임의 재미</strong>가 더 강력. <strong>개인 인센티브 + 집합적 가치</strong>를 결합.</p></div>
+        <div class="card"><div class="card-title"><span class="badge badge-2">②</span> 이질성 활용 (Leveraging Heterogeneity)</div>
+          <p style="margin-bottom:0;">능력·성실도가 달라도 무작정 배제하지 않음. 위키피디아처럼 <span class="keyword">소수의 열성 기여자(Fat head)</span> + <span class="keyword">가끔 참여하는 다수(Long tail)</span>를 모두 활용(중복 검토·교육).</p></div>
+        <div class="card"><div class="card-title"><span class="badge badge-3">③</span> 주의 집중 유도 (Directing Attention)</div>
+          <p style="margin-bottom:0;">PhotoCity의 점수, Galaxy Zoo의 의견 분분 이미지 빈번 노출처럼 <strong>가장 필요한 데이터 쪽으로</strong> 참여자 시선을 유도.</p></div>
+        <div class="card"><div class="card-title"><span class="badge badge-4">④</span> 예상치 못한 결과 허용 (Allowing for Surprising Results)</div>
+          <p style="margin-bottom:0;">완두콩 은하 발견처럼 설계한 틀을 벗어난 뜻밖의 결과를 막지 않고 수용 → 혁신적 발견.</p></div>
+        <div class="card"><div class="card-title"><span class="badge badge-primary">⑤</span> 윤리적 고려 (Ethical Considerations)</div>
+          <p><strong>크레딧:</strong> 입자물리 논문 기여자 전원 공저자, Acknowledgment 명시.</p>
+          <p style="margin-bottom:0;"><strong>프라이버시:</strong> Netflix처럼 익명화 데이터도 IMDb 등 외부 DB 결합 시 개인 식별 위험.</p></div>
+        <blockquote style="margin-bottom:0;"><strong>실전 팁:</strong> 100만 명 중 1명만 참여해도 전 세계 대상이면 절대 수는 충분. 완벽주의 대신 <strong>프로토타입 → 빠른 테스트 → 발전 또는 빠른 철수</strong>(스타트업 전략).</blockquote>
+      </section>
+    </section>
+
+    <!-- =========================== -->
+    <!-- PART 5: RESEARCH ETHICS     -->
+    <!-- =========================== -->
+    <section id="part5">
+      <h2>⚖️ PART 5 · 디지털 연구 윤리</h2>
+      <p>역시 주차별 퀴즈로 학습했지만 <strong>기말 정식 출제 범위</strong>입니다. 사례–위반 원칙 연결, 패러다임 비교, 서술형이 단골입니다.</p>
+
+      <section id="eth-dilemma">
+        <h3>1. 왜 어려운가 — 이중 딜레마 & 접근법</h3>
+        <div class="card warning">
+          <div class="card-title">⚠️ 두 가지 상반된 위험</div>
+          <p><strong>① 무모한 위험:</strong> 프라이버시 침해·대중 감시 등 비윤리적 연구의 위험.</p>
+          <p style="margin-bottom:0;"><strong>② 엄격함의 함정:</strong> 2014년 에볼라 유행 때 <span class="keyword-warn">휴대전화 통화 기록 기반 역학 조사</span>가 프라이버시 우려로 좌절된 것처럼, 지나친 엄격함으로 유용한 연구가 무산.</p>
+        </div>
+        <table>
+          <thead><tr><th>분야</th><th>접근 방식</th><th>특징</th></tr></thead>
+          <tbody>
+            <tr><td>사회과학·의학</td><td><strong>규칙 기반(Rule-based)</strong></td><td>대학 IRB 사전 심사 필수</td></tr>
+            <tr><td>데이터·컴퓨터 사이언스</td><td>사후 대처 / 컨퍼런스 중심</td><td>대면 실험이 적음</td></tr>
+            <tr><td>디지털 연구(제안)</td><td><strong>원칙 기반(Principle-based)</strong></td><td>약관·법·방법 변화가 빨라 규칙만으론 판단 곤란 → 딜레마 속 타협·숙의</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="eth-cases">
+        <h3>2. 3대 논란 사례 & 4대 원칙 <span class="pill-exam">사례-원칙 연결 출제</span></h3>
+        <div class="card warning">
+          <div class="card-title">🔬 ① 페이스북 감정 전염 (Emotional Contagion)</div>
+          <p style="margin-bottom:0;">약 <strong>70만 명</strong>(≈689,003명; 처치집단 기준 약 35만 명) 뉴스피드에서 긍정/부정 단어를 <strong>임의 삭제</strong> → 본인 글의 단어 빈도 변화 관찰. 효과 크기 매우 작음(≈0.05%p). <span class="keyword-warn">동의 없는 감정 조작</span>. 코넬 IRB 통과·<em>PNAS</em> 우려 표명.</p>
+        </div>
+        <div class="card warning">
+          <div class="card-title">🔬 ② 하버드 T3 (취향·유대·시간)</div>
+          <p style="margin-bottom:0;">페북 데이터 + 대학 기록 결합 → 익명화 후 공개(하버드 IRB 통과). 그러나 데이터 분석 시 대상 학교가 <strong>하버드임을 유추 가능</strong> → 졸업생 민감정보 노출. <strong>익명화만으로는 <span class="keyword-warn">재식별</span>을 막지 못한다.</strong></p>
+        </div>
+        <div class="card warning">
+          <div class="card-title">🔬 ③ 앙코르 (Encore)</div>
+          <p style="margin-bottom:0;">협조 웹사이트 소스코드에 <strong>스크립트 삽입</strong> → 방문자 컴퓨터가 몰래 검열 의심 사이트에 접속 → 차단 여부로 검열 지도 작성. <strong>170개국+</strong>, IRB 미승인. 권위주의 국가 사용자는 정부 수사·처벌 위험.</p>
+        </div>
+        <table>
+          <thead><tr><th>4대 원칙</th><th>핵심</th><th>위반 사례</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-1">①</span> 인간 존중<br><small>Respect for Persons</small></td><td>자율성, <strong>고지된 동의(Informed Consent)</strong></td><td>페북, 앙코르, T3</td></tr>
+            <tr><td><span class="badge badge-2">②</span> 선행<br><small>Beneficence</small></td><td>위험 최소화 + 이익 극대화</td><td>페북(취약집단), 앙코르</td></tr>
+            <tr><td><span class="badge badge-3">③</span> 정의<br><small>Justice</small></td><td>위험·이익의 공정한 배분</td><td>앙코르(검열국 시민)</td></tr>
+            <tr><td><span class="badge badge-4">④</span> 법과 공익 존중<br><small>Respect for Law & Public Interest</small></td><td>컴플라이언스 + <strong>투명성·책무성</strong></td><td>앙코르(170개국), 페북</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="eth-paradigm">
+        <h3>3. 2대 패러다임 & 까다로운 상황 <span class="pill-exam">서술형 단골</span></h3>
+        <table>
+          <thead><tr><th></th><th>결과주의 (Consequentialism)</th><th>의무론 (Deontology)</th></tr></thead>
+          <tbody>
+            <tr><th>철학</th><td>벤담의 공리주의</td><td>칸트의 윤리학</td></tr>
+            <tr><th>기준</th><td>결과의 효용(사회적 이익)</td><td>수단·절차의 정당성(동의)</td></tr>
+            <tr><th>입장 예시</th><td>"피해는 적고 효용은 크니 정당"</td><td>"동의 없는 실험은 결과와 무관하게 잘못"</td></tr>
+          </tbody>
+        </table>
+        <blockquote><strong>가짜 이력서 채용 차별 연구:</strong> <strong>의무론</strong> = 고용주 사전 동의 없음 → 인간 존중 위반 / <strong>결과주의</strong> = 고용주 피해 제한적, 차별 규명 공익 효용 큼 → 정당화 가능. 두 패러다임은 자주 충돌 → 맥락에 따른 <strong>실용적 균형</strong> 필요.</blockquote>
+
+        <div class="card">
+          <div class="card-title">🔑 4가지 까다로운 상황과 대응</div>
+          <p><strong>① 동의가 불가능할 때:</strong> 참가·이탈 용이성 / 제3자 동의(학교가 부모 설득) / 사후 설명(Debrief) / 대표 표본 동의.</p>
+          <p><strong>② 재식별 공격(익명화의 한계):</strong> GIC 의료데이터+선거인명부, 넷플릭스+IMDb, 뉴욕 택시 위치데이터. → 대응 = <span class="keyword">월드 가든(Walled Garden)</span> (완전 비공개·완전 공개 사이의 방어벽 안 제한적 접근).</p>
+          <p><strong>③ 맥락적 통합성(Contextual Integrity):</strong> "공개된 곳에 있나"가 아니라 데이터 <strong>흐름(Flow)이 기대한 맥락(Context)을 벗어났는가</strong>로 침해 판단. (SNS 공개글을 학술연구로 전용 → 침해)</p>
+          <p style="margin-bottom:0;"><strong>④ 불확실성 하 결정:</strong> "위험하니 아무것도 말자"는 <span class="keyword-warn">예방의 원칙</span>의 함정. → 최소 위험 표준 / 검정력 활용 / 파일럿 연구 / <strong>단계적 실험(코로나 백신 임상 1·2·3상)</strong>.</p>
+        </div>
+
+        <blockquote style="margin-bottom:0;"><strong>IRB는 윤리의 하한선:</strong> 통과 = 면죄부가 아니라 <strong>최소 기준선</strong>일 뿐(페북 실험은 코넬 IRB 통과에도 세계적 비판). 연구자는 논문 부록 등에 윤리적 노력을 <strong>투명하게 공개(Transparency)</strong>하고 정당성을 스스로 설명하는 <strong>책무성(Accountability)</strong>을 가져야 한다.</blockquote>
+      </section>
+    </section>
+
+    <!-- =========================== -->
+    <!-- QUIZ                        -->
+    <!-- =========================== -->
+    <section id="quiz">
+      <h2>📝 예상 퀴즈</h2>
+      <p>각 문제의 <strong>"정답 보기"</strong> 버튼을 누르면 해설이 나타납니다. 상단의 <strong>"모든 정답 보기/숨기기"</strong>로 한꺼번에 토글할 수 있습니다.</p>
+
+      <section id="quiz-mc">
+        <h3>📌 객관식 (12문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q1</span>
+          <p class="quiz-question">1936년 리터러리 다이제스트가 200만 명을 조사하고도 대선 예측에 실패한 가장 직접적인 원인은?</p>
+          <ul class="quiz-options">
+            <li>A) 표본 수가 너무 적어서</li>
+            <li>B) 질문의 순서가 잘못되어 측정 오류가 발생해서</li>
+            <li>C) 전화번호부·자동차 명부라는 편향된 추출틀로 인한 대표성(포함범위) 오류</li>
+            <li>D) 응답자들이 사회적 바람직성 편향에 빠져서</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            당시 전화·자동차 소유자는 부유층 → 보수 후보 과대표집. 표본이 아무리 커도 <strong>추출틀이 편향되면</strong> 대표성을 얻지 못한다("큰 N ≠ 정확"). 이는 <strong>대표성(대상) 오류</strong>이지 측정 오류가 아니다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q2</span>
+          <p class="quiz-question">2012년 Xbox 대선 예측 사례가 보여준 핵심 교훈으로 가장 적절한 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 확률 표집만이 정확한 예측을 보장한다</li>
+            <li>B) 대표성이 없는 비확률 표본도 큰 N과 사후 가중치 보정으로 확률표집을 능가할 수 있다</li>
+            <li>C) 게이머는 모집단을 잘 대표한다</li>
+            <li>D) 표본이 크면 보정이 필요 없다</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: B</strong><br>
+            Xbox 사용자는 남성·젊은층 편중으로 대표성이 낮았지만, 막대한 N에 연령·성별·학력 <strong>사후 가중치</strong>를 부여해 보정한 결과 Pollster.com보다 정확했다 = <strong>비확률 표집 2.0</strong>의 원리.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q3</span>
+          <p class="quiz-question">여섯 가지 서베이 오류 조합 중 "가장 위험한" 경우와 그 이유로 옳은 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 편향·분산 모두 큰 경우 — 결과가 명백히 엉터리라 금방 알 수 있어서</li>
+            <li>B) 편향은 작고 분산만 큰 경우 — 평균이 틀려서</li>
+            <li>C) 분산은 작지만 편향이 큰 경우 — 정밀해 보여 틀린 결과에 강한 확신을 줘서</li>
+            <li>D) 편향·분산 모두 작은 경우 — 비용이 많이 들어서</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            <strong>Precisely Inaccurate</strong> — 분산이 작아 결과가 정밀(일관)해 보이지만 편향이 크면, 연구자가 틀린 결론을 <strong>맞다고 강하게 확신</strong>하게 되어 가장 위험하다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q4</span>
+          <p class="quiz-question">디지털 서베이의 세 특징과 방법론의 연결이 <strong>잘못된</strong> 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 삶과 밀접함 — EMA(생태학적 순간 측정) / 패시브 데이터</li>
+            <li>B) 개방성 — 위키 서베이</li>
+            <li>C) 재미 — 게임화(Gamification)</li>
+            <li>D) 정확성 — RDD 전화 조사</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: D</strong><br>
+            세 특징은 <strong>개방적·재미·삶과 밀접</strong>이며, 각각 위키 서베이 / 게임화 / EMA·패시브 데이터와 연결된다. RDD 전화 조사는 응답률 급감으로 위기를 맞은 <strong>전통(2기) 방식</strong>이다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q5</span>
+          <p class="quiz-question">르완다 통화기록 연구에서 "단순 정확도의 함정"을 가장 잘 보여주는 비교는?</p>
+          <ul class="quiz-options">
+            <li>A) 유선전화 보유 예측(거의 모두 소유 → 향상 미미) vs 자전거 소유 예측(약 13%p 향상)</li>
+            <li>B) 학습용 500명 vs 평가용 500명</li>
+            <li>C) 전통 서베이 vs 대면 서베이</li>
+            <li>D) DHS vs KGSS</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: A</strong><br>
+            정확도 절대값이 아니라 <strong>기본 예측(평균 퍼센티지) 대비 개선폭</strong>으로 평가해야 한다. 유선전화는 대부분 소유라 기본 예측만으로도 잘 맞아 ML이 별 의미 없지만, 자전거는 기본 50% 남짓 → ML로 ~13%p 향상되어 가치가 크다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q6</span>
+          <p class="quiz-question">위키피디아 훈장(반스타) 실험에서 통제집단을 둔 것이 결정적이었던 이유는?</p>
+          <ul class="quiz-options">
+            <li>A) 통제집단이 없으면 훈장 비용이 두 배 든다</li>
+            <li>B) 두 집단 모두 편집량이 줄었으나, 통제집단이 더 많이 줄어 훈장이 '감소폭을 방어'했음을 알 수 있어서</li>
+            <li>C) 통제집단 덕분에 표본 크기가 커져서</li>
+            <li>D) 호손 효과를 일으키기 위해서</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: B</strong><br>
+            훈장 집단만 봤다면 "편집량이 줄었으니 효과 없음"이라 <strong>오결론</strong>했을 것. 통제집단도 줄고 있었기에 비교를 통해 훈장이 <strong>감소를 완화한 진짜 효과</strong>를 규명할 수 있었다. (혼합/이중차분 설계의 힘)
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q7</span>
+          <p class="quiz-question">실험 설계 유형 중 "각 집단의 조치 전·후 변화량을 서로 비교"하여 가장 우수한 인과추론을 제공하는 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 피험자 간 설계 (Between-subjects)</li>
+            <li>B) 피험자 내 설계 (Within-subjects)</li>
+            <li>C) 혼합 설계 (Mixed) / 이중차분</li>
+            <li>D) 완전 요인 설계</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            혼합 설계는 통제/실험 집단을 나누고 <strong>각 집단의 전후 변화량을 비교</strong>(이중차분, Difference-in-Differences)하여 유저별 기본 편차와 시간 효과를 모두 통제한다. 위키피디아 실험이 대표 사례.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q8</span>
+          <p class="quiz-question">빅데이터를 다른 목적으로 재활용(Repurposing)할 때 특히 문제가 되며, "데이터가 이론적 구성물과 실제로 일치하는가"를 묻는 타당도는?</p>
+          <ul class="quiz-options">
+            <li>A) 통계적 타당도</li>
+            <li>B) 내적 타당도</li>
+            <li>C) 구성 타당도</li>
+            <li>D) 외적 타당도</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            <strong>구성 타당도(Construct Validity)</strong>. 통계적=우연 아닌가(p값), 내적=절차·측정 정확성, 외적=일반화 가능성.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q9</span>
+          <p class="quiz-question">MusicLab(Salganik 외, 2006) 실험에서 "사회적 영향 조건"을 8개의 평행 세계(8 worlds)로 나눈 설계의 목적은?</p>
+          <ul class="quiz-options">
+            <li>A) 참가자 수를 8배로 늘리기 위해</li>
+            <li>B) 동일한 초기조건에서 '역사가 얼마나 달라질 수 있는지(예측 불가능성)'를 관찰하기 위해</li>
+            <li>C) 곡의 음질을 8단계로 평가하기 위해</li>
+            <li>D) 통제집단을 만들기 위해</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: B</strong><br>
+            8개의 독립적으로 진화하는 평행 세계는 <strong>같은 출발점에서도 결과가 천차만별</strong>임을 보여 <strong>예측 불가능성</strong>을 입증했다. 참가자에게 인기도(사회적 영향)를 보여주자 불평등(지니계수)도 함께 커졌다. (※ 독립 조건은 곡 이름만 보여줌)
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q10</span>
+          <p class="quiz-question">머신러닝 모델 성능의 '허용 기준'에 대한 슬라이드 내용으로 옳은 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 공학·사회과학 모두 F1 0.9 이상이어야 한다</li>
+            <li>B) 공학은 0.8 초과, 사회과학 텍스트 분석은 0.6 초과면 수용 가능</li>
+            <li>C) 사회과학은 1.0이어야만 한다</li>
+            <li>D) Accuracy만 보면 되고 Precision/Recall은 무의미하다</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: B</strong><br>
+            엄밀성이 중요한 공학은 <strong>0.8 초과</strong>를, 텍스트의 노이즈가 큰 사회과학은 <strong>0.6 초과</strong>를 수용 가능 기준으로 본다. F1 = Precision·Recall의 조화평균.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q11</span>
+          <p class="quiz-question">Joon Sung Park 외(2024)의 1,000명 생성형 AI 페르소나 연구에 대한 설명으로 <strong>틀린</strong> 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 실제 인간 1,000명에게 약 2시간 인터뷰를 진행해 그 기록을 AI 메모리에 주입했다</li>
+            <li>B) AI에게 GSS·Big Five 등 동일 설문을 풀게 해 인간 응답과 비교했다</li>
+            <li>C) 인간 응답 모사 정확도가 약 85%에 달했다</li>
+            <li>D) 페르소나를 부여하면 AI가 인간보다 더 다양한 의견 분포를 보였다</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: D (틀린 설명)</strong><br>
+            오히려 반대다. 페르소나를 부여해도 AI는 <strong>좁고 획일적으로 수렴(페르소나 붕괴)</strong>하는 경향이 있어, 실제 인간의 고른 분포를 담보하지 못한다. A·B·C는 모두 옳은 설명.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q12</span>
+          <p class="quiz-question">'의견 붕괴(Opinion Collapse)'를 가장 정확히 설명한 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 사람들이 의견을 아예 말하지 않는 현상</li>
+            <li>B) 머신 컬처와 모델 붕괴가 결합되어, 단순 양극화를 넘어 여론·사고가 극단적으로 획일화되는 현상</li>
+            <li>C) 서버 과부하로 댓글이 사라지는 현상</li>
+            <li>D) 전문가 의견만 살아남는 현상</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: B</strong><br>
+            AI가 생성한 데이터(AI Slop)가 문화 진화를 거쳐 다양성을 잃는 <strong>모델 붕괴</strong> + <strong>머신 컬처</strong>가 결합 → 단순 polarization을 넘어선 <strong>극단적 동질화(Homogenization)</strong>. genAI 사회연구의 최대 경계 대상.
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-data">
+        <h3>📊 데이터 해석 (3문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q13</span>
+          <p class="quiz-question"><strong>[데이터 해석]</strong> 르완다 연구 설계: 통화기록 150만 명, 전화 서베이 1,000명.</p>
+          <p>(1) 1,000명을 어떻게 나눠 모델을 만들고 평가하는가?<br>(2) 최종적으로 응답을 예측하는 대상은 몇 명인가?<br>(3) 전통 서베이 대비 효율(속도·비용)은?</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>(1)</strong> 1,000명을 <strong>500명(학습용)</strong>·<strong>500명(예측 후 실제와 비교하는 평가용)</strong>으로 분할 → 통화기록 패턴으로 응답을 예측하는 지도학습 모델을 만들고 최적화한다.<br><br>
+            <strong>(2)</strong> 서베이를 하지 않은 나머지 <strong>149만 9,000명</strong>의 응답을 예측(증폭).<br><br>
+            <strong>(3)</strong> 전통 서베이보다 <strong>약 10배 빠르고 50배 저렴</strong>. 단, 중간 수준 동네는 과소예측(Underestimate)하는 한계가 있어 DHS 같은 준거 자료와 대조가 필요.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q14</span>
+          <p class="quiz-question"><strong>[데이터 해석]</strong> Opower 전기 절약 실험 결과:</p>
+          <table style="background:white;">
+            <thead><tr><th>가구 그룹</th><th>절감 효과</th></tr></thead>
+            <tbody>
+              <tr><td>평균보다 많이 쓰던 가구(상위 10분위)</td><td>최대 6% 감소</td></tr>
+              <tr><td>평균보다 적게 쓰던 가구</td><td>약 0.3% 감소(일부는 오히려 증가)</td></tr>
+              <tr><td>전체 평균</td><td>약 2% 감소</td></tr>
+            </tbody>
+          </table>
+          <p>(1) 그룹별 효과 차이를 부르는 개념은?<br>(2) 적게 쓰던 가구의 '증가' 부작용을 무엇이라 하며 어떻게 해결했나?<br>(3) 이모티콘 추가는 '풍부한 실험'의 어떤 전략에 해당하나?</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>(1)</strong> <strong>실험 효과의 이질성(Heterogeneity of Treatment Effects)</strong> — 사전 사용량에 따라 처치 효과가 다르게 나타남.<br><br>
+            <strong>(2)</strong> <strong>부메랑 효과</strong>(평균 이하 사용자가 "나는 덜 쓰니 더 써도 되겠다"며 증가). → 비교 정보에 <strong>웃는/찡그린 이모티콘</strong>(규범적 신호)을 추가하자 부작용이 거의 사라짐.<br><br>
+            <strong>(3)</strong> <strong>메커니즘(Mechanism) 규명/조작</strong> — 단순 통계 제공을 넘어 '왜·어떻게' 행동이 바뀌는지를 미묘한 심리 개입으로 다룬 것.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q15</span>
+          <p class="quiz-question"><strong>[데이터 해석]</strong> 어떤 사회과학 텍스트 분류 모델이 Precision 0.50, Recall 0.90을 기록했다.</p>
+          <p>(1) F1 Score를 구하시오. (2) 이 모델은 사회과학 기준에서 '수용 가능'한가? (3) Precision과 Recall의 의미 차이를 한 줄로 쓰시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>(1)</strong> F1 = 2·P·R/(P+R) = 2×(0.5×0.9)/(0.5+0.9) = 0.9/1.4 ≈ <strong>0.643</strong>.<br><br>
+            <strong>(2)</strong> 사회과학 텍스트 분석 기준은 <strong>0.6 초과</strong>면 수용 가능 → 0.643이므로 <strong>수용 가능</strong>. (단, 공학 기준 0.8엔 미달)<br><br>
+            <strong>(3)</strong> Precision = 모델이 '맞다'고 한 것 중 실제 정답 비율 / Recall = 실제 정답 중 모델이 찾아낸 비율.
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-scenario">
+        <h3>🎯 시나리오 판단 (2문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q16</span>
+          <p class="quiz-question"><strong>[시나리오]</strong> 한 연구자가 SNS 사용자 5만 명의 타임라인에서 동의 없이 긍정/부정 단어를 임의로 줄여 감정 변화를 측정하려 한다. 이 실험을 윤리적으로 개선하기 위한 <strong>3R 원칙 적용 방안</strong>을 각각 제시하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>Replace(대체):</strong> 단어를 인위적으로 조작하는 대신 <strong>비 오는 날씨</strong>처럼 자연적으로 감정에 영향을 주는 변수를 이용한 <strong>자연실험</strong>으로 대체.<br><br>
+            <strong>Refine(정제):</strong> 포스팅을 <strong>삭제(정보 박탈)</strong>하는 대신 <strong>노출 순서(위/아래)만 조정</strong>해 피해를 줄임.<br><br>
+            <strong>Reduce(축소):</strong> <strong>이중차분법(Pre-Post)</strong>으로 개인별 기저 편차를 상쇄해, 더 <strong>적은 피험자</strong>로도 동일한 통계적 검정력을 확보. → 추가로 <strong>사전 등록(Pre-registration)</strong>으로 투명성 확보.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q17</span>
+          <p class="quiz-question"><strong>[시나리오]</strong> 어느 팀이 "여론 조사 비용 절감"을 위해 실제 인간 대신 생성형 AI 페르소나 1만 개를 만들어 설문 응답을 시뮬레이션하려 한다. 이 접근의 (1) 가능성(근거 연구)과 (2) 가장 큰 위험을 각각 쓰시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>(1) 가능성:</strong> Park 외(2024) 연구에서 실제 1,000명의 2시간 인터뷰 기록을 주입한 AI가 GSS·Big Five 응답을 <strong>약 85% 정확도</strong>로 모사 → 인공 페르소나가 사회조사를 보완·대체할 잠재력이 있다.<br><br>
+            <strong>(2) 가장 큰 위험:</strong> <strong>페르소나 붕괴 / 의견 붕괴(동질화)</strong>. 서로 다른 프로필을 줘도 AI 응답이 좁은 지점으로 군집해 실제 인간의 다양성·분포를 재현하지 못하고, 머신 컬처·모델 붕괴와 결합되면 여론이 극단적으로 획일화될 수 있다.
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-essay">
+        <h3>📝 서술형 (4문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q18</span>
+          <p class="quiz-question"><strong>[서술형]</strong> '편향과 분산' 그리고 '대표성 오류와 측정 오류' 두 프레임워크를 설명하고, 1936 다이제스트와 1993 갤럽 사례를 각각 어느 오류에 연결할 수 있는지 서술하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            <strong>편향(Bias)</strong>은 측정값이 진값을 체계적으로 빗나가는 오류, <strong>분산(Variance)</strong>은 반복 측정값이 무작위로 퍼지는 오류(정밀도)다. 표본 수가 커지면 분산은 줄지만 편향은 줄지 않으므로, <strong>분산은 작은데 편향이 큰 경우</strong>가 가장 위험하다(틀린 결과에 강한 확신).<br><br>
+            한편 <strong>대표성 오류</strong>는 '누구를 표집하는가(대상)'의 문제로, 편향된 추출틀·낮은 응답률에서 비롯된다. <strong>측정 오류</strong>는 '어떻게 묻는가(설계)'의 문제로, 질문 순서·단어 선택·사회적 바람직성 편향에서 비롯된다.<br><br>
+            <strong>1936 다이제스트</strong>는 전화·자동차 명부라는 편향된 틀로 부유층을 과대표집한 <strong>대표성(포함범위) 오류</strong>의 전형이다. <strong>1993 갤럽</strong>은 딸/아들을 먼저 묻는 순서에 따라 허용률이 41%↔22%로 갈린 <strong>측정 오류(질문 순서 효과)</strong>의 전형이다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q19</span>
+          <p class="quiz-question"><strong>[서술형]</strong> '단순 실험(A/B 테스트)'과 '풍부한 실험(Rich Experiment)'의 차이를 설명하고, 풍부한 실험을 만드는 세 가지 전략(이질성·메커니즘·타당도)을 Opower 전기 절약 실험을 예로 들어 서술하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            <strong>단순 실험</strong>은 반응이 좋은 쪽을 골라 튜닝하는 실무 목적으로 결과의 '이유'엔 관심이 없다. <strong>풍부한 실험</strong>은 '왜·어떻게' 효과가 발생하는지 인과 메커니즘과 일반화 가능성까지 규명하는 학문적 실험이다.<br><br>
+            ① <strong>이질성(Heterogeneity):</strong> Opower에서 사전 사용량이 많던 가구는 최대 6%, 적던 가구는 0.3%만 줄어 처치 효과가 집단마다 달랐다. 디지털의 Always-on 사전 데이터로 이런 그룹별 효과를 파악할 수 있다.<br><br>
+            ② <strong>메커니즘(Mechanism):</strong> 적게 쓰던 가구의 '부메랑 효과'를 이모티콘이라는 규범적 신호로 해결한 것은, 단순 결과를 넘어 '왜 그렇게 행동하는가'를 다룬 메커니즘 규명/조작이다.<br><br>
+            ③ <strong>타당도(Validity):</strong> 10개→100개 지역, 60만→800만 가구로 확장하며 결과가 유지되는지 본 것은 <strong>외적 타당도(일반화 가능성)</strong> 검증이다. (시간이 지나거나 복제 연구일수록 효과가 약해지는 점도 외적 타당도·이질성과 연결.)
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q20</span>
+          <p class="quiz-question"><strong>[서술형]</strong> Salganik의 MusicLab 실험을 (a)설계 (b)핵심 결과 (c)의의의 측면에서 설명하고, 이 실험이 '디지털 시대 사회과학'에서 갖는 Micro–Macro적 의미를 서술하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            <strong>(a) 설계:</strong> 약 14,341명이 무명 밴드 48곡을 다운로드하는 웹 음악시장. <strong>독립 조건</strong>(곡 이름만 봄)과 <strong>사회적 영향 조건</strong>(타인의 다운로드 수를 봄)으로 나누고, 사회적 영향 조건은 독립적으로 진화하는 <strong>8개 평행 세계</strong>로 무작위 배정했다. 실험2는 인기도순 정렬로 신호를 강화했다.<br><br>
+            <strong>(b) 결과:</strong> 사회적 영향은 성공의 <strong>불평등(지니계수)</strong>과 <strong>예측 불가능성</strong>을 모두 키웠고, 신호가 강한 실험2에서 더 심화됐다. 곡의 '질'은 성공을 부분적으로만 설명했으며("최고 곡이 완전 실패하진 않지만 그 사이 어떤 결과든 가능"), 8개 세계마다 순위가 천차만별이었다.<br><br>
+            <strong>(c) 의의:</strong> 개인이 타인의 선택을 참고하는 <strong>사회적 영향</strong>이 문화 시장의 역설을 만든다는 것을 인과적으로 증명했다. 즉 <strong>개인의 결정(Micro)</strong>이 모여 <strong>시장의 거시 결과(Macro)</strong>로 증폭되는 Micro-macro 동학을, 실험실에서는 불가능한 대규모 웹 실험으로 보였다. (한계: 실제 마케팅 미구현, 48곡으로 적음, 참가자 소통 차단.)
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q21</span>
+          <p class="quiz-question"><strong>[서술형]</strong> 생성형 AI를 사회조사에 활용할 때의 잠재력과 위험을, Tessler(하버마스 머신)·Park(페르소나) 연구의 긍정적 가능성과 '모델 붕괴/페르소나 붕괴'의 위험을 대비시켜 서술하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            <strong>잠재력:</strong> Tessler 외(2024)의 'AI 중재자'는 민주적 숙의에서 인간 중재자보다 더 명확·논리적인 그룹 성명서를 쓰면서도 <strong>소수 의견을 배제하지 않고 더 폭넓은 동의(Common ground)</strong>를 이끌어냈다. Park 외(2024)는 실제 인간 1,000명의 인터뷰를 주입한 AI가 설문 응답을 <strong>약 85%</strong> 정확도로 모사해, 비용·시간을 크게 줄이는 인공 페르소나의 가능성을 보였다.<br><br>
+            <strong>위험:</strong> 그러나 서로 다른 프로필을 부여해도 AI 응답이 좁은 지점으로 수렴하는 <strong>페르소나 붕괴</strong>가 나타나, 실제 인간의 고른 분포(예: Big Five)를 재현하지 못한다. 또 AI가 만든 조잡한 데이터(AI Slop)가 문화 진화를 거치며 다양성을 잃는 <strong>모델 붕괴</strong>가 머신 컬처와 결합되면, 단순 양극화를 넘어 여론이 극단적으로 획일화되는 <strong>의견 붕괴(동질화)</strong>가 발생한다.<br><br>
+            <strong>결론:</strong> 생성형 AI는 사회연구를 보완·증폭할 강력한 도구지만, '페르소나만 부여하면 인간을 대체한다'는 가정은 위험하며, <strong>동질화 오류를 상시 검증·경계</strong>해야 한다.
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-collab-ethics">
+        <h3>🤝⚖️ 대규모 협업 & 연구윤리 (7문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q22</span>
+          <p class="quiz-question">다음 중 대규모 협업의 "공개 모집(Open Call)" 사례가 <strong>아닌</strong> 것은?</p>
+          <ul class="quiz-options">
+            <li>A) Netflix Prize</li>
+            <li>B) Foldit</li>
+            <li>C) Peer to Patent</li>
+            <li>D) eBird</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: D) eBird</strong><br>
+            eBird는 <strong>분산 데이터 수집</strong>(산출물=단순 합산)에 해당. A·B·C는 '최고의 단 하나'를 뽑는 공개 모집이다. (Netflix Prize=시네매치 10%↑·$100만, Foldit=단백질 접기 게임, Peer to Patent=부적격 특허 약 30% 선별)
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q23</span>
+          <p class="quiz-question">인간 기반 연산에서 동일 작업을 여러 사람이 중복 수행하는 '작업 잉여성(Redundancy)'의 핵심 목적은?</p>
+          <ul class="quiz-options">
+            <li>A) 참여자에게 더 많은 보상을 주기 위해</li>
+            <li>B) 단일 평가의 실수·편향·악의적 분류를 걸러내 신뢰도를 높이기 위해</li>
+            <li>C) 작업량을 일부러 늘리기 위해</li>
+            <li>D) 전문가를 대체하지 않기 위해</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: B</strong><br>
+            예) Galaxy Zoo는 이미지당 평균 40명이 중복 평가했다. 여기에 신뢰도 높은 평가자에게 더 큰 가중을 주는 <strong>가중 평균(Weighting)</strong>을 결합해 데이터 질을 전문가 수준으로 끌어올린다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q24</span>
+          <p class="quiz-question">다음 중 "맥락적 통합성(Contextual Integrity)" 위반에 해당하는 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 의사가 환자 기록을 환자 치료에 사용</li>
+            <li>B) 친구끼리 나눈 메시지를 그 친구가 봄</li>
+            <li>C) 페이스북 공개 게시물을 동의 없이 학술 연구 데이터로 활용</li>
+            <li>D) 신문 기사를 도서관에서 열람</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            SNS에 공개로 올렸어도 그 맥락은 "친구들과의 일상 공유"다. "학술 연구"라는 <strong>다른 맥락(Flow)</strong>으로 전용되면 맥락적 통합성이 깨진 것 = 프라이버시 침해. 침해 판단 기준은 '공개 여부'가 아니라 '맥락 이탈 여부'다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q25</span>
+          <p class="quiz-question">다음 중 "의무론(Deontology)"에 가장 부합하는 주장은?</p>
+          <ul class="quiz-options">
+            <li>A) "이 연구는 암 치료에 기여하므로 윤리적이다."</li>
+            <li>B) "사회적 효용이 위험보다 크다."</li>
+            <li>C) "결과가 좋더라도 당사자의 동의 없이 실험하는 것은 잘못이다."</li>
+            <li>D) "1,000명이 이익을 보면 1명의 희생은 감수할 수 있다."</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            의무론(칸트)은 결과와 무관하게 <strong>수단·절차(동의)</strong>의 정당성을 본다. A·B·D는 모두 결과의 효용으로 정당화하는 결과주의(공리주의) 입장이다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q26</span>
+          <p class="quiz-question"><strong>[데이터 해석]</strong> 정치 성명서 코딩에서 A 문장을 5명이 평가했다.</p>
+          <table style="background:white;">
+            <thead><tr><th>평가자</th><th>성향 점수 (1=극좌~10=극우)</th><th>다른 문장 일치도</th></tr></thead>
+            <tbody>
+              <tr><td>갑</td><td>7</td><td>높음</td></tr>
+              <tr><td>을</td><td>7</td><td>높음</td></tr>
+              <tr><td>병</td><td>8</td><td>높음</td></tr>
+              <tr><td>정</td><td>3</td><td>낮음(혼자 다름)</td></tr>
+              <tr><td>무</td><td>7</td><td>보통</td></tr>
+            </tbody>
+          </table>
+          <p>(1) 단순 평균은? (2) 가중 평균 시 누구의 가중치를 낮추며 이유는? (3) 이 방식이 전문가 코딩 대비 갖는 장점은?</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>(1)</strong> (7+7+8+3+7)÷5 = <strong>6.4</strong>.<br><br>
+            <strong>(2)</strong> <strong>정</strong>의 가중치를 낮춘다. 다른 문장에서도 다수와 일치도가 일관되게 낮아 부주의·악의적 평가자일 가능성이 높다. 가중 평균 적용 시 최종 점수는 <strong>7에 가깝게</strong> 보정된다.<br><br>
+            <strong>(3)</strong> 단 5시간·$360로 전문가 코딩 대비 시간·비용을 획기적으로 절감하면서, 가중 평균으로 전문가 수준 정확도를 달성(2개월 후 재현에도 높은 일치도 유지).
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q27</span>
+          <p class="quiz-question"><strong>[서술형]</strong> 넷플릭스 익명 데이터가 재식별 공격에 취약했던 이유를 설명하고, 그 대응책인 "월드 가든(Walled Garden)"이 무엇인지 서술하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            넷플릭스는 추천 알고리즘 개선을 위해 익명화한 리뷰 데이터를 공개했으나, 연구자들이 이를 <strong>IMDb의 공개 리뷰와 대조·결합</strong>하여 넷플릭스 사용자의 신원을 식별했다. 익명화 데이터도 외부 데이터와 결합되면 개인을 알아내는 <strong>재식별 공격</strong>에 취약하다(유사 사례: GIC 의료데이터+선거인명부, 뉴욕 택시 위치 기록).<br><br>
+            <strong>월드 가든</strong>은 데이터를 완전 비공개(연구 불가)하거나 완전 공개(유출 위험)하는 극단 사이에서, <strong>접근 통제·계약·감사 같은 방어벽 안에서만 제한적으로 데이터 접근을 허용</strong>하는 타협책이다. 개인정보 위험은 최소화하면서 사회적 연구 효용은 유지한다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q28</span>
+          <p class="quiz-question"><strong>[서술형]</strong> "가짜 이력서를 이용한 채용 차별 연구"를 결과주의와 의무론의 관점에서 각각 어떻게 평가하는지 비교하고, 두 패러다임이 충돌할 때 연구자가 취해야 할 태도를 서술하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            <strong>① 의무론(칸트):</strong> 고용주는 피험자가 되었으나 사전 동의를 받지 못했다. 결과와 무관하게 수단이 정당해야 하므로 이 연구는 <strong>인간 존중 원칙을 위반</strong>한 비윤리적 연구다.<br><br>
+            <strong>② 결과주의(벤담 공리주의):</strong> 고용주 피해는 가짜 이력서 검토 시간 정도로 제한적인 반면, 구조적 채용 차별을 실증해 정책 개선에 기여하는 <strong>공익 효용은 훨씬 크다</strong> → 정당화 가능.<br><br>
+            <strong>③ 태도:</strong> 두 패러다임이 충돌할 때 어느 하나를 절대 기준으로 삼지 말고 <strong>원칙 간 균형과 맥락</strong>을 고려한다. 동의의 연속적 접근(사후 디브리프 등), 위험 최소화 장치, 투명한 정당성 공개 같은 실용적 타협이 필요하다.
+          </div>
+        </div>
+      </section>
+
+      <section id="cheatsheet">
+        <h3>🎯 최종 암기 치트시트</h3>
+        <div class="card highlight">
+          <div class="card-title">⚡ 시험 직전 30초 복습</div>
+          <ul class="feature-list">
+            <li><strong>서베이 오류:</strong> 편향(체계)/분산(무작위), 대표성(대상)/측정(설계). 최악 = 정밀한데 편향 큼.</li>
+            <li><strong>사례-원인:</strong> 다이제스트=대표성, 갤럽=측정(순서), Xbox=비확률+사후보정 역전.</li>
+            <li><strong>디지털 서베이 3특징:</strong> 개방(위키)·재미(게임화)·삶밀착(EMA/패시브).</li>
+            <li><strong>르완다(증폭된 질문):</strong> 150만+1000명, 500/500, 10배 빠름·50배 쌈, '기본 예측 대비 개선'으로 평가.</li>
+            <li><strong>실험 설계:</strong> 피험자간 / 피험자내 / 혼합(=이중차분, 최강).</li>
+            <li><strong>타당도 4:</strong> 통계·내적·구성(Repurposing)·외적(일반화).</li>
+            <li><strong>실험 수치:</strong> Opower 6%/0.3%/2%·부메랑+이모티콘, 페북투표 +0.4%p·98%, 감정전염 35만·0.05%p, Centola=군집형이 빠름.</li>
+            <li><strong>3R:</strong> Replace(자연실험)·Refine(순서만)·Reduce(이중차분) + 사전등록.</li>
+            <li><strong>★MusicLab:</strong> 14,341명·48곡, 독립 vs 사회적 영향(8 worlds), 지니·예측불가, Micro→Macro.</li>
+            <li><strong>★평가지표:</strong> P·R·F1(조화평균)·Acc / 공학 0.8↑, 사회과학 0.6↑.</li>
+            <li><strong>★AI 연구:</strong> Tessler 하버마스 머신(AI 중재자 동의율↑), Park 페르소나(1000명·85%), 페르소나·모델·의견 붕괴.</li>
+            <li><strong>CSS:</strong> 행동/수리/계량 → ABM·데이터사이언스 → NLP·genAI. 예측→해석 전환.</li>
+            <li><strong>협업 3유형:</strong> 인간기반연산(평균값) / 공개모집(최고 하나) / 분산수집(합산). 품질=Redundancy+Weighting. 설계 5원칙=동기·이질성·주의집중·예상밖허용·윤리.</li>
+            <li><strong>윤리:</strong> 4원칙(인간존중·선행·정의·법공익) / 3사례(페북·하버드T3·앙코르170개국) / 결과주의 vs 의무론 / 재식별→월드가든 / 맥락적 통합성 / 단계적 실험 / IRB=하한선.</li>
+          </ul>
+        </div>
+        <div class="card" style="text-align:center;">
+          <h3 style="margin:0;">🎓 시험 잘 보세요!</h3>
+          <p style="margin-top:10px; margin-bottom:0;">핵심 키워드: <span class="keyword">비확률 표집 2.0</span> · <span class="keyword">편향/분산</span> · <span class="keyword">증폭된 질문</span> · <span class="keyword">혼합 설계/이중차분</span> · <span class="keyword">타당도 4종</span> · <span class="keyword">이질성·메커니즘</span> · <span class="keyword">3R</span> · <span class="keyword-exam">MusicLab(8 worlds·지니)</span> · <span class="keyword-exam">P/R/F1</span> · <span class="keyword-exam">하버마스 머신</span> · <span class="keyword-exam">페르소나/모델/의견 붕괴</span></p>
+        </div>
+      </section>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Toggle individual answer
+  function toggleAnswer(btn) {
+    const answer = btn.nextElementSibling;
+    answer.classList.toggle('show');
+    btn.textContent = answer.classList.contains('show') ? '정답 숨기기' : '정답 보기';
+  }
+
+  // Toggle all answers
+  let allShown = false;
+  function toggleAllAnswers() {
+    allShown = !allShown;
+    document.querySelectorAll('.answer').forEach(a => {
+      if (allShown) a.classList.add('show');
+      else a.classList.remove('show');
+    });
+    document.querySelectorAll('.reveal-btn').forEach(b => {
+      b.textContent = allShown ? '정답 숨기기' : '정답 보기';
+    });
+  }
+
+  // Theme toggle
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Active section highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.sidebar nav a[href^="#"]');
+
+  function highlightNav() {
+    let current = '';
+    sections.forEach(s => {
+      const rect = s.getBoundingClientRect();
+      if (rect.top <= 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', highlightNav);
+  highlightNav();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사회정책 기말 학습도우미</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffdf8;
+      --ink: #1f2933;
+      --muted: #667085;
+      --line: #ddd4c2;
+      --navy: #183153;
+      --blue: #315f8c;
+      --red: #a53f32;
+      --gold: #b7791f;
+      --green: #2f6d58;
+      --soft-blue: #eaf1f8;
+      --soft-red: #f8ebe7;
+      --soft-gold: #fbf2dc;
+      --soft-green: #e9f3ee;
+      --shadow: 0 14px 40px rgba(51, 42, 28, 0.09);
+    }
+
+    [data-theme="dark"] {
+      --bg: #111827;
+      --paper: #1f2937;
+      --ink: #f3f4f6;
+      --muted: #c0c7d2;
+      --line: #3f4b5d;
+      --navy: #d7e7fa;
+      --blue: #91b9df;
+      --red: #f1a69c;
+      --gold: #e7bd6b;
+      --green: #8fcbb3;
+      --soft-blue: #263b53;
+      --soft-red: #4b2d2d;
+      --soft-gold: #493b23;
+      --soft-green: #233f35;
+      --shadow: none;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.72;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+    aside, main { min-width: 0; }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 28px 20px;
+      background: var(--navy);
+      color: #fff;
+    }
+    [data-theme="dark"] aside { color: #111827; }
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .side-meta {
+      font-size: 0.82rem;
+      opacity: 0.8;
+      margin-bottom: 24px;
+    }
+    nav a {
+      display: block;
+      text-decoration: none;
+      padding: 9px 11px;
+      border-radius: 9px;
+      margin: 3px 0;
+      font-size: 0.9rem;
+      opacity: 0.86;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(255,255,255,0.15);
+      opacity: 1;
+    }
+    .side-actions {
+      display: grid;
+      gap: 8px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.25);
+    }
+    .side-actions button {
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.1);
+      color: inherit;
+      border-radius: 9px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    main {
+      width: min(1120px, 100%);
+      padding: 42px 48px 100px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--soft-gold), var(--soft-red));
+      opacity: 0.8;
+    }
+    .eyebrow {
+      color: var(--red);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", "Noto Serif KR", serif;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    h1 {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin: 10px 0 12px;
+      letter-spacing: -0.045em;
+    }
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      color: var(--muted);
+      margin: 0;
+    }
+    .hero-badges {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 11px;
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+    .pill.red { background: var(--soft-red); color: var(--red); }
+    .pill.gold { background: var(--soft-gold); color: var(--gold); }
+
+    section {
+      margin-top: 48px;
+      scroll-margin-top: 18px;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      border-bottom: 2px solid var(--navy);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    h2 { margin: 0; font-size: 1.72rem; letter-spacing: -0.03em; }
+    .section-note { color: var(--muted); font-size: 0.85rem; }
+
+    .priority-grid, .week-grid, .stat-grid, .essay-grid {
+      display: grid;
+      gap: 16px;
+    }
+    .priority-grid { grid-template-columns: repeat(3, 1fr); }
+    .week-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat-grid { grid-template-columns: repeat(4, 1fr); }
+    .essay-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 18px rgba(51, 42, 28, 0.05);
+    }
+    .priority-card {
+      border-top: 5px solid var(--red);
+    }
+    .priority-card:nth-child(2) { border-color: var(--gold); }
+    .priority-card:nth-child(3) { border-color: var(--green); }
+    .rank {
+      color: var(--red);
+      font-weight: 900;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+    }
+    .priority-card h3 { margin: 7px 0 8px; font-size: 1.15rem; }
+    .priority-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .big-picture {
+      display: grid;
+      grid-template-columns: 1fr 52px 1fr 52px 1fr;
+      align-items: stretch;
+      gap: 10px;
+    }
+    .flow {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .flow strong { color: var(--navy); display: block; margin-bottom: 7px; }
+    .flow span { color: var(--muted); font-size: 0.88rem; }
+    .arrow {
+      display: grid;
+      place-items: center;
+      color: var(--red);
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+
+    details.week {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    details.week[open] { box-shadow: var(--shadow); }
+    details.week summary {
+      cursor: pointer;
+      padding: 20px 22px;
+      font-weight: 800;
+      color: var(--navy);
+      list-style: none;
+    }
+    details.week summary::-webkit-details-marker { display: none; }
+    details.week summary::after {
+      content: "+";
+      float: right;
+      color: var(--red);
+      font-size: 1.25rem;
+    }
+    details.week[open] summary::after { content: "-"; }
+    .week-body { padding: 0 22px 22px; }
+    .one-line {
+      background: var(--soft-blue);
+      border-left: 4px solid var(--blue);
+      padding: 12px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-weight: 650;
+    }
+    .week h4 {
+      color: var(--red);
+      margin: 18px 0 8px;
+      font-size: 0.94rem;
+    }
+    .week ul { margin: 0; padding-left: 19px; }
+    .week li { margin: 6px 0; }
+    .exam-point {
+      margin-top: 16px;
+      background: var(--soft-red);
+      color: var(--ink);
+      border: 1px solid color-mix(in srgb, var(--red), transparent 60%);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .keyword {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 3px 7px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+    th, td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    th { background: var(--soft-blue); color: var(--navy); }
+    tr:last-child td { border-bottom: 0; }
+
+    .stat {
+      text-align: center;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 10px;
+    }
+    .stat strong {
+      display: block;
+      color: var(--red);
+      font-size: 1.55rem;
+      font-family: Georgia, serif;
+    }
+    .stat span { color: var(--muted); font-size: 0.8rem; }
+
+    .study-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--navy);
+      padding: 9px 13px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 750;
+    }
+    .btn.primary {
+      background: var(--navy);
+      color: var(--paper);
+      border-color: var(--navy);
+    }
+    .btn:hover { transform: translateY(-1px); }
+
+    .flash-shell {
+      max-width: 760px;
+      margin: 0 auto;
+      perspective: 1100px;
+    }
+    .flashcard {
+      min-height: 300px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.45s ease;
+      cursor: pointer;
+    }
+    .flashcard.flipped { transform: rotateY(180deg); }
+    .face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .back { transform: rotateY(180deg); background: var(--soft-green); }
+    .flash-label { color: var(--red); font-size: 0.76rem; font-weight: 900; letter-spacing: 0.08em; }
+    .flash-text { color: var(--navy); font-family: Georgia, "Noto Serif KR", serif; font-size: 1.35rem; margin-top: 12px; }
+    .flash-hint { color: var(--muted); font-size: 0.8rem; margin-top: 24px; }
+    .flash-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .quiz-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+    }
+    .quiz-progress {
+      height: 8px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .quiz-progress span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      width: 0;
+      transition: width 0.25s;
+    }
+    .quiz-meta { color: var(--muted); font-size: 0.82rem; }
+    .quiz-question { color: var(--navy); font-size: 1.2rem; font-weight: 850; margin: 8px 0 18px; }
+    .option-list { display: grid; gap: 9px; }
+    .option {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 12px 14px;
+      cursor: pointer;
+    }
+    .option:hover { border-color: var(--blue); background: var(--soft-blue); }
+    .option.correct { border-color: var(--green); background: var(--soft-green); }
+    .option.wrong { border-color: var(--red); background: var(--soft-red); }
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      border-radius: 10px;
+      padding: 13px 15px;
+      background: var(--soft-blue);
+    }
+    .feedback.show { display: block; }
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .essay-card h3 { font-size: 1.05rem; margin: 0 0 10px; }
+    .essay-card p { color: var(--muted); font-size: 0.88rem; }
+    .essay-card details {
+      border-top: 1px solid var(--line);
+      margin-top: 14px;
+      padding-top: 12px;
+    }
+    .essay-card summary { cursor: pointer; color: var(--red); font-weight: 800; }
+    .essay-card ol { padding-left: 20px; }
+    .checkline {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin: 7px 0;
+    }
+    .checkline input { margin-top: 6px; }
+
+    .answer-frame {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .answer-step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 140px;
+    }
+    .answer-step strong { color: var(--red); display: block; margin-bottom: 7px; }
+    .answer-step span { color: var(--muted); font-size: 0.82rem; }
+
+    .footer-note {
+      margin-top: 50px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      aside {
+        position: relative;
+        height: auto;
+        width: 100%;
+        padding: 18px;
+      }
+      nav { display: flex; overflow-x: auto; gap: 4px; }
+      nav a { white-space: nowrap; }
+      .side-actions { display: none; }
+      main { width: 100%; padding: 26px 20px 70px; overflow: hidden; }
+      .priority-grid, .week-grid, .essay-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .big-picture { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); }
+      .answer-frame { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      aside, .study-controls, .quiz-actions, .flash-footer { display: none !important; }
+      .layout { display: block; }
+      main { width: 100%; padding: 0; }
+      body { background: #fff; }
+      .hero, .card, details.week, table { box-shadow: none; break-inside: avoid; }
+      details.week .week-body { display: block !important; }
+      .week-grid, .priority-grid, .essay-grid { display: block; }
+      .week-grid > *, .priority-grid > *, .essay-grid > * { margin-bottom: 14px; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <div class="brand">사회정책<br>기말 학습도우미</div>
+    <div class="side-meta">9~13주차 + 6월 8일 한국 복지국가 보강</div>
+    <nav id="nav">
+      <a href="#start">시험 전략</a>
+      <a href="#map">큰 그림</a>
+      <a href="#weeks">주차별 개념</a>
+      <a href="#compare">비교표</a>
+      <a href="#cards">플래시카드</a>
+      <a href="#quiz">객관식 퀴즈</a>
+      <a href="#essay">서술형 훈련</a>
+      <a href="#frame">답안 구조</a>
+    </nav>
+    <div class="side-actions">
+      <button type="button" id="themeBtn">화면 테마 전환</button>
+      <button type="button" onclick="window.print()">인쇄용 보기</button>
+      <button type="button" id="resetBtn">학습 기록 초기화</button>
+    </div>
+  </aside>
+
+  <main>
+    <header class="hero" id="start">
+      <div class="eyebrow">Final Exam Study Guide</div>
+      <h1>복지국가는<br>무엇을 못 하는가</h1>
+      <p>
+        기말의 중심 질문은 복지국가가 시장 의존을 얼마나 줄이는지, 동아시아와 한국에서는 왜 다른 경로를 밟았는지,
+        그리고 가족 내부의 돌봄과 젠더 불평등을 왜 해결하기 어려운지다.
+      </p>
+      <div class="hero-badges">
+        <span class="pill red">시험: 2026년 6월 17일</span>
+        <span class="pill">서술형 논증형</span>
+        <span class="pill gold">족보 빈출 + 교수 예고 우선</span>
+        <span class="pill">진도 자동 저장</span>
+      </div>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <h2>먼저 볼 세 문제</h2>
+        <span class="section-note">시간이 부족하면 이 순서부터</span>
+      </div>
+      <div class="priority-grid">
+        <article class="card priority-card">
+          <div class="rank">PRIORITY 1</div>
+          <h3>육아휴직과 여성 경력단절</h3>
+          <p>교수가 직접 예고. 핵심 답은 휴직 기간의 단순 확대가 아니라 아빠 할당제, 공적 돌봄, 노동시간 단축의 패키지다.</p>
+        </article>
+        <article class="card priority-card">
+          <div class="rank">PRIORITY 2</div>
+          <h3>탈상품화와 세 복지레짐</h3>
+          <p>족보에서 반복 출제. 정의, 레짐별 대표 정책, 탈상품화 수준, 사회층화 효과와 국가 사례를 모두 써야 한다.</p>
+        </article>
+        <article class="card priority-card">
+          <div class="rank">PRIORITY 3</div>
+          <h3>한국 복지국가의 퍼즐</h3>
+          <p>제도는 완비됐는데 왜 체감과 지출은 낮은가. 국가 주도, 생산주의, 선별 확대, 낮은 국가 재정 기여를 연결한다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="map">
+      <div class="section-head">
+        <h2>학기 후반부 큰 그림</h2>
+        <span class="section-note">국가-시장-가족의 삼각형</span>
+      </div>
+      <div class="big-picture">
+        <div class="flow">
+          <strong>시장</strong>
+          <span>Esping-Andersen: 탈상품화와 사회층화. 복지는 지출액이 아니라 시장에서 벗어나도 살 수 있는 사회권의 질이다.</span>
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow">
+          <strong>동아시아·한국</strong>
+          <span>생산주의 복지, 청년 빈곤, 국가 주도 발전사. 서구의 복지국가 이론을 한국에 적용할 때 생기는 어긋남을 본다.</span>
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow">
+          <strong>가족·돌봄</strong>
+          <span>Pateman과 육아휴직 논의. 시장을 다룬 복지국가가 가족 내부의 무급 돌봄과 젠더 권력까지 규율할 수 있는가.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="weeks">
+      <div class="section-head">
+        <h2>주차별 개념정리</h2>
+        <span class="section-note">한 줄 정리 → 핵심 → 시험 포인트</span>
+      </div>
+      <div class="week-grid">
+        <details class="week" open>
+          <summary>9주차 | Pateman, 가부장적 복지국가</summary>
+          <div class="week-body">
+            <div class="one-line">겉으로 중립적인 시민권은 실제로 독립적인 남성 생계부양자를 표준으로 삼고 여성을 의존자로 배치한다.</div>
+            <h4>핵심 논리</h4>
+            <ul>
+              <li><strong>독립의 남성성:</strong> 무기, 재산, 가구 통치 능력을 지닌 남성이 완전한 시민의 기준이 된다.</li>
+              <li><strong>생계부양자 모델:</strong> 남성의 임금노동과 여성의 무상 가사·돌봄이 결합해 가족을 재생산한다.</li>
+              <li><strong>2층 구조:</strong> 남성은 기여에 근거한 사회보험을 권리로 받고, 여성은 자산조사 공공부조를 시혜와 낙인 속에서 받는다.</li>
+              <li><strong>울스턴크래프트의 딜레마:</strong> 남성 노동자 기준에 동화해도, 여성의 차이를 인정받아도 완전한 시민권에 도달하기 어렵다.</li>
+              <li><strong>해결 방향:</strong> 돌봄을 여성 역할이 아니라 모든 시민의 보편적 의무로 재구성한다.</li>
+            </ul>
+            <div class="exam-point"><strong>시험:</strong> 2층 구조와 젠더 불평등의 메커니즘을 설명한 뒤, 아빠 할당제·보편 보육·노동시간 단축과 북유럽 사례를 붙인다.</div>
+            <div class="keywords">
+              <span class="keyword">독립/의존</span><span class="keyword">가족임금</span><span class="keyword">2층 구조</span>
+              <span class="keyword">울스턴크래프트의 딜레마</span><span class="keyword">보편적 돌봄제공자</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="week" open>
+          <summary>10주차 | Esping-Andersen, 세 가지 세계</summary>
+          <div class="week-body">
+            <div class="one-line">복지국가는 돈을 얼마나 쓰는지가 아니라 시장노동을 하지 않아도 인간다운 삶을 유지할 권리와 만들어내는 계층질서로 평가한다.</div>
+            <h4>핵심 논리</h4>
+            <ul>
+              <li><strong>탈상품화:</strong> 노동력을 팔지 못하거나 팔지 않더라도 생계를 유지할 수 있는 사회권의 실질 수준.</li>
+              <li><strong>사회층화:</strong> 복지는 불평등을 사후 교정할 뿐 아니라 계급관계를 직접 만들고 보존하거나 완화한다.</li>
+              <li><strong>지출 착시:</strong> 큰 지출이 특권 유지나 실업 비용일 수 있으므로 지출액만으로 복지의 질을 판단할 수 없다.</li>
+              <li><strong>레짐:</strong> 자유주의는 시장 의존, 보수·조합주의는 지위 보존, 사회민주주의는 보편주의와 높은 탈상품화가 핵심이다.</li>
+              <li><strong>분류 주의:</strong> 자산조사·사회보험·정액급여는 프로그램 유형이고, 자유주의·보수주의·사회민주주의는 복지레짐이다.</li>
+            </ul>
+            <div class="exam-point"><strong>시험:</strong> 정의만 쓰지 말고 세 레짐의 대표국·정책·탈상품화 수준·층화 효과까지 비교한다. 한국은 낮은 급여, 엄격한 자격, 사각지대 때문에 탈상품화가 낮다고 평가한다.</div>
+            <div class="keywords">
+              <span class="keyword">탈상품화</span><span class="keyword">사회층화</span><span class="keyword">계급동맹</span>
+              <span class="keyword">자유주의</span><span class="keyword">조합주의</span><span class="keyword">사회민주주의</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="week">
+          <summary>11주차 | Yang & Kühner, 동아시아 생산주의</summary>
+          <div class="week-body">
+            <div class="one-line">동아시아 복지는 사회보호보다 교육·인적자본·경제성장에 복지를 종속시킨 생산주의에서 출발했지만, 국가별로 서로 다른 보호 경로를 더해 왔다.</div>
+            <h4>핵심 논리</h4>
+            <ul>
+              <li><strong>생산주의:</strong> 복지를 경제성장과 국제경쟁력을 위한 사회투자로 설계한다.</li>
+              <li><strong>서구와 차이:</strong> 서구의 중심은 연금·보건과 노인, 동아시아의 중심은 교육과 미래 노동자인 청년·아동이었다.</li>
+              <li><strong>FSITA:</strong> 중국·홍콩·일본·한국·싱가포르·대만을 생산적 차원과 보호적 차원으로 비교한다.</li>
+              <li><strong>한국:</strong> 약한 출발점에서 교육·고용보험·기초연금·공공임대·건강보험을 가장 전방위적으로 확장했다.</li>
+              <li><strong>한계:</strong> 외환위기, 가족 돌봄 해체, 양극화로 성장 종속형 복지만으로는 새로운 위험에 대응하기 어렵다.</li>
+            </ul>
+            <div class="exam-point"><strong>시험:</strong> 한국을 생산주의의 원형이자 확장 사례로 설명하고, 주거를 시장에 맡긴 결과가 청년 빈곤으로 이어졌음을 연결한다.</div>
+            <div class="keywords">
+              <span class="keyword">생산주의</span><span class="keyword">사회투자</span><span class="keyword">사회보호</span>
+              <span class="keyword">FSITA</span><span class="keyword">ALMP</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="week">
+          <summary>12주차 | 김수정, 한국 청년 빈곤</summary>
+          <div class="week-body">
+            <div class="one-line">한국 청년 빈곤율이 낮아 보이는 것은 청년이 안전해서가 아니라 노인빈곤과 부모 동거가 위험을 가리고 있기 때문이다.</div>
+            <h4>핵심 논리</h4>
+            <ul>
+              <li><strong>착시:</strong> 극심한 노인빈곤이 중위소득과 빈곤선을 낮춰 청년 빈곤을 작게 보이게 한다.</li>
+              <li><strong>가구독립 페널티:</strong> 독립하는 순간 주거비와 안전망 부족 때문에 빈곤위험이 크게 상승한다.</li>
+              <li><strong>혼인의 자기선택:</strong> 결혼이 빈곤을 해결했다기보다 결혼 가능한 청년이 이미 중산층 이상으로 선별된다.</li>
+              <li><strong>낮은 실업 페널티의 역설:</strong> 취업해도 비정규·저임금이라 실업과 소득 차이가 작다.</li>
+              <li><strong>고착:</strong> 내부노동시장의 입구가 닫히면 청년기 빈곤이 중장년·노인 빈곤으로 이어진다.</li>
+            </ul>
+            <div class="exam-point"><strong>시험:</strong> 왜 낮아 보이는지, 실제 위험은 무엇인지, 혼인이 왜 계층 특권인지, 주거·이행기 종합지원이 왜 필요한지 순서로 쓴다.</div>
+            <div class="keywords">
+              <span class="keyword">빈곤의 청년화</span><span class="keyword">AME</span><span class="keyword">자기선택</span>
+              <span class="keyword">내부노동시장</span><span class="keyword">근로빈곤</span><span class="keyword">NEET</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="week">
+          <summary>13주차 | 양현아 외, 육아휴직 이후</summary>
+          <div class="week-body">
+            <div class="one-line">제도상 관대한 육아휴직도 젠더화된 직장 규범 속에서는 여성의 경력단절과 성별분업을 오히려 강화할 수 있다.</div>
+            <h4>핵심 논리</h4>
+            <ul>
+              <li><strong>M자 곡선:</strong> 출산·육아기인 30대에 여성 고용률이 급락하며 결정적 승진 구간을 놓친다.</li>
+              <li><strong>기간의 성별차이:</strong> 여성은 장기·반복 사용, 남성은 아내의 공백을 메우는 단기 사용이 많다.</li>
+              <li><strong>통계적 차별:</strong> 긴 휴직 가능성을 예상한 고용주가 여성의 채용·배치·승진을 미리 제한한다.</li>
+              <li><strong>젠더화된 부모상:</strong> 법은 중립적이어도 엄마를 주 양육자로 보는 관행이 사용 경험을 다르게 만든다.</li>
+              <li><strong>greedy work:</strong> 좋은 일자리일수록 무제한 시간을 요구해 돌봄과 충돌한다. 이는 강의의 보조 연결개념이며 논문 자체의 핵심 용어는 아니다.</li>
+            </ul>
+            <div class="exam-point"><strong>시험:</strong> 가장 시급한 개선은 비이전·전용 아빠 할당제다. 다만 휴직만 늘리지 말고 공공 돌봄, 예측 가능한 노동시간, 가족친화 문화와 결합해야 한다.</div>
+            <div class="keywords">
+              <span class="keyword">M자 곡선</span><span class="keyword">휴직자 낙인</span><span class="keyword">통계적 차별</span>
+              <span class="keyword">greedy work</span><span class="keyword">아빠 할당제</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="week">
+          <summary>6월 8일 | 한국 복지국가 발전사</summary>
+          <div class="week-body">
+            <div class="one-line">한국 복지는 노동의 아래로부터가 아니라 국가가 경제전략에 맞춰 생산성이 높은 집단부터 선별적으로 확대한 체제다.</div>
+            <h4>발전 경로</h4>
+            <ul>
+              <li><strong>1963·1964:</strong> 산재보험법과 의료보험법을 제정했지만 산재보험만 1964년 실제 시행. 의료보험은 임의가입 규정으로 사실상 미시행 상태였다.</li>
+              <li><strong>1973:</strong> 국민복지연금법 제정 후 시행 연기. 중화학공업 자본 동원의 목적도 있었다.</li>
+              <li><strong>1976·1977:</strong> 의료보험법 개정, 500인 이상 사업장부터 강제 시행.</li>
+              <li><strong>1988:</strong> 국민연금 시행. 민주화가 복지를 처음 만든 것이 아니라 기존 국가 주도 복지를 재편했다.</li>
+              <li><strong>1993·1995:</strong> 고용보험법 제정·시행. 노동유연화와 맞교환된 안전망의 성격.</li>
+            </ul>
+            <h4>네 가지 특징</h4>
+            <ul>
+              <li>대기업·정규직부터 시작한 선별적·점진적 확대</li>
+              <li>공무원·군인 등 국가 자체를 먼저 보호</li>
+              <li>가입자·사용자 중심 재원과 낮은 국가 재정 기여</li>
+              <li>낮은 급여와 넓은 사각지대로 인한 낮은 탈상품화</li>
+            </ul>
+            <div class="exam-point"><strong>시험:</strong> 국가중심주의와 생산주의로 발전 경로를 설명하고, 제도 완비와 낮은 체감 사이의 퍼즐을 재원·급여·사각지대로 푼다. 마지막에는 돌봄이라는 새 위험을 덧붙인다.</div>
+            <div class="keywords">
+              <span class="keyword">국가중심주의</span><span class="keyword">생산주의</span><span class="keyword">선별 확대</span>
+              <span class="keyword">국가 재정 기여</span><span class="keyword">사각지대</span>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>청년 빈곤 숫자 기억</h2>
+        <span class="section-note">숫자는 논증의 근거로만 사용</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><strong>7.7%</strong><span>한국 청년 상대빈곤율</span></div>
+        <div class="stat"><strong>9.1%</strong><span>청년 1인가구 비율</span></div>
+        <div class="stat"><strong>+20.6%p</strong><span>가구독립 빈곤 페널티</span></div>
+        <div class="stat"><strong>-2.7%p</strong><span>기혼 청년의 음의 페널티</span></div>
+      </div>
+    </section>
+
+    <section id="compare">
+      <div class="section-head">
+        <h2>핵심 비교표</h2>
+        <span class="section-note">비교 문항에 바로 쓰는 문장 재료</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>자유주의</th>
+              <th>보수·조합주의</th>
+              <th>사회민주주의</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>대표국</td>
+              <td>미국·캐나다·호주</td>
+              <td>독일·프랑스·오스트리아·이탈리아</td>
+              <td>스웨덴·노르웨이·덴마크</td>
+            </tr>
+            <tr>
+              <td>대표 정책</td>
+              <td>자산조사 공공부조, 시장 중심</td>
+              <td>직역별 사회보험, 기여-급여 연계</td>
+              <td>보편주의, 높은 수준의 시민권적 급여</td>
+            </tr>
+            <tr>
+              <td>탈상품화</td>
+              <td>낮음</td>
+              <td>중간</td>
+              <td>높음</td>
+            </tr>
+            <tr>
+              <td>층화 효과</td>
+              <td>빈민 낙인과 중산층의 시장 이탈</td>
+              <td>직역·신분 격차 보존</td>
+              <td>중간계급 포괄과 계급 연대</td>
+            </tr>
+            <tr>
+              <td>가족·젠더</td>
+              <td>민간복지와 가족 부담</td>
+              <td>보충성 원칙과 가족주의</td>
+              <td>돌봄의 사회화와 여성 독립</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-wrap" style="margin-top:18px;">
+        <table>
+          <thead>
+            <tr><th>헷갈리는 구분</th><th>정확한 뜻</th><th>주의할 점</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>복지레짐</td>
+              <td>자유주의·보수조합주의·사회민주주의</td>
+              <td>국가-시장-가족 관계와 층화 구조의 유형</td>
+            </tr>
+            <tr>
+              <td>프로그램 유형</td>
+              <td>자산조사·사회보험·정액급여</td>
+              <td>레짐과 일대일로 같은 분류가 아니다</td>
+            </tr>
+            <tr>
+              <td>ALMP</td>
+              <td>적극적 노동시장정책</td>
+              <td>Yang & Kühner의 분석영역 L은 소극적 노동시장정책</td>
+            </tr>
+            <tr>
+              <td>greedy work</td>
+              <td>좋은 일자리의 과도한 시간 요구</td>
+              <td>양현아 논문의 직접 개념이 아니라 교수 강의의 보조 연결</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="cards">
+      <div class="section-head">
+        <h2>플래시카드</h2>
+        <span class="section-note">카드를 눌러 답 확인</span>
+      </div>
+      <div class="study-controls">
+        <button class="btn" id="prevCard">이전</button>
+        <button class="btn primary" id="flipCard">답 보기</button>
+        <button class="btn" id="nextCard">다음</button>
+        <button class="btn" id="shuffleCards">섞기</button>
+      </div>
+      <div class="flash-shell">
+        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="플래시카드 뒤집기">
+          <div class="face front">
+            <div class="flash-label" id="flashCategory">개념</div>
+            <div class="flash-text" id="flashQuestion"></div>
+            <div class="flash-hint">클릭하거나 Enter 키를 눌러 답을 확인하세요.</div>
+          </div>
+          <div class="face back">
+            <div class="flash-label">ANSWER</div>
+            <div class="flash-text" id="flashAnswer"></div>
+          </div>
+        </div>
+        <div class="flash-footer">
+          <span id="flashCount"></span>
+          <span id="seenCount"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="section-head">
+        <h2>객관식 퀴즈</h2>
+        <span class="section-note">20문항, 즉시 해설</span>
+      </div>
+      <div class="study-controls">
+        <button class="btn primary" id="restartQuiz">처음부터</button>
+        <button class="btn" id="shuffleQuiz">문제 섞기</button>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-progress"><span id="quizBar"></span></div>
+        <div class="quiz-meta" id="quizMeta"></div>
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="option-list" id="optionList"></div>
+        <div class="feedback" id="feedback"></div>
+        <div class="quiz-actions">
+          <button class="btn" id="prevQuiz">이전 문제</button>
+          <button class="btn primary" id="nextQuiz">다음 문제</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="essay">
+      <div class="section-head">
+        <h2>서술형 훈련</h2>
+        <span class="section-note">발문을 보고 5분 개요부터 작성</span>
+      </div>
+      <div class="essay-grid" id="essayGrid"></div>
+    </section>
+
+    <section id="frame">
+      <div class="section-head">
+        <h2>모든 답안의 기본 구조</h2>
+        <span class="section-note">짧은 개조식 대신 문장으로 연결</span>
+      </div>
+      <div class="answer-frame">
+        <div class="answer-step"><strong>1. 주장</strong><span>질문에 대한 결론을 첫 문장에 제시한다.</span></div>
+        <div class="answer-step"><strong>2. 개념 정의</strong><span>학자명과 핵심 개념을 정확히 1~2문장으로 정의한다.</span></div>
+        <div class="answer-step"><strong>3. 메커니즘</strong><span>왜 그런 결과가 생기는지 인과관계를 설명한다.</span></div>
+        <div class="answer-step"><strong>4. 비교·사례</strong><span>레짐, 국가, 정책, 수치 중 하나 이상을 구체적으로 넣는다.</span></div>
+        <div class="answer-step"><strong>5. 한계·함의</strong><span>사각지대와 정책 대안을 제시하며 비판적으로 마무리한다.</span></div>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      이 파일은 폴더의 주차별 정리, 예상문제, 강의 리딩과 녹취 정리 내용을 시험 직전 회상 연습용으로 재구성한 자료입니다.
+    </p>
+  </main>
+</div>
+
+<script>
+  const flashcards = [
+    { c: "Pateman", q: "가부장적 복지국가의 2층 구조란?", a: "1층은 임금노동 기여에 근거한 권리로서의 사회보험, 2층은 의존자에게 자산조사를 거쳐 주는 시혜적 공공부조다. 전통적으로 남성은 1층, 여성은 2층에 배치된다." },
+    { c: "Pateman", q: "울스턴크래프트의 딜레마의 두 함정은?", a: "남성 노동자 기준에 맞추는 동화의 함정과, 여성의 돌봄 차이를 인정받는 대신 돌봄자로 고착되는 차이의 함정이다." },
+    { c: "Esping-Andersen", q: "탈상품화의 정확한 뜻은?", a: "시장에 노동력을 팔지 않거나 팔 수 없는 상황에서도 인간다운 생계를 유지할 수 있는 사회권의 실질 수준이다." },
+    { c: "Esping-Andersen", q: "왜 복지지출 규모만 보면 안 되는가?", a: "큰 지출이 관료 특권, 대량실업 비용, 조세보조일 수 있어 복지의 권리성과 분배효과를 보여주지 못하기 때문이다." },
+    { c: "복지레짐", q: "자유주의·보수조합주의·사회민주주의의 탈상품화 수준은?", a: "자유주의는 낮음, 보수조합주의는 중간, 사회민주주의는 높음." },
+    { c: "동아시아", q: "생산주의 복지란?", a: "사회보호 자체보다 교육·인적자본·고용능력 향상을 통해 경제성장과 국제경쟁력을 높이는 데 복지를 종속시키는 체제다." },
+    { c: "동아시아", q: "서구와 동아시아 복지의 주인공 차이는?", a: "서구는 연금·보건 중심의 노인, 동아시아는 교육과 인적자본 중심의 청년·아동이다." },
+    { c: "청년 빈곤", q: "한국 청년 빈곤율이 낮아 보이는 두 이유는?", a: "극심한 노인빈곤이 빈곤선을 낮추고, 청년이 부모와 동거해 독립 비용과 빈곤위험을 가리기 때문이다." },
+    { c: "청년 빈곤", q: "혼인의 자기선택 효과란?", a: "결혼이 가난을 해결한 것이 아니라 결혼과 독립이 가능한 중산층 이상 청년이 기혼 집단에 선별되는 현상이다." },
+    { c: "청년 빈곤", q: "낮은 실업 페널티가 좋은 신호가 아닌 이유는?", a: "취업해도 비정규·저임금 일자리가 많아 실업 상태와 가처분소득 차이가 작기 때문이다." },
+    { c: "육아휴직", q: "유급 육아휴직을 길게 주는 것만으로 해결되지 않는 이유는?", a: "고용주가 장기 이탈 가능성을 여성 전체에 적용해 채용·배치·승진에서 통계적 차별을 할 수 있기 때문이다." },
+    { c: "육아휴직", q: "교수가 제시한 가장 시급한 개선책은?", a: "남성에게 비이전·전용 기간을 주는 아빠 할당제다. 사용하지 않으면 소멸하게 해 남녀의 휴직 가능성을 비슷하게 만든다." },
+    { c: "육아휴직", q: "greedy work는 이 수업에서 어떻게 사용되는가?", a: "좋은 일자리일수록 무제한 시간을 요구해 돌봄과 충돌한다는 보조 개념이다. 양현아 논문의 직접 개념은 아니다." },
+    { c: "한국 복지국가", q: "제도는 완비됐는데 체감 복지가 낮은 이유는?", a: "낮은 급여, 엄격한 자격, 가입자·사용자 중심 재원, 큰 본인부담과 비급여, 넓은 사각지대가 겹치기 때문이다." },
+    { c: "한국 복지국가", q: "한국 복지의 선별적 확대 순서는 무엇을 뜻하는가?", a: "복지가 가장 필요한 집단보다 대기업·정규직 등 생산성이 높고 관리하기 쉬운 집단부터 적용한 뒤 점차 확대했다는 뜻이다." },
+    { c: "통합", q: "국가-시장-가족 틀에서 기말의 마지막 난제는?", a: "가족 내부의 무급 돌봄과 젠더 권력이다. 국가는 시장과 기업보다 가족 내부를 법과 벌금으로 직접 규율하기 어렵다." }
+  ];
+
+  const quizBase = [
+    {
+      q: "Pateman이 비판한 복지국가의 시민 표준에 가장 가까운 것은?",
+      o: ["무급 돌봄을 수행하는 모든 시민", "독립적인 남성 생계부양자", "자산조사를 통과한 빈민", "지역공동체의 돌봄 제공자"],
+      a: 1,
+      e: "Pateman은 독립·재산·가구 통치 능력을 지닌 남성 생계부양자가 시민권의 암묵적 표준이라고 본다."
+    },
+    {
+      q: "울스턴크래프트의 딜레마에 대한 설명으로 옳은 것은?",
+      o: ["일과 가정 중 하나를 선택해야 한다는 개인적 고민", "두 경로 모두 가부장적 시민권 틀 안에서 완전한 평등에 이르지 못하는 구조적 함정", "복지지출과 조세 사이의 재정 딜레마", "보편주의와 선별주의를 동시에 택할 수 없다는 문제"],
+      a: 1,
+      e: "핵심은 개인의 시간관리 문제가 아니라 동화와 차이 어느 경로도 완전한 시민권을 보장하지 못한다는 구조적 문제다."
+    },
+    {
+      q: "Esping-Andersen의 탈상품화에 가장 부합하는 설명은?",
+      o: ["복지 예산의 GDP 비중", "상품 가격을 국가가 통제하는 정도", "시장노동에서 벗어나도 생계를 유지할 수 있는 권리", "국영기업의 비중"],
+      a: 2,
+      e: "탈상품화는 시장에서의 성과와 생존을 분리하는 사회권의 질을 뜻한다."
+    },
+    {
+      q: "사회민주주의 복지레짐의 특징은?",
+      o: ["자산조사와 잔여주의", "직역별 기금과 지위 보존", "보편주의와 높은 탈상품화", "가족의 돌봄 책임 우선"],
+      a: 2,
+      e: "사회민주주의 레짐은 중간계급까지 포괄하는 보편주의와 높은 탈상품화가 핵심이다."
+    },
+    {
+      q: "복지레짐과 프로그램 유형을 올바르게 구분한 것은?",
+      o: ["자산조사는 복지레짐, 자유주의는 프로그램", "사회보험은 복지레짐, 보수주의는 프로그램", "자유주의는 복지레짐, 정액급여는 프로그램", "둘은 같은 분류이므로 구분할 필요가 없다"],
+      a: 2,
+      e: "레짐은 국가-시장-가족 관계의 유형이고, 자산조사·사회보험·정액급여는 급여 프로그램의 유형이다."
+    },
+    {
+      q: "동아시아 생산주의 복지의 핵심은?",
+      o: ["노인 연금에 모든 재원을 집중", "복지를 경제성장과 인적자본 형성의 수단으로 설계", "시장 참여와 무관한 보편 소득", "가족 돌봄의 완전한 사회화"],
+      a: 1,
+      e: "생산주의는 교육·노동력·경쟁력에 대한 사회투자를 경제전략과 결합한다."
+    },
+    {
+      q: "Yang & Kühner의 분석에서 주의해야 할 설명은?",
+      o: ["FSITA는 동아시아 6개 사회를 비교한다", "가족정책은 평균 규칙을 사용한다", "분석영역 L은 적극적 노동시장정책만을 뜻한다", "생산적 차원과 보호적 차원을 함께 본다"],
+      a: 2,
+      e: "분석영역 L은 소극적 노동시장정책이다. ALMP는 강의에서 생산주의의 특성으로 연결한 별도 개념이다."
+    },
+    {
+      q: "한국 청년 빈곤율이 낮아 보이는 착시와 가장 관련이 적은 것은?",
+      o: ["높은 노인빈곤", "부모와의 동거", "낮은 빈곤선", "높은 청년 공공임대 공급"],
+      a: 3,
+      e: "한국은 청년 주거를 시장에 크게 맡겨 왔으며, 높은 공공임대 공급이 착시를 만든다는 설명은 맞지 않는다."
+    },
+    {
+      q: "한국의 가구독립 페널티가 의미하는 것은?",
+      o: ["독립하면 취업확률이 20.6%p 증가", "독립 시 빈곤위험이 약 20.6%p 증가", "부모 동거 시 빈곤위험이 증가", "혼인 후 빈곤위험이 20.6%p 감소"],
+      a: 1,
+      e: "주거비와 이행기 안전망 부족 때문에 독립 순간 빈곤확률이 크게 높아진다."
+    },
+    {
+      q: "혼인의 자기선택 효과에 대한 올바른 해석은?",
+      o: ["결혼제도가 모든 청년의 소득을 높인다", "가난한 청년일수록 더 빨리 결혼한다", "결혼 가능한 계층이 이미 선별되어 기혼 집단의 빈곤이 낮다", "부모 동거가 결혼보다 항상 빈곤위험이 낮다"],
+      a: 2,
+      e: "혼인이 빈곤을 치료한 인과효과라기보다 계층적으로 선별된 집단의 결과라는 해석이다."
+    },
+    {
+      q: "한국의 낮은 실업 페널티가 역설인 이유는?",
+      o: ["실업급여가 지나치게 높아서", "취업해도 저임금·비정규직이 많아 소득 차이가 작아서", "청년 실업자가 거의 없어서", "모든 청년이 부모와 동거해서"],
+      a: 1,
+      e: "낮은 페널티는 고용의 질이 좋아서가 아니라 취업 상태의 소득 자체가 낮은 근로빈곤 구조를 뜻한다."
+    },
+    {
+      q: "육아휴직 제도의 젠더 효과에 대한 설명으로 옳지 않은 것은?",
+      o: ["여성은 더 길고 반복적으로 사용하는 경향이 있다", "남성은 보충적·단기적으로 사용하는 경향이 있다", "법적 중립성이 자동으로 실제 성평등을 보장한다", "경쟁적 민간조직에서 휴직자 낙인이 강할 수 있다"],
+      a: 2,
+      e: "제도는 중립적이어도 직장 규범과 부모상은 강하게 젠더화될 수 있다."
+    },
+    {
+      q: "육아휴직을 길게 주는 것만으로 여성 경력단절이 해결되지 않는 핵심 이유는?",
+      o: ["여성은 휴직을 원하지 않기 때문에", "장기 이탈 가능성이 여성 전체에 대한 통계적 차별로 이어질 수 있기 때문에", "공공 보육이 이미 충분하기 때문에", "남성의 육아 참여가 자동으로 증가하기 때문에"],
+      a: 1,
+      e: "정책의 관대함이 고용주의 사전 차별과 업무 전가를 유발할 수 있다는 역설이 중요하다."
+    },
+    {
+      q: "교수 예고 문제의 개선책으로 가장 적절한 조합은?",
+      o: ["여성 휴직기간만 확대", "현금수당만 인상", "아빠 할당제 + 공공 돌봄 + 노동시간 단축", "기업의 자율에 전적으로 위임"],
+      a: 2,
+      e: "남성 사용을 구조화하고 돌봄 공백과 과도한 노동시간을 함께 해결하는 패키지가 필요하다."
+    },
+    {
+      q: "greedy work에 대한 설명으로 정확한 것은?",
+      o: ["양현아 논문의 핵심 분석개념", "좋은 일자리일수록 개인의 시간을 과도하게 요구한다는 강의의 보조 개념", "자산조사를 뜻하는 용어", "돌봄시간의 국가 간 비교지수"],
+      a: 1,
+      e: "Goldin의 개념을 교수가 강의에서 연결했으며, 양현아 논문 자체의 직접 개념으로 쓰면 안 된다."
+    },
+    {
+      q: "한국 복지국가 발전의 순서가 보여주는 특징은?",
+      o: ["가장 빈곤한 집단부터 보편 적용", "대기업·정규직 등 생산성이 높은 집단부터 선별 확대", "지역공동체가 국가보다 먼저 제도를 도입", "민주화 이후 처음 복지가 등장"],
+      a: 1,
+      e: "한국 복지는 경제전략과 결합해 관리하기 쉽고 생산성이 높은 집단부터 점진적으로 확대됐다."
+    },
+    {
+      q: "한국에서 제도 완비와 낮은 체감 복지의 간극을 설명하기 어려운 요소는?",
+      o: ["낮은 급여 수준", "엄격한 자격", "가입자·사용자 중심 재원", "높은 보편 공공 보육과 낮은 본인부담"],
+      a: 3,
+      e: "한국의 문제는 오히려 공공 돌봄의 부족, 비급여와 본인부담, 넓은 사각지대다."
+    },
+    {
+      q: "1963년 제정되고 1964년 시행된 제도는?",
+      o: ["국민연금", "산재보험", "고용보험", "국민기초생활보장"],
+      a: 1,
+      e: "산재보험은 산업화 노동력을 보호하는 초기 국가 주도 복지의 대표 사례다."
+    },
+    {
+      q: "국가-시장-가족 틀에서 복지국가가 마지막으로 부딪히는 난제는?",
+      o: ["상품 가격의 결정", "가족 내부의 돌봄과 젠더 불평등", "수출 경쟁력", "화폐정책 독립성"],
+      a: 1,
+      e: "국가는 시장과 기업보다 가족 내부의 분업과 권력을 직접 규율하기 어렵다."
+    },
+    {
+      q: "한국 복지국가를 가장 종합적으로 설명하는 답안의 조합은?",
+      o: ["자유주의 하나만 적용", "국가중심주의 + 생산주의 + 젠더·돌봄 비판", "산업화론만 적용", "가족주의만 적용"],
+      a: 1,
+      e: "발전 주체와 경로는 국가중심주의, 경제전략과의 결합은 생산주의, 남는 사각지대는 젠더·돌봄 비판으로 설명하는 것이 가장 탄탄하다."
+    }
+  ];
+
+  const essays = [
+    {
+      title: "1. 육아휴직과 여성 경력단절",
+      prompt: "한국 육아휴직이 관대함에도 경력단절을 막지 못하는 이유와 가장 시급한 개선책을 논하시오.",
+      points: ["M자 곡선과 승진 구간", "젠더화된 부모상·통계적 차별", "아빠 할당제", "공공 돌봄·노동시간 단축", "가족 규율의 한계"]
+    },
+    {
+      title: "2. 탈상품화로 본 한국",
+      prompt: "탈상품화를 정의하고 지출 규모보다 중요한 이유를 설명한 뒤 한국 복지국가를 평가하시오.",
+      points: ["시장 이탈 후 생계 권리", "지출 착시", "낮은 급여·엄격한 자격", "재원과 사각지대", "낮은 체감 복지"]
+    },
+    {
+      title: "3. 동아시아 생산주의",
+      prompt: "동아시아 생산주의 복지의 특징과 한계를 설명하고 한국의 위치를 평가하시오.",
+      points: ["사회투자·경제성장 종속", "서구=노인 vs 동아시아=교육", "FSITA", "한국의 전방위 확장", "주거·돌봄 한계"]
+    },
+    {
+      title: "4. 한국 청년 빈곤",
+      prompt: "한국 청년 빈곤이 낮아 보이는 이유와 실제 특수성을 비교국가 관점에서 논하시오.",
+      points: ["노인빈곤과 빈곤선", "부모 동거", "가구독립 페널티", "혼인의 자기선택", "빈곤 고착·내부노동시장"]
+    },
+    {
+      title: "5. Pateman과 한국 적용",
+      prompt: "가부장적 복지국가의 2층 구조를 설명하고 한국 육아휴직과 돌봄에 적용하시오.",
+      points: ["권리 vs 시혜", "생계부양자 모델", "여성 무급 돌봄", "젠더화된 부모상", "보편적 돌봄제공자"]
+    },
+    {
+      title: "6. 한국 복지국가 발전사",
+      prompt: "한국 복지국가의 발전 경로와 제도 완비에도 체감 복지가 낮은 이유를 설명하시오.",
+      points: ["국가 주도", "경제전략과 결합", "대기업부터 선별 확대", "낮은 국가 재정 기여", "급여·비급여·사각지대"]
+    },
+    {
+      title: "7. 돌봄과 복지국가의 한계",
+      prompt: "국가-시장-가족 틀에서 돌봄이 왜 복지국가의 마지막 난제인지 논하시오.",
+      points: ["탈상품화의 시장 중심성", "가족 내부 무급 돌봄", "국가 직접 규율의 한계", "공공 서비스", "지역공동체 대안"]
+    },
+    {
+      title: "8. 한국을 설명하는 통합 틀",
+      prompt: "한국 복지국가를 가장 잘 설명하는 이론적 틀을 선택하고 다른 이론과 결합해 논하시오.",
+      points: ["국가중심주의", "생산주의", "Esping-Andersen의 탈상품화", "Pateman의 젠더 비판", "이론 하나의 한계"]
+    },
+    {
+      title: "9. 탈상품화론의 페미니즘 비판",
+      prompt: "탈상품화론이 여성의 무급 돌봄과 가족 내부 의존을 충분히 포착하지 못하는 이유를 논하시오.",
+      points: ["시장노동 중심 시민상", "무급 돌봄의 비가시화", "독립/의존의 젠더화", "탈가족화·돌봄 사회화", "Pateman 연결"]
+    },
+    {
+      title: "10. 세 복지레짐 비교",
+      prompt: "탈상품화를 정의하고 세 복지레짐별 대표 정책, 수준, 층화 효과를 비교하시오.",
+      points: ["정의", "자유주의", "보수조합주의", "사회민주주의", "대표국과 가족·젠더 효과"]
+    },
+    {
+      title: "11. 울스턴크래프트의 딜레마",
+      prompt: "딜레마의 두 경로를 설명하고 해결 방향과 국가 사례를 제시하시오.",
+      points: ["동화의 함정", "차이의 함정", "보편적 돌봄제공자", "아빠 할당·보편 보육", "스웨덴·덴마크·노르웨이"]
+    },
+    {
+      title: "12. doing gender와 돌봄 평등",
+      prompt: "doing gender를 설명하고 돌봄시간 격차를 줄이는 사회정책과 국가 사례를 제시하시오.",
+      points: ["젠더의 반복적 수행", "가사분담은 효율만의 결과가 아님", "아빠 할당제", "공공 보육·노동시간 규제", "덴마크·노르웨이 또는 스웨덴"]
+    }
+  ];
+
+  const state = {
+    flashOrder: flashcards.map((_, i) => i),
+    flashIndex: Number(localStorage.getItem("sp_flash_index") || 0),
+    seen: new Set(JSON.parse(localStorage.getItem("sp_seen") || "[]")),
+    quiz: [...quizBase],
+    quizIndex: Number(localStorage.getItem("sp_quiz_index") || 0),
+    answers: JSON.parse(localStorage.getItem("sp_answers") || "{}")
+  };
+
+  const flashcard = document.getElementById("flashcard");
+  const flashQuestion = document.getElementById("flashQuestion");
+  const flashAnswer = document.getElementById("flashAnswer");
+  const flashCategory = document.getElementById("flashCategory");
+  const flashCount = document.getElementById("flashCount");
+  const seenCount = document.getElementById("seenCount");
+
+  function renderFlash() {
+    state.flashIndex = Math.max(0, Math.min(state.flashIndex, state.flashOrder.length - 1));
+    const originalIndex = state.flashOrder[state.flashIndex];
+    const card = flashcards[originalIndex];
+    flashcard.classList.remove("flipped");
+    flashCategory.textContent = card.c;
+    flashQuestion.textContent = card.q;
+    flashAnswer.textContent = card.a;
+    flashCount.textContent = `${state.flashIndex + 1} / ${state.flashOrder.length}`;
+    seenCount.textContent = `확인한 카드 ${state.seen.size}개`;
+    localStorage.setItem("sp_flash_index", String(state.flashIndex));
+  }
+
+  function flipFlash() {
+    flashcard.classList.toggle("flipped");
+    if (flashcard.classList.contains("flipped")) {
+      state.seen.add(state.flashOrder[state.flashIndex]);
+      localStorage.setItem("sp_seen", JSON.stringify([...state.seen]));
+      seenCount.textContent = `확인한 카드 ${state.seen.size}개`;
+    }
+  }
+
+  document.getElementById("prevCard").onclick = () => { state.flashIndex--; renderFlash(); };
+  document.getElementById("nextCard").onclick = () => { state.flashIndex++; renderFlash(); };
+  document.getElementById("flipCard").onclick = flipFlash;
+  document.getElementById("shuffleCards").onclick = () => {
+    state.flashOrder.sort(() => Math.random() - 0.5);
+    state.flashIndex = 0;
+    renderFlash();
+  };
+  flashcard.onclick = flipFlash;
+  flashcard.onkeydown = e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      flipFlash();
+    }
+  };
+
+  const quizMeta = document.getElementById("quizMeta");
+  const quizQuestion = document.getElementById("quizQuestion");
+  const optionList = document.getElementById("optionList");
+  const feedback = document.getElementById("feedback");
+  const quizBar = document.getElementById("quizBar");
+
+  function renderQuiz() {
+    state.quizIndex = Math.max(0, Math.min(state.quizIndex, state.quiz.length - 1));
+    const item = state.quiz[state.quizIndex];
+    const saved = state.answers[state.quizIndex];
+    const score = Object.entries(state.answers).filter(([idx, val]) => state.quiz[Number(idx)] && state.quiz[Number(idx)].a === val).length;
+    quizMeta.textContent = `문제 ${state.quizIndex + 1} / ${state.quiz.length} · 현재 정답 ${score}개`;
+    quizQuestion.textContent = item.q;
+    optionList.innerHTML = "";
+    item.o.forEach((text, i) => {
+      const btn = document.createElement("button");
+      btn.className = "option";
+      btn.textContent = `${String.fromCharCode(65 + i)}. ${text}`;
+      if (saved !== undefined) {
+        if (i === item.a) btn.classList.add("correct");
+        else if (i === saved) btn.classList.add("wrong");
+        btn.disabled = true;
+      }
+      btn.onclick = () => answerQuiz(i);
+      optionList.appendChild(btn);
+    });
+    feedback.classList.toggle("show", saved !== undefined);
+    feedback.innerHTML = saved === undefined
+      ? ""
+      : `<strong>${saved === item.a ? "정답입니다." : "다시 확인하세요."}</strong><br>${item.e}`;
+    quizBar.style.width = `${((state.quizIndex + 1) / state.quiz.length) * 100}%`;
+    localStorage.setItem("sp_quiz_index", String(state.quizIndex));
+  }
+
+  function answerQuiz(choice) {
+    if (state.answers[state.quizIndex] !== undefined) return;
+    state.answers[state.quizIndex] = choice;
+    localStorage.setItem("sp_answers", JSON.stringify(state.answers));
+    renderQuiz();
+  }
+
+  document.getElementById("prevQuiz").onclick = () => { state.quizIndex--; renderQuiz(); };
+  document.getElementById("nextQuiz").onclick = () => { state.quizIndex++; renderQuiz(); };
+  document.getElementById("restartQuiz").onclick = () => {
+    state.quiz = [...quizBase];
+    state.quizIndex = 0;
+    state.answers = {};
+    localStorage.removeItem("sp_answers");
+    renderQuiz();
+  };
+  document.getElementById("shuffleQuiz").onclick = () => {
+    state.quiz = [...quizBase].sort(() => Math.random() - 0.5);
+    state.quizIndex = 0;
+    state.answers = {};
+    localStorage.removeItem("sp_answers");
+    renderQuiz();
+  };
+
+  const essayGrid = document.getElementById("essayGrid");
+  essays.forEach((essay, essayIndex) => {
+    const article = document.createElement("article");
+    article.className = "card essay-card";
+    const checks = essay.points.map((p, pointIndex) => {
+      const id = `essay_${essayIndex}_${pointIndex}`;
+      const checked = localStorage.getItem(id) === "1" ? "checked" : "";
+      return `<label class="checkline"><input type="checkbox" data-key="${id}" ${checked}><span>${p}</span></label>`;
+    }).join("");
+    article.innerHTML = `
+      <h3>${essay.title}</h3>
+      <p>${essay.prompt}</p>
+      <details>
+        <summary>답안 필수 요소 확인</summary>
+        <div>${checks}</div>
+      </details>
+    `;
+    essayGrid.appendChild(article);
+  });
+
+  essayGrid.addEventListener("change", e => {
+    if (e.target.matches("input[data-key]")) {
+      localStorage.setItem(e.target.dataset.key, e.target.checked ? "1" : "0");
+    }
+  });
+
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem("sp_theme");
+  if (savedTheme) root.setAttribute("data-theme", savedTheme);
+  document.getElementById("themeBtn").onclick = () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    localStorage.setItem("sp_theme", next);
+  };
+
+  document.getElementById("resetBtn").onclick = () => {
+    Object.keys(localStorage).filter(k => k.startsWith("sp_") || k.startsWith("essay_")).forEach(k => localStorage.removeItem(k));
+    location.reload();
+  };
+
+  const sections = [...document.querySelectorAll("main > section, header.hero")];
+  const navLinks = [...document.querySelectorAll("#nav a")];
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${visible.target.id}`));
+  }, { rootMargin: "-20% 0px -65% 0px", threshold: [0.01, 0.2, 0.5] });
+  sections.forEach(s => s.id && observer.observe(s));
+
+  renderFlash();
+  renderQuiz();
+</script>
+</body>
+</html>

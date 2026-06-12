@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제학설사개론 기말 단답형 예상문제</title>
+<style>
+  :root{
+    --bg:#f4f6fb; --card:#ffffff; --ink:#1f2430; --sub:#5b6472;
+    --accent:#3257d6; --accent2:#6c4bd6; --line:#e3e8f2;
+    --ans:#0f7b53; --ans-bg:#e8f7ef; --star:#d6a200;
+    --chip:#eef2fc;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7;
+    padding-bottom:80px;
+  }
+  header{
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff; padding:34px 20px 28px; text-align:center;
+    box-shadow:0 4px 20px rgba(50,87,214,.25);
+  }
+  header h1{margin:0 0 6px; font-size:1.55rem; letter-spacing:-.5px;}
+  header p{margin:2px 0; opacity:.92; font-size:.92rem;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 16px;}
+
+  .toolbar{
+    position:sticky; top:0; z-index:20; background:rgba(244,246,251,.96);
+    backdrop-filter:blur(6px); padding:14px 16px; border-bottom:1px solid var(--line);
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center; align-items:center;
+  }
+  .btn{
+    border:none; cursor:pointer; font-size:.86rem; font-weight:600;
+    padding:9px 16px; border-radius:999px; transition:.15s;
+    background:var(--accent); color:#fff;
+  }
+  .btn:hover{filter:brightness(1.08); transform:translateY(-1px);}
+  .btn.ghost{background:var(--chip); color:var(--accent);}
+  .counter{font-size:.82rem; color:var(--sub); margin-left:4px;}
+
+  .chapter{margin:30px 0 0;}
+  .chapter > h2{
+    font-size:1.18rem; color:var(--accent);
+    border-left:5px solid var(--accent); padding:6px 0 6px 12px; margin:0 0 6px;
+  }
+  .slide{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    margin:16px 0; overflow:hidden; box-shadow:0 2px 10px rgba(31,36,48,.04);
+  }
+  .slide > h3{
+    margin:0; padding:14px 18px; font-size:1.02rem;
+    background:linear-gradient(90deg,#f7f9ff,#fff);
+    border-bottom:1px solid var(--line); cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .slide > h3 .meta{font-size:.74rem; color:var(--sub); font-weight:500;}
+  .slide > h3 .toggle{font-size:.78rem; color:var(--accent);}
+  .qlist{padding:6px 18px 16px;}
+  .qlist.collapsed{display:none;}
+
+  .q{padding:12px 0; border-bottom:1px dashed var(--line);}
+  .q:last-child{border-bottom:none;}
+  .q .qtext{display:flex; gap:9px; align-items:flex-start;}
+  .q .num{
+    flex:0 0 auto; width:26px; height:26px; border-radius:8px;
+    background:var(--chip); color:var(--accent); font-weight:700; font-size:.8rem;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .q .stem{flex:1;}
+  .star{color:var(--star); font-weight:700;}
+  .answer{
+    margin:9px 0 0 35px; padding:10px 14px; border-radius:9px;
+    background:var(--ans-bg); color:var(--ans); font-weight:600;
+    border-left:3px solid var(--ans); display:none; font-size:.95rem;
+  }
+  .answer.show{display:block; animation:fade .2s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-3px);}to{opacity:1;}}
+  .answer .lbl{font-size:.72rem; opacity:.8; display:block; margin-bottom:2px;}
+
+  .a-toggle{
+    margin:8px 0 0 35px; font-size:.78rem; color:var(--accent);
+    background:none; border:1px dashed var(--accent); border-radius:7px;
+    padding:3px 10px; cursor:pointer;
+  }
+  .a-toggle:hover{background:var(--chip);}
+
+  .legend{font-size:.8rem; color:var(--sub); text-align:center; margin:10px 0 0;}
+  footer{text-align:center; color:var(--sub); font-size:.8rem; margin-top:40px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>경제학설사개론 기말 단답형 예상문제</h1>
+  <p>중상주의 · 중농주의 · 체계적 경제학설 · 베버 테제</p>
+  <p style="font-size:.8rem;opacity:.8;">★ 표시 = 심화/주의 포인트 · 문항 클릭 시 정답 표시</p>
+</header>
+
+<div class="toolbar">
+  <button class="btn" id="showAll">정답 모두 보기</button>
+  <button class="btn ghost" id="hideAll">정답 모두 숨기기</button>
+  <button class="btn ghost" id="expandAll">전체 펼치기</button>
+  <button class="btn ghost" id="collapseAll">전체 접기</button>
+  <span class="counter" id="counter"></span>
+</div>
+
+<div class="wrap" id="root">
+
+<!-- ===================== I. 중상주의 ===================== -->
+<section class="chapter">
+  <h2>I. 근세와 중상주의</h2>
+
+  <div class="slide">
+    <h3>① 중상주의 일반 <span class="meta">개관 슬라이드</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem"><span class="star">★</span> '중상주의'라는 명칭을 처음 붙인 사람과, 『국부론』에서 이를 비판하며 용어를 대중화한 사람은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>미라보(명명) / 아담 스미스(비판·대중화)</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">중상주의의 핵심 교의를 한 부등식으로 표현하면?</span></div>
+        <div class="answer"><span class="lbl">정답</span>무역수지 흑자 (수출 &gt; 수입)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem"><span class="star">★</span> 중상주의가 매긴 직업의 위계를 높은 순으로 나열하면?</span></div>
+        <div class="answer"><span class="lbl">정답</span>상업 &gt; 제조업 &gt; 농업</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 중상주의자들이 중하위 계층에 대해 저임금을 주장한 이유는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>국내 소비 억제 + 수출 경쟁력 확보(임금 억압론)</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem">중상주의 시대에 토지 귀족 대신 국가를 주도한 계급은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>상인 부르주아(상업 자본가) 계급</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem"><span class="star">★</span> "왜 중상주의는 금·은(정화) 자체를 부로 보는 중금주의와 다른가?"에 대한 핵심 답은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>금은 축적 자체가 아니라 무역차액(흑자)으로 부가 늘어난다고 봄(무역차액설)</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>② 토마스 먼 (Thomas Mun) <span class="meta">슬라이드 6-2-1</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">먼이 부를 증대하는 "가장 정상적인 방도"로 본 것은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>해외 무역(무역수지 흑자)</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">광물 수출처럼 사람을 오만하게 만드는 부 vs 제조·운송으로 고용을 늘리는 부를 각각 무엇이라 했나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>자연적 부 vs 인공적 부</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">먼이 본 화폐의 올바른 역할은? (금고 보관 vs 자본 고용)</span></div>
+        <div class="answer"><span class="lbl">정답</span>자본으로 고용되어 순환·증식해야 함 (화폐 물신주의 비판)</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem">동인도회사를 변호하며 먼이 옹호한 무역 형태는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>삼각무역 (아시아 원자재 수입→가공→유럽 재수출)</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem"><span class="star">★</span> 운송·어업·보험·여행자 지출 등 먼이 주목한 무역수지 항목을 무엇이라 하는가?</span></div>
+        <div class="answer"><span class="lbl">정답</span>보이지 않는 항목(서비스 무역)</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem"><span class="star">★</span> "한 나라의 이득은 다른 나라의 손실"이라는 먼의 무역관은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>제로섬(zero-sum) 관점</div></div>
+      <div class="q"><div class="qtext"><span class="num">7</span><span class="stem">먼이 제안한 관세 정책: 원재료 제조품 수출관세는? / 국내 소비용 수입품 관세는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>수출관세 면제·인하(고용 증대) / 수입품 고율 관세</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>③ 조시아 차일드 (Josiah Child) <span class="meta">슬라이드 6-2-2</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">차일드가 법정 이자율 상한을 몇 %에서 몇 % 이하로 낮추자고 제안했나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>6% → 4% 이하</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">낮은 이자율이 가져오는 효과 3가지는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>대부 자금 증가 / 토지 가치 상승 / 이자생활자의 노동 유도(부의 분산)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem"><span class="star">★</span> 차일드가 부를 '가져오는' 생산계급으로 본 직업과, 부를 '이전만' 하는 비생산계급으로 본 직업은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>생산: 상인·제조업자·농부 / 비생산: 귀족·법조인·의사·학자·상점 점원</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 대부분의 중상주의자와 달리 차일드가 가졌던 독특한 임금관은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>고임금 긍정 — 고임금은 부유함의 증거이자 인구 증가의 원인</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem"><span class="star">★</span> 차일드가 황금시대를 과거가 아닌 '미래'에 둔 사고방식은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>진보(progress) 개념 / 점진주의</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>④ 윌리엄 페티 (William Petty) <span class="meta">슬라이드 6-3-2</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">페티가 경제 현상을 숫자·중량으로 측정한 방법론의 이름은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>정치산술(Political Arithmetic)</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">페티를 '경제학의 창시자'로 평가한 인물은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>칼 마르크스(Karl Marx)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">"노동은 부의 ___요, 토지는 그 ___이다." 빈칸은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>아버지 / 어머니</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 페티가 정치산술을 활용해 영국 전체에 대해 최초로 추계해낸 거시 지표는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>국민소득(연 약 4천만 파운드) — 최초의 국민소득 추계</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem"><span class="star">★</span> 페티가 국부를 노동 몫과 자본 몫으로 나눠 본 것은 후대 어떤 분석의 선구인가?</span></div>
+        <div class="answer"><span class="lbl">정답</span>분배(소득분배) 분석 — 노동소득 62.5% / 자본소득 37.5%로 추정</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem"><span class="star">★</span> 임금이 과도하면 노동시간·노력이 오히려 줄어드는 현상을 나타내는 곡선은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>후방굴절 (노동)공급곡선</div></div>
+      <div class="q"><div class="qtext"><span class="num">7</span><span class="stem"><span class="star">★</span> 실업자에게 '피라미드 짓기' 같은 무익한 일도 시킬 가치가 있다고 본 이유 2가지는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>노동 규율 단련 + 기금 순환(유효수요) → 케인스 선구</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>⑤ 존 로크 (John Locke) <span class="meta">슬라이드 6-4</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">로크가 사유재산을 정당화한 근거는? (무엇을 자연물에 결합?)</span></div>
+        <div class="answer"><span class="lbl">정답</span>노동(labor) — 노동가치설의 선구</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">로크가 본 정부(사회계약)의 목적인 3가지 권리는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>생명 · 자유 · 재산의 보호</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem"><span class="star">★</span> 로크가 재산 가치 중 노동에 기인한다고 본 비율은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>99/100 (거의 전부)</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem">부패 없이 재산 축적을 가능하게 하여 불평등을 사실상 승인하게 만든 매개물은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>화폐(money)</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem"><span class="star">★</span> 법으로 이자율을 지나치게 낮추면 생긴다고 본 부작용은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>대출 자금 공급 감소·규제 회피 → 은행가 독점, 무역 위축</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== II. 중농주의 ===================== -->
+<section class="chapter">
+  <h2>II. 중농주의</h2>
+
+  <div class="slide">
+    <h3>① 리처드 캉티용 (Cantillon) <span class="meta">슬라이드 6-5-1</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem"><span class="star">★</span> 캉티용이 큰 부를 보전하게 된 사건은? (어떤 거품에서 탈출?)</span></div>
+        <div class="answer"><span class="lbl">정답</span>존 로(John Law)의 미시시피회사 주식 거품에서 붕괴 전 탈출</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem"><span class="star">★</span> 캉티용의 저작을 "최초의 경제학 책"이라 평가한 인물은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>제본스(Jevons)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">생산비를 반영하는 내재가치 vs 수요·변덕에 따라 등락하는 가격을 각각 무엇이라 했나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>정상가격 vs 시장가격</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem">"토지 소유권은 필연적으로 소수의 수중에 속한다"는 캉티용의 공리는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>소유 집중의 법칙</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>② 프랑수아 케네 (Quesnay) <span class="meta">슬라이드 6-5-2</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem"><span class="star">★</span> 'Physiocracy(중농주의)'의 문자 그대로의 뜻은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>자연(자연법)의 지배</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">케네가 유일하게 잉여(순생산)를 창출한다고 본 부문은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>농업 (제조업은 불임 부문)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">케네가 소득의 순환을 도식화한 표의 이름은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>경제표(Tableau Économique)</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem">경제표의 3계급을 모두 쓰면?</span></div>
+        <div class="answer"><span class="lbl">정답</span>생산계급(농민) · 지주(혼합)계급 · 불임계급(장인·상인)</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem">케네가 잉여(지대)에만 부과하자고 제안한 조세는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>단일세(토지 단일세)</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem"><span class="star">★</span> 계급 간 이해의 조화를 강조한 케네는 19세기 어떤 사조의 선구로 평가되나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>조화주의</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>③ 튀르고 (Turgot) <span class="meta">슬라이드 6-5-3</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">튀르고가 본 가치의 성격은? (객관 vs 주관)</span></div>
+        <div class="answer"><span class="lbl">정답</span>주관적·상대적 가치(효용·희소성 반영) — 한계효용학파 선구</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">영국 경제학자들보다 50년 앞서 튀르고가 최초로 언명한 법칙은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>수확체감의 법칙</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">튀르고가 본 자본의 원천은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>저축(생산에 선행하는 저축의 결과)</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 자본 고용의 5가지 용도를 수익률 낮은 순서대로 나열하면?</span></div>
+        <div class="answer"><span class="lbl">정답</span>토지구매 &lt; 농업 &lt; 제조업 &lt; 상업 &lt; 대부(이자) — 위험↑ 수익률↑</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem">자본의 풍부성·희소성을 판단하는 '온도계'로 본 것은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>이자(이자율)</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem"><span class="star">★</span> "튀르고의 이론 얼개가 스미스보다 우월하다"고 평한 인물은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>슘페터(Schumpeter)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== III. 체계적 경제학설 ===================== -->
+<section class="chapter">
+  <h2>III. 체계적 경제학설의 형성</h2>
+
+  <div class="slide">
+    <h3>① 데이비드 흄 (David Hume) <span class="meta">슬라이드 7-6-1</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">흄이 뚜렷이 구별한 두 영역은? ("있는 것" vs "마땅히 그래야 할 것")</span></div>
+        <div class="answer"><span class="lbl">정답</span>사실(fact) vs 규범(norm)</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">흄이 사유재산을 정당화한 근거는? (로크의 '자연권'과 대비)</span></div>
+        <div class="answer"><span class="lbl">정답</span>(희소한 세계에서의) 사회적 유용성</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem"><span class="star">★</span> 흄이 중상주의 무역흑자론을 반박한 핵심 이론의 이름은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>정화의 자동 유출입 이론(Price-Specie Flow Mechanism)</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 정화 자동 유출입 5단계의 핵심 흐름은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>흑자→정화유입→물가상승→수출감소·수입증가→정화유출→자동균형</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem"><span class="star">★</span> 통화량 증가가 시차를 두고 점진적으로 물가에 반영되는 동안 생산·고용이 느는 효과는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>유익한 인플레이션(화폐 시차 이론) — 케인스가 긍정 평가</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem"><span class="star">★</span> "이웃의 번영을 두려워할 필요 없다"는 흄의 무역관은? (중상주의 제로섬과 대비)</span></div>
+        <div class="answer"><span class="lbl">정답</span>세계주의적 상생관</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>② 버나드 맨더빌 (Mandeville) <span class="meta">슬라이드 7-6-2</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">맨더빌의 핵심 명제를 한 문장으로?</span></div>
+        <div class="answer"><span class="lbl">정답</span>사적 악덕이 공공의 이익(번영)을 낳는다</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">이 주장을 담은 맨더빌의 대표 저작은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>『꿀벌의 우화』(The Fable of the Bees)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">사치·탐욕 같은 악덕이 경제적으로 만들어내는 것 2가지는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>수요 창출 · 고용 증대</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 맨더빌을 유효수요 이론의 선구로 긍정 평가한 인물은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>케인스(Keynes)</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>③ 제임스 스튜어트 (Steuart) <span class="meta">슬라이드 7-6-3</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem"><span class="star">★</span> 제목에 'Political Economy(정치경제학)'를 최초로 쓴 영어 저작의 저자는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>제임스 스튜어트</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">각 나라가 고유한 정치경제를 가진다고 본 스튜어트의 입장은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>역사적 상대주의</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem"><span class="star">★</span> 스튜어트가 국가를 무엇에 비유하며 상시적 개입(장인=정치가)을 정당화했나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>"끊임없이 고장 나는 시계"</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 스튜어트의 경제 발전 3단계는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>유아기 무역 → 대외 무역(성년기) → 내국 무역(노년기)</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem">지불 능력으로 뒷받침되는 수요를 스튜어트는 무엇이라 했나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>유효수요(Effective Demand)</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem">구매자·판매자 양측에서 동시에 경쟁이 일어나 수급 균형이 안정되는 개념은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>이중 경쟁(Double Competition)</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>④ 프랜시스 허치슨 (Hutcheson) <span class="meta">슬라이드 7-6-4</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">허치슨은 누구의 스승인가?</span></div>
+        <div class="answer"><span class="lbl">정답</span>아담 스미스</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">허치슨이 본 도덕 판단의 근거는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>도덕감각(moral sense)과 박애심</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem"><span class="star">★</span> 허치슨이 도덕의 목적으로 제시해 벤담 공리주의를 앞선 표현은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>"최대 다수의 최대 행복"</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>⑤ 아담 스미스 (Adam Smith) - 도덕감정론 <span class="meta">슬라이드 7-6-5(1)</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">스미스가 윤리의 통합 원리로 제시한 감정은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>공감(sympathy)</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem"><span class="star">★</span> 인간 내면에서 양심·도덕 판단의 기준이 되는, 이기심을 도덕의 경계 안에 묶는 존재는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>공평무사한 관찰자(Impartial Spectator)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem"><span class="star">★</span> 인간을 근면하게 만드는, 타인의 주목·찬양을 받으려는 욕구는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>모방 욕구(인정 욕구, desire for approbation)</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem">도덕감정론(이타심)과 국부론(이기심)이 모순돼 보이는 논점을 무엇이라 부르나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>"아담 스미스의 문제"(Das Adam Smith Problem)</div></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h3>⑥ 아담 스미스 - 국부론 <span class="meta">슬라이드 7-6-5(2)</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">자기이해의 추구가 의도치 않게 사회적 이익을 낳는 기제를 무엇이라 했나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>보이지 않는 손(invisible hand)</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">"우리가 저녁을 먹는 것은 그들의 자선심이 아니라 그들의 ___ 덕분이다." 빈칸은? (직업 3가지+동기)</span></div>
+        <div class="answer"><span class="lbl">정답</span>푸줏간·양조업자·빵집의 자기 이해(self-interest)</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">생산성 비약을 보여준 스미스의 대표 사례는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>핀 공장(노동 분업)</div></div>
+      <div class="q"><div class="qtext"><span class="num">4</span><span class="stem"><span class="star">★</span> 사용가치는 높지만 교환가치는 낮은 물 / 그 반대인 다이아몬드가 보여주는 역설은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>물-다이아몬드의 역설(가치의 역설)</div></div>
+      <div class="q"><div class="qtext"><span class="num">5</span><span class="stem"><span class="star">★</span> 자본 축적·토지 사유화 이후 스미스의 가치론은 노동가치론에서 무엇으로 전환되나?</span></div>
+        <div class="answer"><span class="lbl">정답</span>생산비설(임금+이윤+지대)</div></div>
+      <div class="q"><div class="qtext"><span class="num">6</span><span class="stem"><span class="star">★</span> 스미스가 비생산적 노동으로 분류한 직업 예시는? (3개 이상)</span></div>
+        <div class="answer"><span class="lbl">정답</span>하인·정부 관리·군인·성직자·변호사·의사·광대·예술가 등</div></div>
+      <div class="q"><div class="qtext"><span class="num">7</span><span class="stem"><span class="star">★</span> "씨를 뿌리지도 않고 수확을 얻고 싶어 한다"는 비판의 대상 계급은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>지주(지대 수취 계급)</div></div>
+      <div class="q"><div class="qtext"><span class="num">8</span><span class="stem"><span class="star">★</span> "집에서 만드는 것보다 사는 게 싸면 사라"로 요약되는 스미스의 무역 원리는?</span></div>
+        <div class="answer"><span class="lbl">정답</span>절대우위(Absolute Advantage) → 자유무역</div></div>
+      <div class="q"><div class="qtext"><span class="num">9</span><span class="stem">스미스가 자유무역의 예외로 인정한 부문은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>국방 관련 부문</div></div>
+      <div class="q"><div class="qtext"><span class="num">10</span><span class="stem"><span class="star">★</span> 스미스의 조세 4대 원칙을 모두 쓰면?</span></div>
+        <div class="answer"><span class="lbl">정답</span>① 평등(응능) ② 확실(반부패) ③ 편리(납세 순응) ④ 경제적(징수비 최소)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IV. 베버 테제 ===================== -->
+<section class="chapter">
+  <h2>IV. 베버 테제와 자본주의의 윤리</h2>
+
+  <div class="slide">
+    <h3>① 베버 테제 <span class="meta">수업 보강</span><span class="toggle">▾</span></h3>
+    <div class="qlist">
+      <div class="q"><div class="qtext"><span class="num">1</span><span class="stem">가톨릭의 3대 핵심 덕목과, 그중 가장 중요하다고 본 것은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>믿음·소망·사랑 / 그중 사랑(→자선·선행)</div></div>
+      <div class="q"><div class="qtext"><span class="num">2</span><span class="stem">칼뱅주의(개신교)에서 자본 축적을 촉진한 두 관념은?</span></div>
+        <div class="answer"><span class="lbl">정답</span>예정설 + 천직(소명) 의식 → 근면·절약·저축</div></div>
+      <div class="q"><div class="qtext"><span class="num">3</span><span class="stem">베버 테제의 핵심을 한 문장으로 (단순 인과론이 아닌 점 포함)?</span></div>
+        <div class="answer"><span class="lbl">정답</span>자본주의는 재산권만이 아니라 자선·소명·절약·저축 같은 윤리적 습속 위에서 안정된다</div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<p class="legend">★ = 심화·주의 포인트 / 총 <span id="total"></span>문항</p>
+<footer>경제학설사개론 기말 단답형 예상문제 · 자가 점검용</footer>
+
+<script>
+  // 정답 토글 버튼 자동 삽입
+  document.querySelectorAll('.q').forEach(q=>{
+    const ans=q.querySelector('.answer');
+    const btn=document.createElement('button');
+    btn.className='a-toggle'; btn.textContent='정답 보기 ▸';
+    ans.before(btn);
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      ans.classList.toggle('show');
+      btn.textContent=ans.classList.contains('show')?'정답 숨기기 ▾':'정답 보기 ▸';
+    });
+  });
+
+  // 슬라이드 헤더 접기/펼치기
+  document.querySelectorAll('.slide > h3').forEach(h=>{
+    h.addEventListener('click',()=>{
+      const list=h.nextElementSibling;
+      list.classList.toggle('collapsed');
+      h.querySelector('.toggle').textContent=list.classList.contains('collapsed')?'▸':'▾';
+    });
+  });
+
+  // 툴바 기능
+  const allAns=[...document.querySelectorAll('.answer')];
+  const allTog=[...document.querySelectorAll('.a-toggle')];
+  document.getElementById('showAll').onclick=()=>{allAns.forEach(a=>a.classList.add('show'));allTog.forEach(b=>b.textContent='정답 숨기기 ▾');};
+  document.getElementById('hideAll').onclick=()=>{allAns.forEach(a=>a.classList.remove('show'));allTog.forEach(b=>b.textContent='정답 보기 ▸');};
+  document.getElementById('expandAll').onclick=()=>{document.querySelectorAll('.qlist').forEach(l=>l.classList.remove('collapsed'));document.querySelectorAll('.toggle').forEach(t=>t.textContent='▾');};
+  document.getElementById('collapseAll').onclick=()=>{document.querySelectorAll('.qlist').forEach(l=>l.classList.add('collapsed'));document.querySelectorAll('.toggle').forEach(t=>t.textContent='▸');};
+
+  // 카운터
+  const n=document.querySelectorAll('.q').length;
+  document.getElementById('counter').textContent='· 총 '+n+'문항';
+  document.getElementById('total').textContent=n;
+</script>
+</body>
+</html>

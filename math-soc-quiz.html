@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수리사회학 퀴즈 대비 - 대규모 협업 & 디지털 연구 윤리</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --bg-card: #ffffff;
+    --bg-hover: #f5f5f5;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e5e5e5;
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --accent-1: #ec4899;
+    --accent-2: #10b981;
+    --accent-3: #f59e0b;
+    --accent-4: #8b5cf6;
+    --quiz-bg: #fef3c7;
+    --quiz-border: #f59e0b;
+    --answer-bg: #d1fae5;
+    --answer-border: #10b981;
+    --warning-bg: #fee2e2;
+    --warning-border: #ef4444;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f172a;
+    --bg-card: #1e293b;
+    --bg-hover: #334155;
+    --text: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --primary: #60a5fa;
+    --primary-light: #1e3a8a;
+    --quiz-bg: #422006;
+    --quiz-border: #f59e0b;
+    --answer-bg: #064e3b;
+    --answer-border: #10b981;
+    --warning-bg: #450a0a;
+    --warning-border: #ef4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background: var(--bg-card);
+    border-right: 1px solid var(--border);
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--primary);
+  }
+
+  .sidebar .subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .sidebar nav ul {
+    list-style: none;
+  }
+
+  .sidebar nav li {
+    margin-bottom: 4px;
+  }
+
+  .sidebar nav a {
+    display: block;
+    padding: 8px 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+
+  .sidebar nav a:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+  }
+
+  .sidebar nav a.section-title {
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 16px;
+    pointer-events: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+
+  .sidebar nav a.indent {
+    padding-left: 24px;
+  }
+
+  /* Controls */
+  .controls {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    background: var(--bg-hover);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  /* Main content */
+  .main {
+    padding: 40px 60px;
+    max-width: 1100px;
+  }
+
+  .hero {
+    margin-bottom: 48px;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--primary), var(--accent-4));
+    color: white;
+    border-radius: 16px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    opacity: 0.9;
+    font-size: 15px;
+  }
+
+  .hero .meta {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hero .meta span {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+  }
+
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 20px;
+  }
+
+  h2 {
+    font-size: 26px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+  }
+
+  h3 {
+    font-size: 20px;
+    margin: 24px 0 12px;
+    color: var(--text);
+  }
+
+  h4 {
+    font-size: 16px;
+    margin: 16px 0 8px;
+    color: var(--text-secondary);
+  }
+
+  p {
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  .card.case {
+    border-left: 4px solid var(--accent-2);
+  }
+
+  .card.warning {
+    border-left: 4px solid var(--warning-border);
+    background: var(--warning-bg);
+  }
+
+  .card.highlight {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  .badge-1 { background: var(--accent-1); color: white; }
+  .badge-2 { background: var(--accent-2); color: white; }
+  .badge-3 { background: var(--accent-3); color: white; }
+  .badge-4 { background: var(--accent-4); color: white; }
+  .badge-primary { background: var(--primary); color: white; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  th {
+    background: var(--bg-hover);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: var(--bg-hover); }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Lists */
+  ul.feature-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  ul.feature-list li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    color: var(--text-secondary);
+  }
+
+  ul.feature-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 8px;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  /* Quiz */
+  .quiz {
+    background: var(--quiz-bg);
+    border: 1px solid var(--quiz-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .quiz-num {
+    display: inline-block;
+    background: var(--quiz-border);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .quiz-question {
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .quiz-options {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .quiz-options li {
+    padding: 6px 0;
+    color: var(--text-secondary);
+  }
+
+  .answer {
+    background: var(--answer-bg);
+    border: 1px solid var(--answer-border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+    display: none;
+    color: var(--text);
+  }
+
+  .answer.show { display: block; }
+
+  .answer strong { color: var(--answer-border); }
+
+  .reveal-btn {
+    background: var(--quiz-border);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  .reveal-btn:hover { opacity: 0.85; }
+
+  /* Print */
+  @media print {
+    .sidebar, .controls, .reveal-btn { display: none !important; }
+    .container { grid-template-columns: 1fr; }
+    .main { padding: 20px; max-width: 100%; }
+    .answer { display: block !important; }
+    .hero { color: black; background: white; border: 2px solid black; }
+    .card { break-inside: avoid; }
+    .quiz { break-inside: avoid; }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .container { grid-template-columns: 1fr; }
+    .sidebar {
+      position: relative;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .main { padding: 24px 20px; }
+    .hero h1 { font-size: 24px; }
+    h2 { font-size: 22px; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* TOC active */
+  .sidebar nav a.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  blockquote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 12px 18px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    color: var(--text);
+  }
+
+  blockquote strong { color: var(--primary); }
+
+  .keyword {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  .keyword-warn {
+    background: var(--warning-bg);
+    color: var(--warning-border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h1>📚 수리사회학</h1>
+    <p class="subtitle">담주 퀴즈 대비 완전 정리</p>
+
+    <nav>
+      <ul>
+        <a href="#intro" class="section-title">개요</a>
+        <li><a href="#intro">소개</a></li>
+
+        <a href="#part1" class="section-title">PART 1 · 대규모 협업</a>
+        <li><a href="#mc-overview" class="indent">개념</a></li>
+        <li><a href="#mc-types" class="indent">3가지 유형</a></li>
+        <li><a href="#mc-human" class="indent">① 인간 기반 연산</a></li>
+        <li><a href="#mc-opencall" class="indent">② 공개 모집</a></li>
+        <li><a href="#mc-distributed" class="indent">③ 분산 데이터 수집</a></li>
+        <li><a href="#mc-passive" class="indent">패시브 데이터</a></li>
+        <li><a href="#mc-design" class="indent">설계 5원칙</a></li>
+
+        <a href="#part2" class="section-title">PART 2 · 디지털 연구 윤리</a>
+        <li><a href="#eth-overview" class="indent">개념과 딜레마</a></li>
+        <li><a href="#eth-cases" class="indent">3대 논란 사례</a></li>
+        <li><a href="#eth-principles" class="indent">4가지 윤리 원칙</a></li>
+        <li><a href="#eth-paradigm" class="indent">2가지 패러다임</a></li>
+        <li><a href="#eth-difficult" class="indent">4가지 까다로운 상황</a></li>
+        <li><a href="#eth-irb" class="indent">IRB의 한계</a></li>
+
+        <a href="#quiz" class="section-title">📝 예상 퀴즈</a>
+        <li><a href="#quiz-mc" class="indent">객관식 6문항</a></li>
+        <li><a href="#quiz-data" class="indent">데이터 해석 2문항</a></li>
+        <li><a href="#quiz-scenario" class="indent">시나리오 판단</a></li>
+        <li><a href="#quiz-essay" class="indent">서술형 2문항</a></li>
+      </ul>
+
+      <div class="controls">
+        <button class="btn" onclick="toggleAllAnswers()">🔍 모든 정답 보기/숨기기</button>
+        <button class="btn btn-secondary" onclick="toggleTheme()">🌓 다크모드</button>
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ 인쇄</button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section id="intro" class="hero">
+      <h1>수리사회학 퀴즈 대비 완전 정리</h1>
+      <p>대규모 협업(Mass Collaboration) & 디지털 연구 윤리</p>
+      <div class="meta">
+        <span>📖 노트북 4개</span>
+        <span>🔬 실제 실험 수치 포함</span>
+        <span>📝 예상 퀴즈 11문제</span>
+        <span>🎯 데이터 해석 문제</span>
+      </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- PART 1: MASS COLLABORATION  -->
+    <!-- =========================== -->
+    <section id="part1">
+      <h2>🌐 PART 1 · 대규모 협업 (Mass Collaboration)</h2>
+
+      <section id="mc-overview">
+        <h3>1. 대규모 협업이란 무엇인가</h3>
+        <p>디지털 기술과 고속 통신망의 발달 덕분에 일반 시민들이 과학적 연구와 데이터 수집에 직접 참여할 수 있게 되었고, 이를 <span class="keyword">시민 과학(Citizen Science)</span> 또는 <span class="keyword">대규모 협업(Mass Collaboration)</span>이라고 부른다.</p>
+        <p>이 방식은 마치 딥러닝 연산에서 CPU 한 개 대신 수백 개의 <strong>GPU를 병렬</strong>로 돌리는 것과 같은 원리로, 소수의 전문가만으로는 처리할 수 없는 방대한 양의 작업을 더 저렴하고 빠르게, 때로는 더 정확하게 수행할 수 있게 해준다.</p>
+        <blockquote><strong>핵심 인물:</strong> Matthew Salganik 이 방식을 다음 3가지 유형으로 분류함.</blockquote>
+      </section>
+
+      <section id="mc-types">
+        <h3>2. 3가지 유형 비교표</h3>
+        <table>
+          <thead>
+            <tr><th>유형</th><th>핵심 특징</th><th>산출물</th><th>대표 사례</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-1">①</span> 인간 기반 연산<br><small>(Human Computation)</small></td>
+              <td>거대 업무 → 마이크로 태스크로 분할 → 합산</td>
+              <td><strong>평균값</strong></td>
+              <td>Galaxy Zoo, 정치 성명서 코딩</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-2">②</span> 공개 모집<br><small>(Open Call)</small></td>
+              <td>해결책 공모 (해결 어렵지만 검증 쉬움)</td>
+              <td><strong>단 하나의 최고 기여</strong></td>
+              <td>Netflix Prize, Foldit, Peer to Patent</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-3">③</span> 분산 데이터 수집<br><small>(Distributed Data Collection)</small></td>
+              <td>시민이 흩어져 데이터 수집</td>
+              <td><strong>단순 합산</strong></td>
+              <td>eBird, PhotoCity, 말라위 저널</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="mc-human">
+        <h3>3. <span class="badge badge-1">①</span> 인간 기반 연산 (Human Computation)</h3>
+
+        <p>단순하지만 규모가 너무 커서 소수의 전문가로는 감당하기 어려운 문제를 해결할 때 사용된다. 핵심 절차는 <strong>Split → Apply → Combine</strong>.</p>
+
+        <div class="card highlight">
+          <div class="card-title">🛡️ 핵심 품질 관리 장치</div>
+          <p><strong>① 작업 잉여성 (Redundancy):</strong> 동일한 작업을 여러 사람이 중복 수행하여 악의적 참여자·실수를 걸러냄.</p>
+          <p><strong>② 가중 평균 (Weighting):</strong> 단순 평균이 아닌, 신뢰도 높은 평가자의 의견에 더 큰 가중치 부여.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🔬 사례 ① · Galaxy Zoo</div>
+          <p>천문학자들이 수백만 개의 은하 사진을 나선형/타원형으로 분류하는 작업을 혼자서는 끝낼 수 없었다. 일반 시민들에게 분류를 맡기는 프로젝트.</p>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">10만+</span><span class="stat-label">자원자 수</span></div>
+            <div class="stat"><span class="stat-num">90만+</span><span class="stat-label">은하 이미지</span></div>
+            <div class="stat"><span class="stat-num">평균 40명</span><span class="stat-label">이미지당 중복 평가</span></div>
+            <div class="stat"><span class="stat-num">4천만+</span><span class="stat-label">총 분류 작업</span></div>
+            <div class="stat"><span class="stat-num">100만 개</span><span class="stat-label">ML 학습용 데이터</span></div>
+            <div class="stat"><span class="stat-num">100억 개</span><span class="stat-label">ML이 분류한 은하</span></div>
+          </div>
+          <p><strong>💡 예상치 못한 발견:</strong> 처음엔 나선형/타원형만 분류하려 했으나, 자발적 토론으로 <span class="keyword">완두콩 은하(Pea Galaxy)</span>라는 새 형태 발견 → <em>Nature</em> 게재</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🔬 사례 ② · 정치 성명서 클라우드 코딩</div>
+          <p>정당 성명서의 문장이 좌/우 어디에 위치하는지 분류. 전문가는 비싸고 느림.</p>
+          <div class="stats">
+            <div class="stat"><span class="stat-num">6번</span><span class="stat-label">선거 분석</span></div>
+            <div class="stat"><span class="stat-num">18개</span><span class="stat-label">정당 성명서</span></div>
+            <div class="stat"><span class="stat-num">~1,500명</span><span class="stat-label">평가자 (MTurk)</span></div>
+            <div class="stat"><span class="stat-num">20만개</span><span class="stat-label">총 평가</span></div>
+            <div class="stat"><span class="stat-num">문장당 5명</span><span class="stat-label">중복 평가</span></div>
+            <div class="stat"><span class="stat-num">5시간 / $360</span><span class="stat-label">총 비용·시간</span></div>
+          </div>
+          <p><strong>📊 일치도:</strong> 가중 평균값이 <strong>전문가 코딩과 매우 높은 일치도</strong>, 2개월 후 다른 데이터 재현 시에도 유지.</p>
+        </div>
+      </section>
+
+      <section id="mc-opencall">
+        <h3>4. <span class="badge badge-2">②</span> 공개 모집 (Open Call)</h3>
+        <p>해결책을 만들기는 어렵지만 검증은 쉬운 문제에 적합. 목표는 <strong>가장 뛰어난 단 하나의 기여</strong>.</p>
+
+        <div class="card case">
+          <div class="card-title">🎬 Netflix Prize</div>
+          <p>자사 추천 알고리즘 <strong>'시네매치(Cinematch)'</strong>보다 <span class="keyword">정확도 10% 이상</span> 개선하는 알고리즘에 <span class="keyword">$1,000,000 (약 13억)</span> 상금. 일부 평점을 숨겨두고 검증 → 영화와 무관한 분야 팀이 우승.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">🧬 Foldit</div>
+          <p>단백질 접기 문제를 <strong>스크린세이버/게임</strong> 형태로 변환. 결과: 일반인들의 집단 지성이 <strong>최첨단 알고리즘보다 더 안정적이고 낮은 에너지 레벨</strong>의 해결책 발견.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">⚖️ Peer to Patent</div>
+          <p>특허 심사관이 모든 선행 기술을 알 수 없는 문제. 자원자들이 선행 기술 탐색 → 전체 특허 신청의 <strong>약 30%에 달하는 부적격 특허</strong>를 걸러냄.</p>
+        </div>
+      </section>
+
+      <section id="mc-distributed">
+        <h3>5. <span class="badge badge-3">③</span> 분산 데이터 수집 (Distributed Data Collection)</h3>
+
+        <div class="card case">
+          <div class="card-title">🦅 eBird</div>
+          <p>조류 관찰자들이 새의 위치/종류를 기록하는 DB. 탐조자 위치/희귀종 편향 발생 → 참여자 상호작용 + <strong>통계적 가중치 보정</strong>으로 학술 논문 수준 품질 달성.</p>
+        </div>
+
+        <div class="card case">
+          <div class="card-title">📸 PhotoCity</div>
+          <p>관광지 3D 모델 구현 위해 모든 각도의 사진 필요. <strong>기존 사진과 겹치는 새로운 각도의 사진</strong>을 올리면 점수 추가 → 부족한 뒷면/측면 사진 유도 (주의 집중 유도의 좋은 사례).</p>
+        </div>
+      </section>
+
+      <section id="mc-passive">
+        <h3>6. 패시브 데이터 (Passive Data)</h3>
+        <p>참여자가 적극적 의도 없이 자동으로 축적되는 데이터.</p>
+
+        <div class="card case">
+          <div class="card-title">🚕 Pothole Patrol</div>
+          <p>도심 택시에 <strong>GPS + 가속도 센서</strong> 부착 → 주행 중 급격한 속도·위치 변화 데이터 수집 → <strong>머신러닝 클러스터링</strong>으로 도로 파손 지점 파악. 택시 기사는 별도 노력 없이 그냥 운전만 해도 데이터가 자동 수집.</p>
+        </div>
+      </section>
+
+      <section id="mc-design">
+        <h3>7. 대규모 협업 설계 5원칙</h3>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-1">①</span> 참여자 동기 부여 (Motivating Participants)</div>
+          <p>Amazon Mechanical Turk처럼 소액 금전 보상도 동기가 되지만, Galaxy Zoo의 <strong>공동체 의식</strong>이나 Foldit의 <strong>게임의 재미</strong>가 더 강력하게 장기 참여를 이끔. 개인 인센티브 + 집합적 가치를 결합.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-2">②</span> 이질성 활용 (Leveraging Heterogeneity)</div>
+          <p>참여자의 능력·성실도가 달라도 무작정 배제하지 않음. 위키피디아처럼 <span class="keyword">소수의 열성 기여자 (Fat head)</span> + <span class="keyword">가끔 참여하는 다수 (Long tail)</span> 구조를 활용.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-3">③</span> 주의 집중 유도 (Directing Attention)</div>
+          <p>PhotoCity의 점수 보상, Galaxy Zoo의 의견 분분 이미지 빈번 노출 등으로 참여자의 시선을 <strong>가장 필요한 데이터 쪽으로 유도</strong>.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-4">④</span> 예상치 못한 결과 허용 (Allowing for Surprising Results)</div>
+          <p>Galaxy Zoo의 <strong>완두콩 은하 발견</strong>처럼, 처음 설계한 틀을 벗어난 뜻밖의 결과를 막지 않고 수용 → 혁신적 발견.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-primary">⑤</span> 윤리적 고려 (Ethical Considerations)</div>
+          <p><strong>크레딧:</strong> 입자물리학 논문 기여자 전원 공저자 등재, Acknowledgment 명시.</p>
+          <p><strong>프라이버시:</strong> Netflix 데이터처럼 익명화 데이터도 IMDb 등 외부 DB 결합 시 개인 식별 위험.</p>
+        </div>
+
+        <blockquote>
+          <strong>실전 팁:</strong> 100만 명 중 1명만 참여해도 전 세계 대상이면 절대 수는 충분히 큼. 처음부터 완벽하게 만들지 말고 <strong>프로토타입 → 빠른 테스트 → 발전 또는 빠른 철수</strong> (스타트업 전략).
+        </blockquote>
+      </section>
+    </section>
+
+    <!-- =========================== -->
+    <!-- PART 2: ETHICS              -->
+    <!-- =========================== -->
+    <section id="part2">
+      <h2>⚖️ PART 2 · 디지털 연구 윤리 (챕터 6)</h2>
+
+      <section id="eth-overview">
+        <h3>1. 디지털 연구 윤리가 어려운 이유 — 이중 딜레마</h3>
+
+        <div class="card warning">
+          <div class="card-title">⚠️ 두 가지 상반된 위험</div>
+          <p><strong>① 무모한 위험:</strong> 프라이버시 침해·대중 감시 등 비윤리적 연구의 위험</p>
+          <p><strong>② 엄격함의 함정:</strong> 2014년 에볼라 유행 당시 <span class="keyword-warn">휴대전화 통화 기록 기반 역학 조사</span>가 프라이버시 문제로 좌절된 사례처럼, 지나친 윤리 엄격함으로 유용한 연구가 무산</p>
+        </div>
+
+        <h4>접근법의 차이</h4>
+        <table>
+          <thead>
+            <tr><th>학문 분야</th><th>접근 방식</th><th>특징</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>사회과학·의학</td><td>규칙 기반 (Rule-based)</td><td>대학 IRB 사전 심사 필수</td></tr>
+            <tr><td>데이터·컴퓨터 사이언스</td><td>사후 대처 / 컨퍼런스 중심</td><td>사람 직접 대면 실험이 적음</td></tr>
+            <tr><td>디지털 연구 (제안)</td><td><strong>원칙 기반 (Principle-based)</strong></td><td>플랫폼 약관·법률·방법 변화 빠름</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="eth-cases">
+        <h3>2. 3대 윤리 논란 사례</h3>
+
+        <div class="card warning">
+          <div class="card-title">🔬 사례 ① · 페이스북 감정 전염 실험 (Emotional Contagion)</div>
+          <p><strong>실험 설계:</strong> 약 70만 명의 사용자 뉴스피드에서 <strong>긍정적/부정적 단어를 임의로 삭제</strong>. 이후 사용자가 직접 쓰는 글의 단어 빈도 변화 관찰.</p>
+          <p><strong>결과:</strong> 실험 효과 크기는 <strong>매우 작음</strong>.</p>
+          <p><strong>비판:</strong> 코넬대 IRB 통과에도 불구 <span class="keyword-warn">사전 동의 없이 감정 조작</span>. <em>PNAS</em> 편집진도 공개적 우려 표명.</p>
+          <p><strong>4원칙 위반:</strong> 인간 존중 / 선행(취약 집단 미보호) / 법과 공익 존중</p>
+        </div>
+
+        <div class="card warning">
+          <div class="card-title">🔬 사례 ② · 하버드 T3 (취향·유대·시간) 연구</div>
+          <p><strong>실험 설계:</strong> 페이스북 사용자 데이터 + 대학 시절 기록을 결합 → 익명화 후 외부 공개. 하버드 IRB 통과.</p>
+          <p><strong>비판:</strong> 익명화에도 불구 데이터 분석 시 대상 학교가 <strong>하버드임을 누구나 유추 가능</strong>. 졸업생들의 페이스북 사용 패턴·관계망·취향 등 민감 정보 노출.</p>
+          <p><strong>교훈:</strong> 익명화만으로는 <span class="keyword-warn">재식별(Re-identification)</span>을 막을 수 없다.</p>
+        </div>
+
+        <div class="card warning">
+          <div class="card-title">🔬 사례 ③ · 앙코르 (Encore) 연구</div>
+          <p><strong>실험 설계:</strong> 일부 웹사이트 협조로 소스 코드에 <strong>스크립트 삽입</strong> → 방문자 컴퓨터가 자동으로 검열 의심 사이트에 접속 → 차단 여부로 검열 지도 작성. <strong>170개국 이상</strong> 컴퓨터 동원. IRB 사전 승인 없음.</p>
+          <p><strong>비판:</strong> 사용자가 모르는 사이 자신의 컴퓨터에 <span class="keyword-warn">검열 사이트 접속 기록</span>이 남음. 권위주의 국가 사용자는 정부 수사/처벌의 신변 위험에 노출.</p>
+        </div>
+      </section>
+
+      <section id="eth-principles">
+        <h3>3. 디지털 연구 윤리의 4가지 원칙</h3>
+        <p>벨몬트 보고서(Belmont Report)의 의학 윤리를 디지털 시대로 확장한 4가지 원칙.</p>
+
+        <table>
+          <thead>
+            <tr><th>원칙</th><th>핵심 내용</th><th>위반 사례</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-1">①</span> <strong>인간 존중</strong><br><small>Respect for Persons</small></td>
+              <td>자율성 존중, <strong>고지에 입각한 동의 (Informed Consent)</strong></td>
+              <td>페이스북 실험, 앙코르</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-2">②</span> <strong>선행</strong><br><small>Beneficence</small></td>
+              <td>위험 최소화 + 이익 극대화. 오픈 액세스·코드 공개</td>
+              <td>페이스북(취약집단), 앙코르</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-3">③</span> <strong>정의</strong><br><small>Justice</small></td>
+              <td>위험·이익의 공정한 배분. 사회적 약자 보호</td>
+              <td>앙코르(검열국가 시민)</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-4">④</span> <strong>법과 공익 존중</strong><br><small>Respect for Law and Public Interest</small></td>
+              <td>컴플라이언스 + <strong>책무성·투명성</strong></td>
+              <td>앙코르(170개국), 페이스북</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="eth-paradigm">
+        <h3>4. 두 가지 윤리 패러다임</h3>
+
+        <table>
+          <thead>
+            <tr><th></th><th>결과주의 (Consequentialism)</th><th>의무론 (Deontology)</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>철학적 배경</th><td>벤담의 공리주의</td><td>칸트의 윤리학</td></tr>
+            <tr><th>판단 기준</th><td>결과의 효용 (사회적 이익)</td><td>수단·절차의 정당성</td></tr>
+            <tr><th>대응 원칙</th><td>선행의 원칙</td><td>인간 존중 / Informed Consent</td></tr>
+            <tr><th>예시 입장</th><td>"피해는 적고 효용은 크니 정당함"</td><td>"동의 없는 실험은 결과와 무관하게 잘못"</td></tr>
+          </tbody>
+        </table>
+
+        <blockquote>
+          <strong>핵심 통찰:</strong> 두 패러다임은 종종 충돌함 (효용은 크지만 동의를 받을 수 없는 연구). 어느 하나를 절대적 기준으로 삼지 말고 맥락에 따라 균형을 찾는 <strong>실용적 태도</strong>가 필요.
+        </blockquote>
+
+        <h4>📌 예시: "가짜 이력서 채용 차별 연구"</h4>
+        <ul class="feature-list">
+          <li><strong>의무론:</strong> 고용주가 사전 동의 없음 → 인간 존중 원칙 위반</li>
+          <li><strong>결과주의:</strong> 고용주 피해는 제한적, 사회 차별 규명의 공익 효용은 큼 → 정당화 가능</li>
+        </ul>
+      </section>
+
+      <section id="eth-difficult">
+        <h3>5. 4가지 까다로운 상황과 대응 방안</h3>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-1">①</span> Informed Consent가 불가능한 경우</div>
+          <p>채용 차별 실험처럼 사전 동의 시 연구 자체가 불가능. 동의를 <strong>연속적·단계적</strong>으로 접근.</p>
+          <ul class="feature-list">
+            <li><strong>참가·이탈의 용이성:</strong> 검열 국가 등에서 언제든 쉽게 이탈할 수 있는 장치 마련</li>
+            <li><strong>제3자 동의:</strong> 학생 대신 학교가 동의 (학교가 부모 설득)</li>
+            <li><strong>사후 설명 (Debrief):</strong> 실험 후 상황 설명하고 동의 획득</li>
+            <li><strong>대표 표본 동의:</strong> 무작위 일부 표본에게만 제한적으로 동의</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-2">②</span> 재식별 공격 (Re-identification) — 익명화의 한계</div>
+          <p>익명 데이터 + 외부 DB 결합 → 특정 개인 식별 가능.</p>
+          <ul class="feature-list">
+            <li><strong>GIC + 선거인 명부:</strong> 익명 의료 데이터를 우편번호·생년월일·성별로 결합 → 개인 식별</li>
+            <li><strong>Netflix + IMDb:</strong> 익명 리뷰를 IMDb 공개 리뷰와 대조 → 사용자 식별</li>
+            <li><strong>뉴욕 택시 기록:</strong> 위치 데이터로 새벽 유흥 시설 이용자 추적</li>
+          </ul>
+          <blockquote>
+            <strong>대응책 — 월드 가든 (Walled Garden):</strong> 완전 비공개(연구 불가)와 완전 공개(유출 위험) 사이에서, 안전한 방어벽 안에서만 제한적 접근 허용.
+          </blockquote>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-3">③</span> 프라이버시 — 맥락적 통합성 (Contextual Integrity)</div>
+          <p>프라이버시 침해 여부는 "공개된 곳에 있는가"가 아니라 <strong>데이터의 흐름(Flow)이 사용자가 기대한 맥락(Context)을 벗어났는가</strong>로 판단.</p>
+          <blockquote>
+            예시: SNS에 공개 게시물을 올린 것은 "친구들과의 일상 공유" 맥락. 연구팀이 "학술 연구 데이터" 맥락으로 사용 → 법적으로 공개 정보라도 <span class="keyword-warn">맥락적 통합성 깨짐 = 프라이버시 침해</span>
+          </blockquote>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="badge badge-4">④</span> 불확실성 하의 결정 — 예방의 원칙의 함정</div>
+          <p>"위험할 수도 있으니 아무것도 하지 말자"는 <span class="keyword-warn">예방의 원칙 (Precautionary Principle)</span>만 고수하면 사회가 큰 비용을 치름.</p>
+          <ul class="feature-list">
+            <li><strong>최소 위험 표준:</strong> 일상적 위험 수준과 비교하여 평가</li>
+            <li><strong>검정력(Statistical Power) 활용:</strong> 사전/사후 비교로 피험자 수 최소화</li>
+            <li><strong>파일럿 연구:</strong> 본 실험 전 소규모 윤리성 사전 검증</li>
+            <li><strong>단계적 실험 (Phased Trials):</strong> 코로나19 백신 임상 1상·2상·3상처럼 단계 확대</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="eth-irb">
+        <h3>6. IRB는 윤리의 하한선이다</h3>
+        <blockquote>
+          IRB 통과는 면죄부가 아니라 <strong>최소한의 기준선</strong>일 뿐이다. 페이스북 감정 전염 실험이 코넬대 IRB를 통과했음에도 세계적 비판을 받은 것이 이를 잘 보여준다.
+        </blockquote>
+        <p>연구자는 IRB 통과에 안주하지 말고, 논문 부록 등에 윤리적 노력을 <strong>투명하게 공개(Transparency)</strong>하고 그 정당성을 스스로 설명하는 <strong>책무성(Accountability)</strong>을 가져야 한다.</p>
+
+        <h4>최종 결론적 조언</h4>
+        <ul class="feature-list">
+          <li>윤리 문제를 이분법으로 보지 말 것 → <strong>연속적 사고방식</strong></li>
+          <li>일반 시민의 감각과 규범을 고려할 것</li>
+          <li>정확한 언어로 윤리 문제를 규정하고 <strong>사회적 합의(숙의)</strong> 능력이 필수</li>
+          <li>시민사회는 데이터 활용 반대보다 <strong>감사(Audit) · 참여 · 공공 데이터 축적</strong>에 기여해야 함</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- =========================== -->
+    <!-- QUIZ                        -->
+    <!-- =========================== -->
+    <section id="quiz">
+      <h2>📝 예상 퀴즈 (총 11문항)</h2>
+      <p>각 문제 아래의 <strong>"정답 보기"</strong> 버튼을 누르면 해답이 나타납니다. 상단의 <strong>"모든 정답 보기/숨기기"</strong> 버튼으로 한꺼번에 토글할 수 있습니다.</p>
+
+      <section id="quiz-mc">
+        <h3>📌 객관식 (6문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q1</span>
+          <p class="quiz-question">Galaxy Zoo에서 수행된 총 분류 작업 횟수로 옳은 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 90만 번</li>
+            <li>B) 100만 번</li>
+            <li>C) 4천만 번 이상</li>
+            <li>D) 100억 번</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C) 4천만 번 이상</strong><br>
+            10만 명이 90만 개 이미지를 분류했고, 이미지 1개당 평균 40명 이상이 반복 평가했으므로 총 4천만 번 이상의 작업이 수행됨.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q2</span>
+          <p class="quiz-question">정치 성명서 클라우드 코딩에서 전문가 코딩 대비 시민 참여 방식의 비용과 소요 시간은?</p>
+          <ul class="quiz-options">
+            <li>A) 5시간, $36</li>
+            <li>B) 5시간, $360</li>
+            <li>C) 50시간, $360</li>
+            <li>D) 500시간, $3,600</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: B) 5시간, $360</strong><br>
+            약 1,500명의 평가자가 20만 개의 평가를 단 5시간, $360로 완료. 가중 평균 결과는 전문가 코딩과 매우 높은 일치도를 보였음.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q3</span>
+          <p class="quiz-question">다음 중 "맥락적 통합성(Contextual Integrity)" 위반에 해당하는 것은?</p>
+          <ul class="quiz-options">
+            <li>A) 의사가 환자 기록을 환자 치료에 사용</li>
+            <li>B) 친구끼리 나눈 메시지를 친구가 봄</li>
+            <li>C) 페이스북 공개 게시물을 동의 없이 학술 연구에 활용</li>
+            <li>D) 신문 기사를 도서관에서 열람</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            사용자가 SNS에 공개로 올렸어도 그 맥락은 "친구들과의 일상 공유"이다. "학술 연구"라는 다른 맥락으로 사용되면 맥락적 통합성이 깨진 것 = 프라이버시 침해.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q4</span>
+          <p class="quiz-question">앙코르(Encore) 연구에 동원된 국가 수는?</p>
+          <ul class="quiz-options">
+            <li>A) 17개국</li>
+            <li>B) 70개국</li>
+            <li>C) 100개국</li>
+            <li>D) 170개국 이상</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: D) 170개국 이상</strong><br>
+            앙코르 연구는 170개국 이상의 컴퓨터가 동원되어 각국의 법과 공익을 모두 준수(Compliance)하는 것이 현실적으로 불가능했음.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q5</span>
+          <p class="quiz-question">다음 중 "의무론(Deontology)"에 더 부합하는 주장은?</p>
+          <ul class="quiz-options">
+            <li>A) "이 연구는 암 치료에 기여하므로 윤리적이다."</li>
+            <li>B) "사회적 효용이 위험보다 크다."</li>
+            <li>C) "결과가 좋더라도 환자의 동의 없이 실험하는 것은 잘못이다."</li>
+            <li>D) "1,000명이 이익을 보면 1명의 희생은 감수할 수 있다."</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: C</strong><br>
+            의무론은 결과와 무관하게 수단·절차가 정당해야 한다는 칸트 윤리학에 기반. A, B, D는 모두 결과주의(공리주의) 입장.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q6</span>
+          <p class="quiz-question">다음 중 "공개 모집(Open Call)" 사례가 아닌 것은?</p>
+          <ul class="quiz-options">
+            <li>A) Netflix Prize</li>
+            <li>B) Foldit</li>
+            <li>C) Peer to Patent</li>
+            <li>D) eBird</li>
+          </ul>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>정답: D) eBird</strong><br>
+            eBird는 분산 데이터 수집(Distributed Data Collection)에 해당. A, B, C는 모두 공개 모집에 해당.
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-data">
+        <h3>📊 데이터 해석 (2문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q7</span>
+          <p class="quiz-question"><strong>[데이터 해석]</strong> 정치 성명서 코딩에서 A 문장에 5명이 평가한 결과:</p>
+          <table style="background: white;">
+            <thead><tr><th>평가자</th><th>성향 점수 (1=극좌~10=극우)</th><th>다른 문장 일치도</th></tr></thead>
+            <tbody>
+              <tr><td>갑</td><td>7</td><td>높음</td></tr>
+              <tr><td>을</td><td>7</td><td>높음</td></tr>
+              <tr><td>병</td><td>8</td><td>높음</td></tr>
+              <tr><td>정</td><td>3</td><td>낮음 (혼자 다름)</td></tr>
+              <tr><td>무</td><td>7</td><td>보통</td></tr>
+            </tbody>
+          </table>
+          <p>(1) 단순 평균값을 구하시오.<br>(2) 가중 평균 적용 시 어떤 평가자의 가중치를 낮춰야 하며 그 이유는?<br>(3) 이 방식이 전문가 코딩보다 장점은 무엇인가?</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>(1) 단순 평균:</strong> (7+7+8+3+7) ÷ 5 = <strong>6.4</strong><br><br>
+            <strong>(2) 가중치 조정:</strong> <strong>정</strong>의 가중치를 낮춰야 함. 다른 문장에서도 일관적으로 다수와 일치도가 낮아 부주의하거나 악의적 평가자일 가능성이 높음. 가중 평균 적용 시 최종 점수는 <strong>7에 가깝게</strong> 조정.<br><br>
+            <strong>(3) 장점:</strong> 5시간·$360의 비용으로 전문가 코딩 대비 시간·비용을 획기적으로 절약하면서도, 가중 평균을 통해 전문가 수준의 정확도를 달성. 2개월 후 재현 시에도 높은 일치도 유지.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q8</span>
+          <p class="quiz-question"><strong>[데이터 해석]</strong> Galaxy Zoo 통계 분석:</p>
+          <ul class="quiz-options">
+            <li>자원자 수: 10만 명</li>
+            <li>분류 대상 이미지: 90만 개</li>
+            <li>이미지당 평균 분류 횟수: 40회</li>
+            <li>총 분류 작업 횟수: 4천만 회 이상</li>
+          </ul>
+          <p>(1) Redundancy 없이 1인 1이미지로 배분했다면 10만 명으로 처리 가능한 이미지 수는?<br>(2) 실제로 40회 중복 평가를 한 이유는?<br>(3) 이후 ML로 확장했을 때 처리 가능해진 은하 수는?</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>(1)</strong> 10만 개 (1인 1이미지, Redundancy 없음). 90만 개 처리 불가.<br><br>
+            <strong>(2)</strong> 단일 평가는 실수·편향·악의적 분류에 취약. 40명 중복 평가로 이상치를 걸러내고 신뢰도 높은 다수결/평균값을 도출. 품질 관리의 핵심 장치 = <strong>작업 잉여성(Redundancy)</strong>.<br><br>
+            <strong>(3)</strong> <strong>100억 개 은하 분류.</strong> 인간이 분류한 100만 개 데이터로 ML을 지도 학습 → 100억 개로 확장 → 인간 한계를 초월한 결과 달성.
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-scenario">
+        <h3>🎯 시나리오 판단 (1문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q9</span>
+          <p class="quiz-question"><strong>[시나리오]</strong> 다음 시나리오에서 위반된 윤리 원칙을 쓰시오.</p>
+          <p>① 트위터 공개 트윗을 사용자 동의 없이 정치 성향 분석에 사용하고 사용자 이름과 함께 결과 공개</p>
+          <p>② 코로나 감염 경로 파악을 위해 고위험군(노인·기저질환자)만을 대상으로 백신 없이 바이러스에 노출시키는 실험 설계</p>
+          <p>③ 연구자가 개인정보 관련 법 다수 위반에도 "연구 목적이 공익적"이라며 결과만 발표하고 방법론 비공개</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">정답 보기</button>
+          <div class="answer">
+            <strong>①</strong> 맥락적 통합성 위반 + 인간 존중 원칙 위반 (공개 트윗이라도 연구 맥락은 사용자가 기대한 것과 다름, 동의 부재)<br><br>
+            <strong>②</strong> 정의의 원칙 위반 (사회적 약자(고위험군)에게 위험 집중) + 선행의 원칙 위반 (위험 최소화 실패)<br><br>
+            <strong>③</strong> 법과 공익 존중 원칙 위반 (컴플라이언스 실패 + 투명성·책무성 부재). 완벽한 법 준수가 불가능하더라도 정당성을 투명하게 공개해야 함.
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-essay">
+        <h3>📝 서술형 (2문항)</h3>
+
+        <div class="quiz">
+          <span class="quiz-num">Q10</span>
+          <p class="quiz-question"><strong>[서술형]</strong> 넷플릭스 익명 데이터가 재식별 공격에 취약했던 이유를 설명하고, "월드 가든(Walled Garden)" 방식이 무엇인지 서술하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            넷플릭스는 영화 추천 알고리즘 개선을 위해 익명화한 사용자 리뷰 데이터를 공개했으나, 연구자들이 이 데이터를 IMDb에 공개된 사용자 리뷰와 대조·결합하여 넷플릭스 사용자의 신원을 식별하는 데 성공했다. 이처럼 익명화 데이터도 외부 데이터와 결합되면 특정 개인을 알아낼 수 있는 <strong>재식별 공격(Re-identification Attack)</strong>에 취약하다. 유사한 사례로 GIC 의료 데이터 + 선거인 명부 결합, 뉴욕 택시 기록의 위치 정보 분석 등이 있다.<br><br>
+            <strong>월드 가든(Walled Garden)</strong>이란 데이터를 완전 비공개(연구 불가)하거나 완전 공개(유출 위험)하는 극단 사이에서, 안전한 방어벽(접근 통제, 계약, 감사 절차 등)을 쳐서 <strong>제한적 조건 하에서만 데이터 접근을 허용</strong>하는 방식이다. 이를 통해 개인정보 위험은 최소화하면서도 사회적 연구 효용은 유지하는 타협점을 찾는다.
+          </div>
+        </div>
+
+        <div class="quiz">
+          <span class="quiz-num">Q11</span>
+          <p class="quiz-question"><strong>[서술형]</strong> 결과주의와 의무론의 관점에서 "가짜 이력서를 이용한 채용 차별 연구"를 각각 어떻게 평가하는지 비교하시오.</p>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">모범 답안 보기</button>
+          <div class="answer">
+            <strong>모범 답안:</strong><br><br>
+            <strong>① 의무론적 관점:</strong> 채용 과정에서 고용주는 연구의 피험자가 되었으나 사전 동의를 전혀 받지 못했다. 의무론은 결과와 무관하게 수단이 정당해야 하므로, 동의 없이 진행된 이 연구는 <strong>'인간 존중의 원칙'을 위반</strong>한 비윤리적 연구로 판단된다 (칸트 윤리학).<br><br>
+            <strong>② 결과주의적 관점:</strong> 고용주가 받는 피해는 가짜 이력서 검토 시간 정도로 제한적이다. 반면 이 연구로 사회 구조적 채용 차별을 실증적으로 밝혀 정책 개선에 기여하는 <strong>공익적 효용은 훨씬 크다</strong>. 따라서 결과주의적으로는 비용 대비 이익이 명백히 크므로 윤리적으로 정당화 가능 (벤담 공리주의).<br><br>
+            <strong>③ 결론:</strong> 두 패러다임이 충돌하는 이 경우, 연구자는 어느 하나만을 절대적 기준으로 삼지 않고 <strong>원칙들 간의 균형과 맥락</strong>을 고려하여 판단해야 한다. 동의의 연속적 접근(예: 사후 디브리프), 위험 최소화 장치 마련 등 실용적 타협이 필요하다.
+          </div>
+        </div>
+      </section>
+
+      <div class="card highlight" style="text-align: center; margin-top: 40px;">
+        <h3 style="margin: 0;">🎓 시험 잘 보세요!</h3>
+        <p style="margin-top: 12px;">핵심 키워드: <span class="keyword">Salganik의 3유형</span> · <span class="keyword">Redundancy</span> · <span class="keyword">Weighting</span> · <span class="keyword">5가지 설계 원칙</span> · <span class="keyword">4가지 윤리 원칙</span> · <span class="keyword">결과주의/의무론</span> · <span class="keyword">맥락적 통합성</span> · <span class="keyword">재식별 공격</span> · <span class="keyword">월드 가든</span> · <span class="keyword">단계적 실험</span></p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Toggle individual answer
+  function toggleAnswer(btn) {
+    const answer = btn.nextElementSibling;
+    answer.classList.toggle('show');
+    btn.textContent = answer.classList.contains('show') ? '정답 숨기기' : '정답 보기';
+  }
+
+  // Toggle all answers
+  let allShown = false;
+  function toggleAllAnswers() {
+    allShown = !allShown;
+    document.querySelectorAll('.answer').forEach(a => {
+      if (allShown) a.classList.add('show');
+      else a.classList.remove('show');
+    });
+    document.querySelectorAll('.reveal-btn').forEach(b => {
+      b.textContent = allShown ? '정답 숨기기' : '정답 보기';
+    });
+  }
+
+  // Theme toggle
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Active section highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.sidebar nav a[href^="#"]');
+
+  function highlightNav() {
+    let current = '';
+    sections.forEach(s => {
+      const rect = s.getBoundingClientRect();
+      if (rect.top <= 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', highlightNav);
+  highlightNav();
+</script>
+
+</body>
+</html>
